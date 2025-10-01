@@ -34,6 +34,12 @@ export default function Homepage() {
               glowColor="132, 0, 255"
               cards={[
                 {
+                  label: 'Personal',
+                  title: 'Dashboard',
+                  color: '#101104',
+                  description: 'Centralized data view',
+                },
+                {
                   label: 'Soulisack DUANGVILAY',
                   title: 'Profile',
                   description: 'introduction',
@@ -43,12 +49,6 @@ export default function Homepage() {
                       <ProfileHeader />
                     </>
                   ),
-                },
-                {
-                  label: 'Overview',
-                  title: 'Dashboard',
-                  color: '#101104',
-                  description: 'Centralized data view',
                 },
                 {
                   label: 'GitHub Activity',
@@ -68,7 +68,7 @@ export default function Homepage() {
                   color: '#101104',
                   customContent: (
                     <>
-                      <WPMDisplay />
+                      {/* <WPMDisplay /> */}
                     </>
                   ),
                 },

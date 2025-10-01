@@ -60,7 +60,7 @@ export const NAV_ITEMS: NavItemType[] = [
 export const GITHUB_CONFIG = {
   GITHUB_USERNAME: process.env.GITHUB_USERNAME,
   RATE_LIMIT: 100, // requests per hour
-  CACHE_DURATION: 60 * 60 * 1000, // 1 hour in milliseconds
+  CACHE_DURATION: 24 * 60 * 60 * 1000, // 1 day 
   TIMEOUT: 10000, // 10 second timeout
   GRAPHQL_ENDPOINT: process.env.GITHUB_URL || "https://api.github.com/graphql",
 };

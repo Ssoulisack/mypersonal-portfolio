@@ -54,7 +54,7 @@ export const Hero = () => {
       <div className="flex flex-col items-center justify-center relative z-10">
         {/* 1. RotatingText */}
         <div className="text-center px-4 mb-4 md:mb-8">
-          <h2 className="my-name text-lg sm:text-xl md:text-3xl lg:text-5xl font-bold mb-4 md:mb-8 py-2 px-4 sm:mx-12 md:mx-0">
+          <h2 className="my-name text-lg sm:text-xl md:text-3xl lg:text-5xl font-bold mb-4 md:mb-8 py-2 px-4 sm:mx-12 md:mx-0 cursor-target">
             SOULISACK DUANGVILAY
           </h2>
         </div>
@@ -87,26 +87,26 @@ export const Hero = () => {
         <div className="flex gap-4 md:gap-6 justify-center">
           <a
             href="https://github.com/Ssoulisack"
-            className="my-icon transition-colors"
+            className="my-icon transition-colors cursor-target"
           >
             <GithubIcon size={24} className="md:w-8 md:h-8" />
           </a>
           <a
             href="https://www.linkedin.com/in/sackdvl/"
-            className="my-icon transition-colors"
+            className="my-icon transition-colors cursor-target"
           >
             <Linkedin size={24} className="md:w-8 md:h-8" />
           </a>
           <button
             onClick={scrollToContact}
-            className="my-icon transition-colors"
+            className="my-icon transition-colors cursor-target"
           >
-            <Mail size={24} className="md:w-8 md:h-8" />
+            <Mail size={24} className="md:w-8 md:h-8 cursor-target" />
           </button>
         </div>
 
         {/* Go to Homepage Button */}
-        <div className="mt-6">
+        <div className="mt-6 cursor-target">
           <Link href="/homepage">
             <Button>
               Go to homepage

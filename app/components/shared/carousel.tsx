@@ -30,7 +30,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
   },
   {
     title: 'Animations',
-    description: 'Smooth animations for your projects.',
+    description: 'Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.',
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />
   },
@@ -56,7 +56,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
 
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
-const GAP = 16;
+const GAP = 8;
 const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 300, damping: 30 };
 
 export default function Carousel({
@@ -68,7 +68,7 @@ export default function Carousel({
   loop = false,
   round = false
 }: CarouselProps): JSX.Element {
-  const containerPadding = 16;
+  const containerPadding = 8;
   const itemWidth = baseWidth - containerPadding * 2;
   const trackItemOffset = itemWidth + GAP;
 
@@ -151,8 +151,8 @@ export default function Carousel({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden p-4 ${
-        round ? 'rounded-full border border-white' : 'rounded-[24px] border border-[#222]'
+      className={`relative overflow-hidden p-2 ${
+        round ? 'rounded-full border border-[#222]' : 'rounded-[24px] border border-[#222]'
       }`}
       style={{
         width: `${baseWidth}px`,
@@ -182,7 +182,7 @@ export default function Carousel({
               className={`relative shrink-0 flex flex-col ${
                 round
                   ? 'items-center justify-center text-center bg-[#060010] border-0'
-                  : 'items-start justify-between bg-[#222] border border-[#222] rounded-[12px]'
+                  : 'items-start justify-center bg-[#222] border border-[#222] rounded-[12px]'
               } overflow-hidden cursor-grab active:cursor-grabbing`}
               style={{
                 width: itemWidth,
@@ -191,12 +191,12 @@ export default function Carousel({
               }}
               transition={effectiveTransition}
             >
-              <div className={`${round ? 'p-0 m-0' : 'mb-4 p-5'}`}>
+              <div className={`${round ? 'p-0 m-0' : 'p-5'}`}>
                 <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
                   {item.icon}
                 </span>
               </div>
-              <div className="p-5">
+              <div className="p-6">
                 <div className="mb-1 font-black text-lg text-white">{item.title}</div>
                 <p className="text-xs text-white">{item.description}</p>
               </div>

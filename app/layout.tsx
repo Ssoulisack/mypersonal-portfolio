@@ -29,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${getUbuntu.variable} ${getPoppins.variable} antialiased`}
          cz-shortcut-listen="true"
+         suppressHydrationWarning
       >
         {children}
       </body>
