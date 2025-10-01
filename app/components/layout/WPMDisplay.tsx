@@ -11,9 +11,13 @@ interface WPMDisplayProps {
    * Visual presentation. "card" renders its own surface; "plain" lets parent card (e.g., MagicBento) provide the background.
    */
   variant?: 'card' | 'plain'
+  /**
+   * Target number of tests for progress bar. If not provided, will use a calculated target based on current progress.
+   */
+  targetTests?: number
 }
 
-export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayProps) {
+export function WPMDisplay({ showChart = true, variant = 'card', targetTests }: WPMDisplayProps) {
   const { data: wpmData, loading, error, refetch, latestResult } = useWPMData()
   const [mounted, setMounted] = useState(false)
 
@@ -84,7 +88,22 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
   const testsStarted = wpmData ? wpmData.length : 0
   const testsCompleted = wpmData ? wpmData.length : 0
   const totalTimeTyping = wpmData ? wpmData.reduce((total, result) => total + result.testDuration, 0) : 0
-  
+
+  // Calculate dynamic target if not provided
+  const calculateTarget = () => {
+    if (targetTests) return targetTests
+
+    // Dynamic target based on current progress
+    if (testsCompleted === 0) return 100 // Starting target
+    if (testsCompleted < 50) return 100
+    if (testsCompleted < 100) return 200
+    if (testsCompleted < 200) return 500
+    if (testsCompleted < 500) return 1000
+    return Math.max(testsCompleted * 1.5, 1000) // 50% more than current
+  }
+
+  const progressTarget = calculateTarget()
+
   // Format time as HH:MM:SS (without .00 seconds)
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600)
@@ -111,26 +130,18 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
   return (
     <div className={containerClass}>
       {/* Profile Header */}
-      <div className="flex items-center gap-4 mb-6">
-        <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center">
-          <div className="w-8 h-8 bg-gray-500 rounded-full"></div>
+      <div className="flex sm:flex-row sm:items-center justify-evenly gap-4 mb-6">
+        <div className='flex flex-col items-center gap-4'>
+          <div className="text-xs text-gray-400 mb-1">started</div>
+          <div className="text-lg sm:text-xl font-bold">{testsStarted}</div>
         </div>
-        <div>
-          <div className="text-xs text-gray-400">MonkeyType</div>
+        <div className='flex flex-col items-center gap-4'>
+          <div className="text-xs text-gray-400 mb-1">completed</div>
+          <div className="text-lg sm:text-xl font-bold">{testsCompleted}</div>
         </div>
-        <div className="ml-auto grid grid-cols-3 gap-8 text-center">
-          <div>
-            <div className="text-xs text-gray-400 mb-1">tests started</div>
-            <div className="text-2xl font-bold">{testsStarted}</div>
-          </div>
-          <div>
-            <div className="text-xs text-gray-400 mb-1">tests completed</div>
-            <div className="text-2xl font-bold">{testsCompleted}</div>
-          </div>
-          <div>
-            <div className="text-xs text-gray-400 mb-1">time typing</div>
-            <div className="text-2xl font-bold">{formatTime(totalTimeTyping)}</div>
-          </div>
+        <div className='flex flex-col items-center gap-4'>
+          <div className="text-xs text-gray-400 mb-1">time typing</div>
+          <div className="text-sm sm:text-lg font-bold">{formatTime(totalTimeTyping)}</div>
         </div>
       </div>
 
@@ -139,24 +150,25 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
         <div className="flex items-center gap-2 mb-2">
           <span className="text-lg font-bold">{testsCompleted}</span>
           <div className="flex-1 bg-gray-700 rounded-full h-2">
-            <div 
-              className="bg-blue-500 h-2 rounded-full transition-all duration-300" 
-              style={{ width: `${Math.min((testsCompleted / Math.max(testsCompleted, 296)) * 100, 100)}%` }}
+            <div
+              className="bg-yellow-500 h-2 rounded-full transition-all duration-300"
+              style={{ width: `${Math.min((testsCompleted / progressTarget) * 100, 100)}%` }}
             ></div>
           </div>
-          <span className="text-xs text-gray-400">{testsCompleted}/296</span>
+          <span className="text-xs text-gray-400">{testsCompleted}/{progressTarget}</span>
         </div>
       </div>
 
       {/* Test Results Table */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Time-based tests */}
-        <div>
+        <div className="space-y-3">
+          <div className="text-sm font-semibold text-gray-300 mb-3">Time Tests</div>
           <div className="grid grid-cols-4 gap-2 mb-2 text-xs text-gray-400">
-            <div>15 seconds</div>
-            <div>30 seconds</div>
-            <div>60 seconds</div>
-            <div>120 seconds</div>
+            <div className="text-center">15s</div>
+            <div className="text-center">30s</div>
+            <div className="text-center">60s</div>
+            <div className="text-center">120s</div>
           </div>
           <div className="grid grid-cols-4 gap-2 mb-1">
             {['15', '30', '60', '120'].map((duration) => {
@@ -164,11 +176,10 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
               const isCurrentTest = mode === 'time' && mode2 === duration
               return (
                 <div key={duration} className="text-center">
-                  <div className={`text-2xl font-bold ${
-                    result?.isPb ? 'text-yellow-400' : 
-                    isCurrentTest ? 'text-blue-400' : 
-                    result ? 'text-white' : 'text-gray-500'
-                  }`}>
+                  <div className={`text-lg sm:text-xl font-bold ${result?.isPb ? 'text-yellow-400' :
+                    isCurrentTest ? 'text-blue-400' :
+                      result ? 'text-white' : 'text-gray-500'
+                    }`}>
                     {result ? Math.round(result.wpm) : '-'}
                   </div>
                 </div>
@@ -188,12 +199,13 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
         </div>
 
         {/* Word-based tests */}
-        <div>
+        <div className="space-y-3">
+          <div className="text-sm font-semibold text-gray-300 mb-3">Word Tests</div>
           <div className="grid grid-cols-4 gap-2 mb-2 text-xs text-gray-400">
-            <div>10 words</div>
-            <div>25 words</div>
-            <div>50 words</div>
-            <div>100 words</div>
+            <div className="text-center">10w</div>
+            <div className="text-center">25w</div>
+            <div className="text-center">50w</div>
+            <div className="text-center">100w</div>
           </div>
           <div className="grid grid-cols-4 gap-2 mb-1">
             {['10', '25', '50', '100'].map((wordCount) => {
@@ -201,11 +213,10 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
               const isCurrentTest = mode === 'words' && mode2 === wordCount
               return (
                 <div key={wordCount} className="text-center">
-                  <div className={`text-2xl font-bold ${
-                    result?.isPb ? 'text-yellow-400' : 
-                    isCurrentTest ? 'text-blue-400' : 
-                    result ? 'text-white' : 'text-gray-500'
-                  }`}>
+                  <div className={`text-lg sm:text-xl font-bold ${result?.isPb ? 'text-yellow-400' :
+                    isCurrentTest ? 'text-blue-400' :
+                      result ? 'text-white' : 'text-gray-500'
+                    }`}>
                     {result ? Math.round(result.wpm) : '-'}
                   </div>
                 </div>
@@ -227,7 +238,7 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
       {/* Additional Stats */}
       {showChart && (
         <div className="mt-6 pt-4 border-t border-gray-600">
-          <div className="grid grid-cols-3 gap-4 text-center text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-sm">
             <div>
               <div className="text-gray-400">Consistency</div>
               <div className="font-bold">{consistency.toFixed(1)}%</div>
@@ -238,7 +249,7 @@ export function WPMDisplay({ showChart = true, variant = 'card' }: WPMDisplayPro
             </div>
             <div>
               <div className="text-gray-400">Characters</div>
-              <div className="font-bold">
+              <div className="font-bold text-xs lg:text-sm">
                 {charStats ? `${charStats.correct}/${charStats.incorrect}/${charStats.extra}/${charStats.missed}` : '-'}
               </div>
             </div>

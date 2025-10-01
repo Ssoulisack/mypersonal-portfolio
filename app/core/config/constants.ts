@@ -58,7 +58,7 @@ export const NAV_ITEMS: NavItemType[] = [
 
 // Configuration constants
 export const GITHUB_CONFIG = {
-  GITHUB_USERNAME: process.env.GITHUB_USERNAME,
+  GITHUB_USERNAME: process.env.PUBLIC_GITHUB_USERNAME,
   RATE_LIMIT: 100, // requests per hour
   CACHE_DURATION: 24 * 60 * 60 * 1000, // 1 day 
   TIMEOUT: 10000, // 10 second timeout

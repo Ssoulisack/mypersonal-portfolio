@@ -30,7 +30,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
   },
   {
     title: 'Animations',
-    description: 'Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.',
+    description: 'Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.',
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />
   },

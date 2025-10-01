@@ -68,7 +68,7 @@ export default function Homepage() {
                   color: '#101104',
                   customContent: (
                     <>
-                      {/* <WPMDisplay /> */}
+                      <WPMDisplay targetTests={100} />
                     </>
                   ),
                 },

@@ -50,6 +50,12 @@ export class GitHubUserNotFoundError extends Error {
   }
 }
 
+// GitHub data response interface
+interface GitHubDataResponse {
+  contributions: ContributionDay[];
+  username: string;
+}
+
 // Export types for use in other files
 export type { 
   ContributionDay, 
@@ -57,5 +63,6 @@ export type {
   ContributionCalendar,
   ContributionsCollection,
   GitHubUser,
-  GitHubResponse
+  GitHubResponse,
+  GitHubDataResponse
 }

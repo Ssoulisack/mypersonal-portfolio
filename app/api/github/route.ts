@@ -42,7 +42,10 @@ export async function GET(request: NextRequest) {
           console.log("✅ Returning cached data");
           return NextResponse.json({
             success: true,
-            data: cached.data,
+            data: {
+              contributions: cached.data,
+              username
+            },
             cached: true,
             timestamp: cached.timestamp,
           });
@@ -84,7 +87,10 @@ export async function GET(request: NextRequest) {
     if (!weeks) {
       return NextResponse.json({
         success: true,
-        data: [],
+        data: {
+          contributions: [],
+          username
+        },
         cached: false,
         timestamp: Date.now(),
       });
@@ -126,7 +132,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      data: contributions,
+      data: {
+        contributions,
+        username
+      },
       cached: false,
       timestamp: Date.now(),
     });

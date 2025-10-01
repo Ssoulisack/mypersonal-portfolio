@@ -1,10 +1,9 @@
-import { githubAxios } from '@/app/core/config/axios';
-import { ContributionDay, GitHubResponse } from '@/app/core/types/github.type';
+import { GitHubDataResponse } from '@/app/core/types/github.type';
 
 /**
  * Fetch GitHub data from the API
  */
-export const fetchGitHubData = async (): Promise<ContributionDay[]> => {
+export const fetchGitHubData = async (): Promise<GitHubDataResponse> => {
   try {
     console.log('🔄 Fetching GitHub data...');
     
@@ -22,7 +21,7 @@ export const fetchGitHubData = async (): Promise<ContributionDay[]> => {
     }
 
     console.log('✅ GitHub data fetched successfully');
-    return data.data as ContributionDay[];
+    return data.data as GitHubDataResponse;
     
   } catch (error) {
     console.error('❌ Error fetching GitHub data:', error);
@@ -33,6 +32,6 @@ export const fetchGitHubData = async (): Promise<ContributionDay[]> => {
 /**
  * Fetch GitHub contributions (alias for main function)
  */
-export const fetchGitHubContributions = async (): Promise<ContributionDay[]> => {
+export const fetchGitHubContributions = async (): Promise<GitHubDataResponse> => {
   return fetchGitHubData();
 };

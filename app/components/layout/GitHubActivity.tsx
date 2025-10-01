@@ -7,7 +7,7 @@ import { GITHUB_CONFIG } from "@/app/core/config/constants";
 import { useGitHubData } from "@/app/hooks/useGitHubData";
 
 export const GitHubActivity = () => {
-  const { data: contributions, loading, error } = useGitHubData();
+  const { data: contributions, username, loading, error } = useGitHubData();
   
   // Data is already in ContributionDay[] format from the service
   const contributionData = contributions || [];
@@ -55,31 +55,31 @@ export const GitHubActivity = () => {
   return (
     <div className="w-full">
       {/* Compact Stats */}
-      <div className="grid grid-cols-3 py-6 gap-2 mb-4">
-        <div className="flex flex-col items-center p-2 rounded border border-gray-600/50">
-          <Github className="h-4 w-4 text-primary mb-1" />
-          <p className="text-xs font-bold">{totalContributions}</p>
-          <p className="text-xs text-muted-foreground">Total</p>
+      <div className="grid grid-cols-3 gap-2 py-2 sm:gap-3 xl:gap-4 mb-4">
+        <div className="flex flex-col items-center p-2 sm:p-2 xl:p-4 rounded">
+          <Github className="h-3 w-3 sm:h-4 sm:w-4 xl:h-5 xl:w-5 text-primary mb-1" />
+          <p className="text-xs sm:text-sm xl:text-base font-bold">{totalContributions}</p>
+          <p className="text-xs xl:text-sm text-muted-foreground">Total</p>
         </div>
 
-        <div className="flex flex-col items-center p-2 rounded border border-gray-600/50">
-          <TrendingUp className="h-4 w-4 text-primary mb-1" />
-          <p className="text-xs font-bold">{maxContributions}</p>
-          <p className="text-xs text-muted-foreground">Max</p>
+        <div className="flex flex-col items-center p-2 sm:p-2 xl:p-4 rounded">
+          <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 xl:h-5 xl:w-5 text-primary mb-1" />
+          <p className="text-xs sm:text-sm xl:text-base font-bold">{maxContributions}</p>
+          <p className="text-xs xl:text-sm text-muted-foreground">Max</p>
         </div>
 
-        <div className="flex flex-col items-center p-2 rounded border border-gray-600/50">
-          <Calendar className="h-4 w-4 text-primary mb-1" />
-          <p className="text-xs font-bold">{activeDays}</p>
-          <p className="text-xs text-muted-foreground">Days</p>
+        <div className="flex flex-col items-center p-2 sm:p-2 xl:p-4 rounded">
+          <Calendar className="h-3 w-3 sm:h-4 sm:w-4 xl:h-5 xl:w-5 text-primary mb-1" />
+          <p className="text-xs sm:text-sm xl:text-base font-bold">{activeDays}</p>
+          <p className="text-xs xl:text-sm text-muted-foreground">Days</p>
         </div>
       </div>
       {/* Contribution Calendar */}
       {contributionData.length > 0 && (
-        <div className="p-2 rounded ">
+        <div className="p-1 sm:p-2 xl:p-4 rounded overflow-hidden">
           <GitHubContributions
             data={contributionData}
-            username={GITHUB_CONFIG.GITHUB_USERNAME || "your-github-username"}
+            username={username || ""}
           />
         </div>
       )}

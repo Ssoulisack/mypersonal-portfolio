@@ -4,6 +4,7 @@ import { ContributionDay } from '@/app/core/types/github.type';
 
 interface UseGitHubDataReturn {
   data: ContributionDay[] | null;
+  username: string | null;
   loading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
@@ -11,6 +12,7 @@ interface UseGitHubDataReturn {
 
 export const useGitHubData = (): UseGitHubDataReturn => {
   const [data, setData] = useState<ContributionDay[] | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,7 +21,8 @@ export const useGitHubData = (): UseGitHubDataReturn => {
       setLoading(true);
       setError(null);
       const githubData = await fetchGitHubData();
-      setData(githubData);
+      setData(githubData.contributions);
+      setUsername(githubData.username);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch GitHub data');
       console.error('GitHub data fetch error:', err);
@@ -34,6 +37,7 @@ export const useGitHubData = (): UseGitHubDataReturn => {
 
   return {
     data,
+    username,
     loading,
     error,
     refetch: fetchData

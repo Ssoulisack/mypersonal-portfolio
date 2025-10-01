@@ -32,8 +32,29 @@ export async function GET(request: NextRequest) {
       hasCachedData: cache.has(cacheKey)
     });
 
-    const cached = cache.get(cacheKey);
-    const isCacheValid = cached && (now - cached.timestamp < CACHE_DURATION);
+    if (useCache) {
+      const cached = cache.get(cacheKey);
+      if (cached) {
+        const cacheAge = Date.now() - cached.timestamp;
+        const isExpired = cacheAge >= CACHE_DURATION;
+
+        if (!isExpired) {
+          console.log("✅ Returning cached data");
+          return NextResponse.json({
+            success: true,
+            data: cached.data,
+            cached: true,
+            timestamp: cached.timestamp,
+          });
+        } else {
+          console.log("⏰ Cache expired, fetching fresh data");
+        }
+      } else {
+        console.log("❌ No cache found for this key");
+      }
+    }
+
+    console.log("🌐 Fetching MonkeyType contributions...", { cacheKey });
 
     // Create axios instance for this request
     const monkeyTypeAxios = axios.create({
@@ -46,71 +67,47 @@ export async function GET(request: NextRequest) {
       }
     })
 
-    // If we have valid cache, check it first before making API call
-    if (useCache && cached && isCacheValid) {
-      const cacheAge = now - cached.timestamp;
-      console.log('📦 Valid cache found:', { 
-        cacheAge: `${Math.floor(cacheAge / 1000)}s`,
-        maxAge: `${Math.floor(CACHE_DURATION / 1000)}s`
-      });
-      
-      // Fetch fresh data to compare
-      console.log('🌐 Fetching fresh data to compare...');
-    } else if (cached) {
-      console.log('⏰ Cache expired, fetching fresh data');
-    } else {
-      console.log('❌ No cache found, fetching fresh data');
+    let data: MonkeyTypeAPIResponse;
+    try {
+      const response = await monkeyTypeAxios.get<MonkeyTypeAPIResponse>(url);
+      data = response.data;
+    } catch (axiosError: any) {
+      throw axiosError;
     }
-
-    // Fetch fresh data from MonkeyType API
-    const { data } = await monkeyTypeAxios.get<MonkeyTypeAPIResponse>(url)
 
     if (!data) {
       throw new MonkeyTypeAPIError('No response data from MonkeyType API')
     }
 
-    // Calculate hash of new data
-    const newHash = hashData(data);
-
-    // If cache is valid and data hasn't changed, return cached data
-    if (useCache && isCacheValid && cached && cached.hash === newHash) {
-      console.log('✅ Data unchanged, returning cached data');
-      return NextResponse.json({
-        success: true,
-        data: cached.data,
-        cached: true,
-        timestamp: cached.timestamp
-      })
+    // Cache the result
+    if (useCache) {
+      const timestamp = Date.now();
+      cache.set(cacheKey, {
+        data: data,
+        timestamp,
+        hash: hashData(data)
+      });
+      console.log("💾 Cache stored:", {
+        cacheKey,
+        timestamp,
+        cacheSize: cache.size,
+        allCacheKeys: Array.from(cache.keys()),
+      });
     }
 
-    // Data changed or no cache - update cache
-    const dataChanged = cached && cached.hash !== newHash;
-    console.log(dataChanged ? '🔄 Data changed, updating cache' : '💾 Storing new cache');
-    
-    cache.set(cacheKey, {
-      data: data,
-      timestamp: now,
-      hash: newHash
-    });
-
-    // console.log('💾 Cache stored:', { 
-    //   cacheKey, 
-    //   timestamp: now,
-    //   cacheSize: cache.size,
-    //   allCacheKeys: Array.from(cache.keys()),
-    //   dataChanged
-    // });
-
-    console.log('✅ MonkeyType data fetched successfully');
+    console.log("✅ MonkeyType data fetched successfully");
 
     return NextResponse.json({
       success: true,
       data: data,
       cached: false,
-      timestamp: now
-    })
+      timestamp: Date.now(),
+    });
   } catch (error) {
-    console.error('❌ MonkeyType API error:', error)
+    console.error("❌ Error fetching MonkeyType data:", {
+      error: error instanceof Error ? error.message : "Unknown error",
+      timestamp: new Date().toISOString(),
+    });
     
     // Handle axios errors
     if (axios.isAxiosError(error)) {
@@ -141,9 +138,14 @@ export async function GET(request: NextRequest) {
       }, { status: error.response?.status || 500 })
     }
     
-    return NextResponse.json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 })
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          error instanceof Error ? error.message : "Unknown error occurred",
+        code: "UNKNOWN_ERROR",
+      },
+      { status: 500 }
+    );
   }
 }

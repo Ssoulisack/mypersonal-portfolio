@@ -15,12 +15,12 @@ export function ProfileHeader() {
     const handleResize = () => {
       if (window.innerWidth < 1220) {
         setRound(true);
-        setBaseWidth(170);
+        setBaseWidth(150);
         setIsHorizontal(true);
         console.log("horizontal mode", true);
       } else {
         setRound(false);
-        setBaseWidth(400);
+        setBaseWidth(300);
         setIsHorizontal(false);
         console.log("vertical mode", true);
       }
