@@ -1,12 +1,10 @@
 "use client";
 
 import { Github, Calendar, TrendingUp } from "lucide-react";
-import { ContributionDay } from "@/app/core/types/github.type";
 import { GitHubContributions } from "@/app/components/shared/GitHubContributions";
-import { GITHUB_CONFIG } from "@/app/core/config/constants";
 import { useGitHubData } from "@/app/hooks/useGitHubData";
 
-export const GitHubActivity = () => {
+export const GithubActivity = () => {
   const { data: contributions, username, loading, error } = useGitHubData();
   
   // Data is already in ContributionDay[] format from the service
@@ -55,7 +53,7 @@ export const GitHubActivity = () => {
   return (
     <div className="w-full">
       {/* Compact Stats */}
-      <div className="grid grid-cols-3 gap-2 py-2 sm:gap-3 xl:gap-4 mb-4">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3 xl:gap-4 ">
         <div className="flex flex-col items-center p-2 sm:p-2 xl:p-4 rounded">
           <Github className="h-3 w-3 sm:h-4 sm:w-4 xl:h-5 xl:w-5 text-primary mb-1" />
           <p className="text-xs sm:text-sm xl:text-base font-bold">{totalContributions}</p>
@@ -76,7 +74,7 @@ export const GitHubActivity = () => {
       </div>
       {/* Contribution Calendar */}
       {contributionData.length > 0 && (
-        <div className="p-1 sm:p-2 xl:p-4 rounded overflow-hidden">
+        <div className="sm:p-2 xl:px-4 rounded overflow-hidden">
           <GitHubContributions
             data={contributionData}
             username={username || ""}

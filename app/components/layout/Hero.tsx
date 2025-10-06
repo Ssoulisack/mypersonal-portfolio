@@ -6,7 +6,7 @@ import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import Lanyard from "@/app/components/shared/Lanyard";
-import Beams from "@/app/components/shared/backgroung";
+import Beams from "@/app/components/shared/background";
 import { useEffect, useState } from "react";
 
 export const Hero = () => {

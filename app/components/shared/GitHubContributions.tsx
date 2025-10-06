@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityCalendar } from 'react-activity-calendar';
 import { ContributionDay } from '@/app/core/types/github.type';
+import GitHubButton from "@/app/components/ui/github-button";
+
 
 interface GitHubContributionsProps {
   data: ContributionDay[];
@@ -32,8 +34,8 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1220) {
-        setBaseWidth(10);
+      if (window.innerWidth < 1330) {
+        setBaseWidth(8);
         console.log("horizontal mode", true);
       } else {
         setBaseWidth(16);
@@ -55,14 +57,15 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
   const totalContributions = data.reduce((sum, day) => sum + day.contributionCount, 0);
 
   return (
-    <div className="py-2 sm:py-4 xl:py-6">
-      <div className="">
-        <p className="text-xs sm:text-sm xl:text-base text-muted-foreground pb-2 sm:pb-4 xl:pb-6">
+    <>
+
+      <div>
+        <p className="text-xs sm:text-sm xl:text-base text-muted-foreground py-2">
           {username} has {totalContributions} contributions in the last year
         </p>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto px-4">
         <ActivityCalendar
           data={calendarData}
           theme={{
@@ -78,6 +81,9 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
           weekStart={0} // Start week on Sunday
         />
       </div>
-    </div>
+      <div className='flex justify-center'>
+        <GitHubButton href="https://github.com/Ssoulisack" starCount={6} />
+      </div>
+    </>
   );
 }

@@ -1,18 +1,19 @@
 "use client";
 
 // import SplashCursor from "@/app/components/shared/SplashCursor";
-import { GitHubActivity } from "@/app/components/layout/GitHubActivity";
-import { WPMDisplay } from "@/app/components/layout/WPMDisplay";
+import { WPMDisplay } from "@/app/components/layout/wpmDisplay";
 import MagicBento from "@/app/components/shared/magic-bento";
-import { ProfileHeader } from "@/app/components/layout/ProfileHeader";
+import { CardBox } from "@/app/components/layout/cardbox";
+import { GithubActivity } from "@/app/components/layout/GithubActivity";
+import { SpotifyEmbed } from "@/app/components/shared/SpotifyEmbed";
 
 export default function Homepage() {
   return (
     <>
       {/* <SplashCursor /> */}
-      <div className="flex flex-col items-center justify-center w-full min-h-screen">
-        <div className="w-full bg-background px-2 sm:px-3 lg:px-4">
-          <div className="text-center mb-8">
+      <div className="flex justify-center bg-background w-full min-h-screen">
+        <div className="w-full px-2 sm:px-3 lg:px-8">
+          <div className="flex flex-col justify-center items-center mb-8">
             <h1 className="text-2xl text-muted-foreground sm:text-3xl lg:text-4xl font-bold mb-4">Welcome</h1>
             <p className="text-muted-foreground">
               Explore my work, skills, and experience using the sidebar navigation.
@@ -34,19 +35,19 @@ export default function Homepage() {
               glowColor="132, 0, 255"
               cards={[
                 {
-                  label: 'Personal',
+                  label: 'Profile summary',
                   title: 'Dashboard',
-                  color: '#101104',
+                  color: '#080113',
                   description: 'Centralized data view',
                 },
                 {
                   label: 'Soulisack DUANGVILAY',
-                  title: 'Profile',
+                  title: '',
                   description: 'introduction',
-                  color: '#101104',
+                  color: '#080113',
                   customContent: (
                     <>
-                      <ProfileHeader />
+                      <CardBox />
                     </>
                   ),
                 },
@@ -54,10 +55,10 @@ export default function Homepage() {
                   label: 'GitHub Activity',
                   title: 'Activity',
                   description: 'Contributions',
-                  color: '#101104',
+                  color: '#080113',
                   customContent: (
                     <>
-                      <GitHubActivity />
+                      <GithubActivity />
                     </>
                   ),
                 },
@@ -65,7 +66,7 @@ export default function Homepage() {
                   label: 'Typing Performance',
                   title: 'Activity',
                   description: 'Contributions',
-                  color: '#101104',
+                  color: '#080113',
                   customContent: (
                     <>
                       <WPMDisplay targetTests={100} />
@@ -73,13 +74,22 @@ export default function Homepage() {
                   ),
                 },
                 {
-                  label: 'Overview',
-                  title: 'Dashboard',
-                  color: '#101104',
+                  label: 'My favorite playlist',
+                  title: 'Spotify',
+                  color: '#080113',
                   description: 'Centralized data view',
                 },
               ]}
             />
+          </div>
+          <div className="flex flex-col justify-center items-center gap-y-2 fixed bottom-4 right-4 z-50">
+            <div>
+              <h5 className="text-2xl text-muted-foreground sm:text-3xl lg:text-4xl font-bold mb-4">My favorite playlist</h5>
+            </div>
+            {/* <div className="flex flex-col justify-end items-end gap-y-2">
+            <SpotifyEmbed className="fixed bottom-4 right-4 z-50 " width="400px"
+              height="200px" />
+            </div> */}
           </div>
         </div>
       </div>

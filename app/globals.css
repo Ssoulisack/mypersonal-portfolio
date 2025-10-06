@@ -59,8 +59,8 @@
 }
 
 :root {
-  --background: hsl(65 62% 4%);
-  --foreground: hsl(220 10% 7%);
+  --background: hsl(263 90% 4%);
+  --foreground: hsl(264 90% 5);
   --border: hsl(210 17% 90%);
   --input: hsl(210 17% 90%);
   --ring-3: hsl(233 79% 64%);
@@ -83,7 +83,7 @@
   --chart-3: hsl(0 84% 60%);
   --chart-4: hsl(38 92% 54%);
   --chart-5: hsl(317 75% 60%);
-  --sidebar-background: hsl(220 10% 7%);
+  --sidebar-background: hsl(263 90% 4);
   --sidebar-foreground: hsl(210 6% 87%);
   --sidebar-primary: hsl(233 79% 64%);
   --sidebar-primary-foreground: hsl(0 0% 100%);

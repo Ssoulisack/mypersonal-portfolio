@@ -550,9 +550,29 @@ const MagicBento: React.FC<BentoProps> = ({
           
           .card-responsive { grid-template-columns: 1fr; width: 100%; margin: 0 auto; padding: 0.25rem; }
           
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             .card-responsive {
-              grid-template-columns: repeat(2, 1fr);
+              grid-template-columns: repeat(4, 1fr);
+            }
+            .card-responsive .card:nth-child(1) {
+              grid-column: 1 / span 2;
+              grid-row: 1;
+            }
+            .card-responsive .card:nth-child(2) {
+              grid-column: 3 / span 2;
+              grid-row: 1;
+            }
+            .card-responsive .card:nth-child(3) {
+              grid-column: 1 / span 4;
+              grid-row: 2;
+            }
+            .card-responsive .card:nth-child(4) {
+              grid-column: 1 / span 2;
+              grid-row: 3;
+            }
+            .card-responsive .card:nth-child(5) {
+            grid-column: 3 / span 2;
+            grid-row: 3;
             }
           }
           
@@ -677,8 +697,8 @@ const MagicBento: React.FC<BentoProps> = ({
                         // Different classes for cards 3 and 4 (index 2 and 3) to make them shorter
                         const isShortCard = index === 2 || index === 3;
                         const baseClassName = `card flex flex-col items-center gap-1 relative w-full max-w-full rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] bg-card card-bd ${enableBorderGlow ? 'card--border-glow' : ''
-                            } ${isShortCard 
-                                ? 'min-h-[160px] max-h-[450px] p-3' 
+                            } ${isShortCard
+                                ? 'min-h-[200px] max-h-[600px] p-3'
                                 : 'aspect-[4/3] min-h-[200px] p-5'
                             }`;
 

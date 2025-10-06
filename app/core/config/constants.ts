@@ -25,6 +25,11 @@ export const API_ENDPOINTS = {
   MONKEY_TYPE: {
     GET_RESULT: "/results",
   },
+  SPOTIFY: {
+    GET_TOP_TRACKS: "/v1/me/top/tracks",
+    GET_PLAYLISTS: "/v1/me/playlists",
+    GET_PLAYLIST_TRACKS: "/v1/playlists",
+  },
 };
 
 // Form Validation Constants

@@ -6,6 +6,7 @@ import React, { JSX } from 'react';
 import { FiCircle, FiCode, FiFileText, FiLayers, FiLayout } from 'react-icons/fi';
 export interface CarouselItem {
   title: string;
+  label: string;
   description: string;
   id: number;
   icon: React.ReactNode;
@@ -14,6 +15,7 @@ export interface CarouselItem {
 export interface CarouselProps {
   items?: CarouselItem[];
   baseWidth?: number;
+  height?: number | string;
   autoplay?: boolean;
   autoplayDelay?: number;
   pauseOnHover?: boolean;
@@ -24,30 +26,35 @@ export interface CarouselProps {
 const DEFAULT_ITEMS: CarouselItem[] = [
   {
     title: 'Text Animations',
+    label: 'backend developer',
     description: 'Cool text animations for your projects.',
     id: 1,
     icon: <FiFileText className="h-[16px] w-[16px] text-white" />
   },
   {
     title: 'Animations',
+    label: 'backend developer',
     description: 'Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.Smooth animations for your projects.',
     id: 2,
     icon: <FiCircle className="h-[16px] w-[16px] text-white" />
   },
   {
     title: 'Components',
+    label: 'backend developer',
     description: 'Reusable components for your projects.',
     id: 3,
     icon: <FiLayers className="h-[16px] w-[16px] text-white" />
   },
   {
     title: 'Backgrounds',
+    label: 'backend developer',
     description: 'Beautiful backgrounds and patterns for your projects.',
     id: 4,
     icon: <FiLayout className="h-[16px] w-[16px] text-white" />
   },
   {
     title: 'Common UI',
+    label: 'backend developer',
     description: 'Common UI components are coming soon!',
     id: 5,
     icon: <FiCode className="h-[16px] w-[16px] text-white" />
@@ -56,12 +63,13 @@ const DEFAULT_ITEMS: CarouselItem[] = [
 
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
-const GAP = 8;
+const GAP = 16;
 const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 300, damping: 30 };
 
 export default function Carousel({
   items = DEFAULT_ITEMS,
   baseWidth = 300,
+  height,
   autoplay = false,
   autoplayDelay = 3000,
   pauseOnHover = false,
@@ -142,21 +150,20 @@ export default function Carousel({
   const dragProps = loop
     ? {}
     : {
-        dragConstraints: {
-          left: -trackItemOffset * (carouselItems.length - 1),
-          right: 0
-        }
-      };
+      dragConstraints: {
+        left: -trackItemOffset * (carouselItems.length - 1),
+        right: 0
+      }
+    };
 
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden p-2 ${
-        round ? 'rounded-full border border-[#222]' : 'rounded-[24px] border border-[#222]'
-      }`}
+      className={`relative overflow-hidden p-2 ${round ? 'rounded-full border border-[#222]' : 'rounded-[24px] border border-[#222]'
+        }`}
       style={{
         width: `${baseWidth}px`,
-        ...(round && { height: `${baseWidth}px` })
+        height: height ? (typeof height === 'number' ? `${height}px` : height) : (round ? `${baseWidth}px` : undefined)
       }}
     >
       <motion.div
@@ -179,31 +186,49 @@ export default function Carousel({
           return (
             <motion.div
               key={index}
-              className={`relative shrink-0 flex flex-col ${
-                round
-                  ? 'items-center justify-center text-center bg-[#060010] border-0'
-                  : 'items-start justify-center bg-[#222] border border-[#222] rounded-[12px]'
-              } overflow-hidden cursor-grab active:cursor-grabbing`}
+              className={`relative shrink-0 flex flex-col ${round
+                ? 'items-center justify-center text-center bg-[#010313] border-0'
+                : 'items-start justify-evenly bg-[#010313] border border-[#010313] rounded-[12px]'
+                } overflow-hidden cursor-grab active:cursor-grabbing`}
               style={{
                 width: itemWidth,
-                height: round ? itemWidth : '100%',
+                height: height ? (typeof height === 'number' ? `${height - 20}px` : height) : (round ? itemWidth : '100%'),
                 ...(round && { borderRadius: '50%' })
               }}
               transition={effectiveTransition}
             >
-              <div className={`${round ? 'p-0 m-0' : 'p-5'}`}>
+              <div className={`${round ? 'p-0 m-0' : 'p-5 flex items-center gap-2'}`}>
                 <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
                   {item.icon}
                 </span>
+                <span>{item.title}</span>
               </div>
               <div className="p-6">
-                <div className="mb-1 font-black text-lg text-white">{item.title}</div>
+                <div className="mb-1 font-black text-lg text-white">{item.label}</div>
                 <p className="text-xs text-white">{item.description}</p>
               </div>
             </motion.div>
           );
         })}
       </motion.div>
+      <div className={`flex w-full justify-center absolute z-20 bottom-6 left-1/2 -translate-x-1/2`}>
+        <div className="flex w-[150px] justify-between px-8">
+          {items.map((_, index) => (
+            <motion.div
+              key={index}
+              className={`${round ? 'h-1 w-1' : 'h-2 w-2'} rounded-full cursor-pointer transition-colors duration-150 ${currentIndex % items.length === index
+                ? 'bg-[#666666]'
+                : 'bg-[rgba(85,85,85,0.4)]'
+                }`}
+              animate={{
+                scale: currentIndex % items.length === index ? 1.2 : 1
+              }}
+              onClick={() => setCurrentIndex(index)}
+              transition={{ duration: 0.15 }}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

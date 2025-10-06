@@ -31,6 +31,15 @@ const monkeyTypeAxios = axios.create({
     }
 });
 
+const spotifyAxios = axios.create({
+    baseURL: process.env.SPOTIFY_URL || 'https://api.spotify.com',
+    timeout: 10000,
+    headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Portfolio-App/1.0',
+    }
+});
+
 // GitHub token interceptor
 githubAxios.interceptors.request.use(
     (config) => {
@@ -107,5 +116,5 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-export { axiosPublicInstance, githubAxios, monkeyTypeAxios };
+export { axiosPublicInstance, githubAxios, monkeyTypeAxios, spotifyAxios };
 export default axiosInstance;
