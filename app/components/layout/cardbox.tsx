@@ -50,8 +50,8 @@ export function CardBox() {
   // Tools wrapper component
   const ToolsWrapper = () => (
     <div className={`relative overflow-hidden p-[5px] ${isHorizontal
-        ? 'min-w-[300] min-h-[30px] before:content-[\'\'] before:absolute before:top-0 before:bottom-0 before:left-0 before:w-10 before:pointer-events-none before:z-10 before:bg-gradient-to-r before:from-[rgba(8,1,19,1)] before:via-[rgba(8,1,19,0.8)] before:to-transparent'
-        : 'min-h-[300] min-w-[30px] before:content-[\'\'] before:absolute before:left-0 before:right-0 before:top-0 before:h-10 before:pointer-events-none before:z-10 before:bg-gradient-to-b before:from-[rgba(8,1,9,1)] before:via-[rgba(8,1,19,0.8)] before:to-transparent'
+        ? 'min-w-[300] min-h-[40px] before:content-[\'\'] before:absolute before:top-0 before:bottom-0 before:left-0 before:w-10 before:pointer-events-none before:z-10 before:bg-gradient-to-r before:from-[rgba(8,1,19,1)] before:via-[rgba(8,1,19,0.8)] before:to-transparent'
+        : 'min-h-[300] min-w-[40px] before:content-[\'\'] before:absolute before:left-0 before:right-0 before:top-0 before:h-10 before:pointer-events-none before:z-10 before:bg-gradient-to-b before:from-[rgba(8,1,9,1)] before:via-[rgba(8,1,19,0.8)] before:to-transparent'
       }`}>
       {programmingLanguages.map((language, index) => (
         <div

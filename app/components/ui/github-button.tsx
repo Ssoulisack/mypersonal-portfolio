@@ -2,13 +2,11 @@ import React from 'react';
 
 interface GitHubButtonProps {
     href?: string;
-    starCount?: number;
     className?: string;
 }
 
 const GitHubButton: React.FC<GitHubButtonProps> = ({
     href,
-    starCount,
     className
 }) => {
     return (
@@ -16,7 +14,7 @@ const GitHubButton: React.FC<GitHubButtonProps> = ({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-black text-white shadow hover:bg-black/90 h-9 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black hover:ring-offset-2 ${className}`}
+            className={`flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-black text-white shadow hover:bg-black/90 h-9 px-4 py-2 max-w-52 md:flex group relative w-full justify-between gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black ${className}`}
         >
             <span
                 className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"
@@ -31,7 +29,7 @@ const GitHubButton: React.FC<GitHubButtonProps> = ({
             </div>
             <div className="ml-2 flex items-center gap-1 text-sm md:flex">
                 <svg
-                    className="w-4 h-4 text-gray-500 transition-all duration-300 group-hover:text-yellow-300"
+                    className="w-4 h-4 text-gray-500 transition-all duration-300 group-hover:text-yellow-400"
                     data-slot="icon"
                     aria-hidden="true"
                     fill="currentColor"
@@ -45,9 +43,8 @@ const GitHubButton: React.FC<GitHubButtonProps> = ({
                     ></path>
                 </svg>
                 <span
-                    className="inline-block tabular-nums tracking-wider font-display font-medium text-white"
+                    className="inline-block tabular-num tracking-wider font-display font-medium text-white"
                 >
-                    {starCount}
                 </span>
             </div>
         </a>

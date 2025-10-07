@@ -159,7 +159,7 @@ export default function Carousel({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden p-2 ${round ? 'rounded-full border border-[#222]' : 'rounded-[24px] border border-[#222]'
+      className={`relative overflow-hidden p-2 ${round ? 'rounded-full border border-border' : 'rounded-[24px] border border-border'
         }`}
       style={{
         width: `${baseWidth}px`,
@@ -187,8 +187,8 @@ export default function Carousel({
             <motion.div
               key={index}
               className={`relative shrink-0 flex flex-col ${round
-                ? 'items-center justify-center text-center bg-[#010313] border-0'
-                : 'items-start justify-evenly bg-[#010313] border border-[#010313] rounded-[12px]'
+                ? 'items-center justify-center text-center bg-background/60 border-0'
+                : 'items-start justify-evenly bg-background/60 border border-[#010313] rounded-[12px]'
                 } overflow-hidden cursor-grab active:cursor-grabbing`}
               style={{
                 width: itemWidth,
@@ -204,8 +204,8 @@ export default function Carousel({
                 <span>{item.title}</span>
               </div>
               <div className="p-6">
-                <div className="mb-1 font-black text-lg text-white">{item.label}</div>
-                <p className="text-xs text-white">{item.description}</p>
+                <div className="mb-1 font-black text-lg text-muted-foreground">{item.label}</div>
+                <p className="text-xs text-anti-flash-white">{item.description}</p>
               </div>
             </motion.div>
           );

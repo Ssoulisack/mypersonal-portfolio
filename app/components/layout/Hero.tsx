@@ -87,28 +87,28 @@ export const Hero = () => {
         <div className="flex gap-4 md:gap-6 justify-center">
           <a
             href="https://github.com/Ssoulisack"
-            className="my-icon transition-colors cursor-target"
+            className="my-icon transition-colors hover:cursor-pointer"
           >
             <GithubIcon size={24} className="md:w-8 md:h-8" />
           </a>
           <a
             href="https://www.linkedin.com/in/sackdvl/"
-            className="my-icon transition-colors cursor-target"
+            className="my-icon transition-colors hover:cursor-pointer"
           >
             <Linkedin size={24} className="md:w-8 md:h-8" />
           </a>
           <button
             onClick={scrollToContact}
-            className="my-icon transition-colors cursor-target"
+            className="my-icon transition-colors hover:cursor-pointer"
           >
-            <Mail size={24} className="md:w-8 md:h-8 cursor-target" />
+            <Mail size={24} className="md:w-8 md:h-8" />
           </button>
         </div>
 
         {/* Go to Homepage Button */}
-        <div className="mt-6 cursor-target">
+        <div className="mt-6">
           <Link href="/homepage">
-            <Button>
+            <Button className="hover:cursor-pointer">
               Go to homepage
             </Button>
           </Link>

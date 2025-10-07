@@ -58,8 +58,7 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
 
   return (
     <>
-
-      <div>
+      <div className='flex justify-center'>
         <p className="text-xs sm:text-sm xl:text-base text-muted-foreground py-2">
           {username} has {totalContributions} contributions in the last year
         </p>
@@ -82,7 +81,7 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
         />
       </div>
       <div className='flex justify-center'>
-        <GitHubButton href="https://github.com/Ssoulisack" starCount={6} />
+        <GitHubButton href="https://github.com/Ssoulisack" />
       </div>
     </>
   );
