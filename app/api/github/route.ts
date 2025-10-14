@@ -6,11 +6,11 @@ import {
   GitHubAPIError,
   GitHubUserNotFoundError,
 } from "@/app/core/types/github.type";
-import { GITHUB_CONFIG } from "@/app/core/config/constants";
+import { GITHUB_CONFIG, CACHE_CONFIG } from "@/app/core/config/constants";
 import { BODY_QUERY } from "@/app/core/config/graphql";
 
 // Cache for storing API responses
-const cache = new Map<string, { data: ContributionDay[]; timestamp: number }>();
+// const cache = new Map<string, { data: ContributionDay[]; timestamp: number }>();
 const username: string =
   GITHUB_CONFIG.GITHUB_USERNAME || "your-github-username";
 
@@ -27,16 +27,16 @@ export async function GET(request: NextRequest) {
     console.log("🔍 Cache check:", {
       useCache,
       cacheKey,
-      cacheSize: cache.size,
-      cacheKeys: Array.from(cache.keys()),
-      hasCachedData: cache.has(cacheKey),
+      cacheSize: CACHE_CONFIG.CACHE.size,
+      cacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
+      hasCachedData: CACHE_CONFIG.CACHE.has(cacheKey),
     });
 
     if (useCache) {
-      const cached = cache.get(cacheKey);
+      const cached = CACHE_CONFIG.CACHE.get(cacheKey);
       if (cached) {
         const cacheAge = Date.now() - cached.timestamp;
-        const isExpired = cacheAge >= GITHUB_CONFIG.CACHE_DURATION;
+        const isExpired = cacheAge >= CACHE_CONFIG.CACHE_DURATION;
 
         if (!isExpired) {
           console.log("✅ Returning cached data");
@@ -115,16 +115,17 @@ export async function GET(request: NextRequest) {
     // Cache the result
     if (useCache) {
       const timestamp = Date.now();
-      cache.set(cacheKey, {
+      CACHE_CONFIG.CACHE.set(cacheKey, {
         data: contributions,
         timestamp,
+        hash: JSON.stringify(contributions)
       });
       console.log("💾 Cache stored:", {
         cacheKey,
         dataLength: contributions.length,
         timestamp,
-        cacheSize: cache.size,
-        allCacheKeys: Array.from(cache.keys()),
+        cacheSize: CACHE_CONFIG.CACHE.size,
+        allCacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
       });
     }
 

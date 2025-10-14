@@ -5,10 +5,7 @@ import {
   MonkeyTypeAPIError,
 } from '@/app/core/types/monkey-type.type'
 import { API_ENDPOINTS } from '@/app/core/config/constants'
-
-// Cache for storing API responses
-const cache = new Map<string, { data: MonkeyTypeAPIResponse; timestamp: number; hash: string }>();
-const CACHE_DURATION = 24 * 60 * 60 * 1000; // 1 day
+import { CACHE_CONFIG } from '@/app/core/config/constants'
 
 // Simple hash function to detect data changes
 const hashData = (data: any): string => {
@@ -27,16 +24,16 @@ export async function GET(request: NextRequest) {
     console.log('🔍 Cache check:', { 
       useCache, 
       cacheKey, 
-      cacheSize: cache.size,
-      cacheKeys: Array.from(cache.keys()),
-      hasCachedData: cache.has(cacheKey)
+      cacheSize: CACHE_CONFIG.CACHE.size,
+      cacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
+      hasCachedData: CACHE_CONFIG.CACHE.has(cacheKey)
     });
 
     if (useCache) {
-      const cached = cache.get(cacheKey);
+      const cached = CACHE_CONFIG.CACHE.get(cacheKey);
       if (cached) {
         const cacheAge = Date.now() - cached.timestamp;
-        const isExpired = cacheAge >= CACHE_DURATION;
+        const isExpired = cacheAge >= CACHE_CONFIG.CACHE_DURATION;
 
         if (!isExpired) {
           console.log("✅ Returning cached data");
@@ -82,7 +79,7 @@ export async function GET(request: NextRequest) {
     // Cache the result
     if (useCache) {
       const timestamp = Date.now();
-      cache.set(cacheKey, {
+      CACHE_CONFIG.CACHE.set(cacheKey, {
         data: data,
         timestamp,
         hash: hashData(data)
@@ -90,8 +87,8 @@ export async function GET(request: NextRequest) {
       console.log("💾 Cache stored:", {
         cacheKey,
         timestamp,
-        cacheSize: cache.size,
-        allCacheKeys: Array.from(cache.keys()),
+        cacheSize: CACHE_CONFIG.CACHE.size,
+        allCacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
       });
     }
 

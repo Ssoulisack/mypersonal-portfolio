@@ -26,9 +26,7 @@ export const API_ENDPOINTS = {
     GET_RESULT: "/results",
   },
   SPOTIFY: {
-    GET_TOP_TRACKS: "/v1/me/top/tracks",
-    GET_PLAYLISTS: "/v1/me/playlists",
-    GET_PLAYLIST_TRACKS: "/v1/playlists",
+    GET_PLAYLISTS: "/v1/playlists",
   },
 };
 
@@ -64,8 +62,16 @@ export const NAV_ITEMS: NavItemType[] = [
 // Configuration constants
 export const GITHUB_CONFIG = {
   GITHUB_USERNAME: process.env.PUBLIC_GITHUB_USERNAME,
+  GRAPHQL_ENDPOINT: process.env.GITHUB_URL || "https://api.github.com/graphql",
+};
+
+export const CACHE_CONFIG = {
   RATE_LIMIT: 100, // requests per hour
   CACHE_DURATION: 24 * 60 * 60 * 1000, // 1 day 
   TIMEOUT: 10000, // 10 second timeout
-  GRAPHQL_ENDPOINT: process.env.GITHUB_URL || "https://api.github.com/graphql",
-};
+  CACHE: new Map<string, { data: any; timestamp: number; hash: string }>(),
+}
+
+export const SPOTIFY_CONFIG = {
+  PLAYLIST_ID: process.env.NEXT_PUBLIC_SPOTIFY_PLAYLIST_ID,
+}

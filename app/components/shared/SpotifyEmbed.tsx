@@ -1,50 +1,34 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { SPOTIFY_CONFIG } from '@/app/core/config/constants';
 
 interface SpotifyEmbedProps {
     title?: string;
     width?: string;
     height?: string;
     className?: string;
+    playlistID?: string;
 }
 
 export const SpotifyEmbed: React.FC<SpotifyEmbedProps> = ({
     title = "Spotify Playlist",
     width,
     height,
-    className
+    className,
+    playlistID,
 }) => {
-    const [playlistId, setPlaylistId] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [playlistId, setPlaylistId] = useState<string>('');
     const [responsiveWidth, setResponsiveWidth] = useState<string>(width || "400px");
+    const [loading, setLoading] = useState(true);
 
+
+    // Set playlist ID on client-side only to avoid hydration mismatch
     useEffect(() => {
-        const loadPlaylistId = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-
-                // Get the playlist ID from the API response
-                const response = await fetch('/api/spotify');
-                const result = await response.json();
-                console.log("playlistId", result.playlistId)
-                if (result.success && result.playlistId) {
-                    setPlaylistId(result.playlistId);
-                } else {
-                    throw new Error('No playlist ID found in API response');
-                }
-            } catch (err) {
-                console.error('Error loading playlist ID:', err);
-                setError(err instanceof Error ? err.message : 'Failed to load playlist ID');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadPlaylistId();
-    }, []);
+        const finalPlaylistId = playlistID || SPOTIFY_CONFIG.PLAYLIST_ID || '';
+        setPlaylistId(finalPlaylistId);
+        setLoading(false);
+    }, [playlistID, SPOTIFY_CONFIG.PLAYLIST_ID]);
 
     // Handle responsive width based on window size
     useEffect(() => {
@@ -77,19 +61,8 @@ export const SpotifyEmbed: React.FC<SpotifyEmbedProps> = ({
         );
     }
 
-    if (error || !playlistId) {
-        return (
-            <div className={`spotify-embed ${className}`}>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <h3 className="text-red-800 font-semibold mb-2">Error Loading Playlist</h3>
-                    <p className="text-red-600 text-sm">{error || 'No playlist ID available'}</p>
-                </div>
-            </div>
-        );
-    }
-
     return (
-        <div className={`spotify-embed${className}`}>
+        <div className={`spotify-embed${className} hidden lg:block`}>
             <div className="bg-transparent">
                 <iframe
                     title={`Spotify Embed: ${title}`}

@@ -1,6 +1,5 @@
 "use client";
 import { developerData } from "@/app/data/mock/developer";
-import Image from "next/image";
 import { programmingLanguages } from "@/app/data/mock/programing";
 import Carousel from "@/app/components/shared/carousel";
 import { useState, useEffect } from "react";

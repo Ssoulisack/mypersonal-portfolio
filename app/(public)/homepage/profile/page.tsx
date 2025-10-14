@@ -1,9 +1,9 @@
-import { ProfileHeader } from "@/app/components/layout/cardbox";
+import { CardBox } from "@/app/components/layout/cardbox";
 
 export default function ProfilePage() {
     return (
         <div>
-            <ProfileHeader />
+            <CardBox />
         </div>
     );
 }

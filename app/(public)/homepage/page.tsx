@@ -11,17 +11,17 @@ export default function Homepage() {
   return (
     <>
       {/* <SplashCursor /> */}
-      <div className="flex justify-center bg-background w-full min-h-screen">
+      <div className="flex justify-center bg-background m-8 w-full min-h-full">
         <div className="w-full px-2 sm:px-3 lg:px-8">
-          <div className="flex flex-col justify-center items-center mb-8">
-            <h1 className="text-2xl text-muted-foreground sm:text-3xl lg:text-4xl font-bold mb-4">Welcome</h1>
-            <p className="text-muted-foreground">
+          <div className="flex flex-col justify-center items-center p-4">
+            <h1 className="text-xl text-muted-foreground sm:text-3xl lg:text-4xl font-bold mb-4">Welcome</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Explore my work, skills, and experience using the sidebar navigation.
             </p>
           </div>
 
           {/* Magic Bento Section with custom cards */}
-          <div className="w-full">
+          {/* <div className="w-full">
             <MagicBento
               textAutoHide={true}
               enableStars={true}
@@ -56,6 +56,7 @@ export default function Homepage() {
                   title: 'Activity',
                   description: 'Contributions',
                   color: '#080113',
+                  hideOnMobile: true,
                   customContent: (
                     <>
                       <GithubActivity />
@@ -72,24 +73,23 @@ export default function Homepage() {
                       <WPMDisplay targetTests={100} />
                     </>
                   ),
+                  hideOnMobile: true,
                 },
                 {
                   label: 'My favorite playlist',
                   title: 'Spotify',
                   color: '#080113',
                   description: 'Centralized data view',
+                  hideOnMobile: true, // This card will be hidden on mobile screens
                 },
               ]}
             />
-          </div>
-          <div className="flex flex-col justify-center items-center gap-y-2 fixed bottom-4 right-4 z-50">
-            <div>
-              <h5 className="text-2xl text-muted-foreground sm:text-3xl lg:text-4xl font-bold mb-4">My favorite playlist</h5>
+          </div> */}
+          <div className="flex flex-col justify-center items-center gap-y-2 fixed bottom-4 right-4 z-10">
+            <div className="flex flex-col justify-end items-end gap-y-2">
+              <SpotifyEmbed className="" width="400px"
+                height="200px" />
             </div>
-            {/* <div className="flex flex-col justify-end items-end gap-y-2">
-            <SpotifyEmbed className="fixed bottom-4 right-4 z-50 " width="400px"
-              height="200px" />
-            </div> */}
           </div>
         </div>
       </div>

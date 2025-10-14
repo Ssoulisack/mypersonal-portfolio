@@ -1,6 +1,7 @@
 "use client";
+import { SidebarProvider } from "@/app/components/ui/sidebar";
 import "../../globals.css";
-import { Navbar } from "@/app/components/layout/navbar";
+import { AppSidebar } from "@/app/components/layout/app-sidebar";
 
 export default function RootLayout({
     children,
@@ -9,10 +10,12 @@ export default function RootLayout({
 }>) {
     return (
         <>
-            <Navbar />
-            <div className="mt-24">
-                {children}
-            </div>
+            <SidebarProvider>
+                <AppSidebar />
+                {/* <main className="pb-20 lg:pb-0"> */}
+                    {children}
+                {/* </main> */}
+            </SidebarProvider>
         </>
     );
 }

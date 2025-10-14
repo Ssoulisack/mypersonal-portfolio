@@ -668,14 +668,67 @@ const MagicBento: React.FC<BentoProps> = ({
           @media (max-width: 599px) {
             .card-responsive {
               grid-template-columns: 1fr;
-              width: 90%;
+              width: 95%;
               margin: 0 auto;
               padding: 0.5rem;
+              gap: 1rem;
             }
             
             .card-responsive .card {
               width: 100%;
-              min-height: 180px;
+              min-height: 250px;
+              max-height: none;
+              aspect-ratio: auto;
+            }
+            
+            .card-responsive .card:nth-child(3),
+            .card-responsive .card:nth-child(4) {
+              min-height: 200px;
+            }
+            
+            .card__content {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            }
+            
+            .card__title {
+              font-size: 1.1rem;
+              line-height: 1.3;
+            }
+            
+            .card__description {
+              font-size: 0.9rem;
+              line-height: 1.4;
+            }
+            
+            .card__header {
+              margin-bottom: 0.5rem;
+            }
+            
+            .card__label {
+              font-size: 0.9rem;
+            }
+            
+            /* Ensure custom content is properly sized */
+            .card__content > * {
+              max-width: 100%;
+              overflow: visible;
+            }
+            
+            /* Remove text clamping on mobile for better readability */
+            .text-clamp-1,
+            .text-clamp-2 {
+              -webkit-line-clamp: unset;
+              line-clamp: unset;
+              display: block;
+              overflow: visible;
+            }
+            
+            /* Hide cards on mobile when hideOnMobile is true */
+            .hide-on-mobile {
+              display: none !important;
             }
           }
         `}
@@ -698,9 +751,9 @@ const MagicBento: React.FC<BentoProps> = ({
                         const isShortCard = index === 2 || index === 3;
                         const baseClassName = `card flex flex-col items-center gap-1 relative w-full max-w-full rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] bg-card card-bd ${enableBorderGlow ? 'card--border-glow' : ''
                             } ${isShortCard
-                                ? 'min-h-[200px] max-h-[600px] p-3'
-                                : 'aspect-[4/3] min-h-[200px] p-5'
-                            }`;
+                                ? 'min-h-[200px] max-h-[600px] p-3 mobile:min-h-[300px] mobile:p-4'
+                                : 'aspect-[4/3] min-h-[300px] p-5 mobile:aspect-auto mobile:min-h-[250px] mobile:p-4'
+                            } ${card.hideOnMobile ? 'hide-on-mobile' : ''}`;
 
                         const cardStyle = {
                             backgroundColor: card.color || 'var(--background-dark)',
@@ -751,7 +804,7 @@ const MagicBento: React.FC<BentoProps> = ({
                         return (
                             <div
                                 key={index}
-                                className={baseClassName}
+                                className={`${baseClassName} ${card.hideOnMobile ? 'hide-on-mobile' : ''}`}
                                 style={cardStyle}
                                 ref={el => {
                                     if (!el) return;
