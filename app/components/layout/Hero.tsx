@@ -3,17 +3,17 @@
 import { motion } from "framer-motion";
 import { GithubIcon, Linkedin, Mail } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
-import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import Lanyard from "@/app/components/shared/Lanyard";
-import Beams from "@/app/components/shared/background";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import ShinyText from "../shared/shinyText";
+
 
 export const Hero = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    // setIsMounted(true);
   }, []);
 
   const scrollToContact = (e: React.MouseEvent) => {
@@ -28,23 +28,7 @@ export const Hero = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-background dark">
-      {/* Beams Background */}
-      {isMounted && (
-        <div className="absolute inset-0 w-full h-full z-0">
-          <Beams
-            beamWidth={2}
-            beamHeight={15}
-            beamNumber={4}
-            lightColor="#7289da"
-            speed={1}
-            noiseIntensity={1.0}
-            scale={0.12}
-            rotation={0}
-          />
-        </div>
-      )}
-
+    <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-transparent dark">
       {/* Lanyard - Tailwind responsive (iPad Mini 768px+) */}
       <div className="absolute right-0 top-0 w-1/2 h-full z-5 overflow-visible hidden md:block">
         <Lanyard position={[0, 0, 25]} gravity={[0, -20, 0]} />
@@ -54,9 +38,12 @@ export const Hero = () => {
       <div className="flex flex-col items-center justify-center relative z-10">
         {/* 1. RotatingText */}
         <div className="text-center px-4 mb-4 md:mb-8">
-          <h2 className="my-name text-lg sm:text-xl md:text-3xl lg:text-5xl font-bold mb-4 md:mb-8 py-2 px-4 sm:mx-12 md:mx-0 cursor-target">
-            SOULISACK DUANGVILAY
-          </h2>
+          <ShinyText
+            text="SOULISACK DUANGVILAY"
+            disabled={false}
+            speed={3}
+            className='bg-discord-blue text-lg sm:text-xl md:text-3xl lg:text-5xl font-bold mb-4 md:mb-8 py-2 px-4 sm:mx-12 md:mx-0 cursor-target'
+          />
         </div>
 
         {/* 2. Typing Animation */}
@@ -107,11 +94,9 @@ export const Hero = () => {
 
         {/* Go to Homepage Button */}
         <div className="mt-6">
-          <Link href="/homepage">
-            <Button className="hover:cursor-pointer">
-              Go to homepage
-            </Button>
-          </Link>
+          <Button className="text-anti-flash-white hover:cursor-pointer hover:text-anti-flash-white/80">
+            Go to homepage
+          </Button>
         </div>
       </div>
     </div>

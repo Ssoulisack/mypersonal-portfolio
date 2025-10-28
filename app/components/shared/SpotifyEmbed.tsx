@@ -62,14 +62,14 @@ export const SpotifyEmbed: React.FC<SpotifyEmbedProps> = ({
     }
 
     return (
-        <div className={`spotify-embed${className} hidden lg:block`}>
+        <div className={`spotify-embed${className} hidden md:block`}>
             <div className="bg-transparent">
                 <iframe
                     title={`Spotify Embed: ${title}`}
-                    src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
+                    src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0&autoplay=true`}
                     width={responsiveWidth}
                     height={height}
-                    style={{ minHeight: '100px', minWidth: '300px' }}
+                    style={{ minHeight: '80px', minWidth: '300px' }}
                     frameBorder="0"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy"

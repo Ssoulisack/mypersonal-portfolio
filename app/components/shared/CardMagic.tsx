@@ -193,26 +193,26 @@ const ParticleCard: React.FC<{
                 const centerY = rect.height / 2;
 
                 if (enableTilt) {
-                    const rotateX = ((y - centerY) / centerY) * -10;
-                    const rotateY = ((x - centerX) / centerX) * 10;
+                    const rotateX = ((y - centerY) / centerY) * -1;
+                    const rotateY = ((x - centerX) / centerX) * 1;
 
                     gsap.to(element, {
                         rotateX,
                         rotateY,
-                        duration: 0.1,
+                        duration: 0.5,
                         ease: 'power2.out',
-                        transformPerspective: 1000
+                        transformPerspective: 3000
                     });
                 }
 
                 if (enableMagnetism) {
-                    const magnetX = (x - centerX) * 0.05;
-                    const magnetY = (y - centerY) * 0.05;
+                    const magnetX = (x - centerX) * 0.01;
+                    const magnetY = (y - centerY) * 0.01;
 
                     magnetismAnimationRef.current = gsap.to(element, {
                         x: magnetX,
                         y: magnetY,
-                        duration: 0.3,
+                        duration: 0.5,
                         ease: 'power2.out'
                     });
                 }
@@ -512,7 +512,7 @@ const useMobileDetection = () => {
     return isMobile;
 };
 
-const MagicBento: React.FC<BentoProps> = ({
+const CardMagic: React.FC<BentoProps> = ({
     textAutoHide = true,
     enableStars = true,
     enableSpotlight = true,
@@ -756,7 +756,7 @@ const MagicBento: React.FC<BentoProps> = ({
                             } ${card.hideOnMobile ? 'hide-on-mobile' : ''}`;
 
                         const cardStyle = {
-                            backgroundColor: card.color || 'var(--background-dark)',
+                            backgroundColor: 'transparent',
                             borderColor: 'var(--border-color)',
                             color: 'var(--card-foreground)',
                             '--glow-x': '50%',
@@ -819,8 +819,8 @@ const MagicBento: React.FC<BentoProps> = ({
                                         const centerY = rect.height / 2;
 
                                         if (enableTilt) {
-                                            const rotateX = ((y - centerY) / centerY) * -10;
-                                            const rotateY = ((x - centerX) / centerX) * 10;
+                                            const rotateX = ((y - centerY) / centerY) * -5;
+                                            const rotateY = ((x - centerX) / centerX) * 5;
 
                                             gsap.to(el, {
                                                 rotateX,
@@ -832,13 +832,13 @@ const MagicBento: React.FC<BentoProps> = ({
                                         }
 
                                         if (enableMagnetism) {
-                                            const magnetX = (x - centerX) * 0.05;
-                                            const magnetY = (y - centerY) * 0.05;
+                                            const magnetX = (x - centerX) * 0.03;
+                                            const magnetY = (y - centerY) * 0.03;
 
                                             gsap.to(el, {
                                                 x: magnetX,
                                                 y: magnetY,
-                                                duration: 0.3,
+                                                duration: 0.5,
                                                 ease: 'power2.out'
                                             });
                                         }
@@ -944,4 +944,4 @@ const MagicBento: React.FC<BentoProps> = ({
     );
 };
 
-export default MagicBento;
+export default CardMagic;
