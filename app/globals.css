@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -214,8 +214,8 @@
     animation: draw 8s ease;
   }
 
-  #name-logo{
-    font-family: "Michroma",  sans-serif;
+  #name-logo {
+    font-family: "Michroma", sans-serif;
   }
 }
 
@@ -372,15 +372,9 @@
    🎨 SCROLLBAR STYLES
    ======================================== */
 ::-webkit-scrollbar {
-  width: 0.5em;
-  background: var(--background);
+  background: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgb(88, 101, 290);
-  border-radius: 100vw;
-  box-shadow: 0 -100vh 0 100vh rgb(88, 101, 290);
-}
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -5,6 +5,7 @@ import { ShootingStars } from "@/app/components/shared/backgroundShootingStar";
 import { BackgroundStart } from "@/app/components/shared/backgroundStart";
 import { Hero } from "@/app/components/layout/Hero";
 import { Preloading } from "@/app/components/layout/Preloading";
+import Scrollbar from "./components/shared/scrollbar";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Preloading/>
       <BackgroundStart />
       <ShootingStars />
+      <Scrollbar />
       <div className="relative z-10 min-h-screen flex flex-col gap-y-2">
         <Hero />
         {/* Magic Bento Section with custom cards */}
