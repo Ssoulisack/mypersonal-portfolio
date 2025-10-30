@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Poppins, Ubuntu } from "next/font/google";
 import "./globals.css";
+import { Doto } from "next/font/google";
 
-const getUbuntu = Ubuntu({
-  variable: "--font-ubuntu",
-  weight: ["400", "700"],
+const doto = Doto({
   subsets: ["latin"],
-});
-
-const getPoppins = Poppins({
-  variable: "--font-poppins",
-  weight: ["400", "700"],
-  subsets: ["latin"],
+  variable: "--font-doto",
+  weight: ["500", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -27,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${getUbuntu.variable} ${getPoppins.variable} antialiased`}
-         cz-shortcut-listen="true"
-         suppressHydrationWarning
+        className={`${doto.variable} antialiased`}
+        cz-shortcut-listen="true"
+        suppressHydrationWarning
       >
         {children}
       </body>

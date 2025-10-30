@@ -6,7 +6,7 @@ import { TypeAnimation } from "react-type-animation";
 import { Button } from "@/app/components/ui/button";
 import Lanyard from "@/app/components/shared/Lanyard";
 import { useEffect } from "react";
-import ShinyText from "../shared/shinyText";
+// import ShinyText from "../shared/shinyText";
 
 
 export const Hero = () => {
@@ -35,15 +35,13 @@ export const Hero = () => {
       </div>
 
       {/* Content Container - Column Layout */}
-      <div className="flex flex-col items-center justify-center relative z-10">
+      <div className="w-1/2 flex flex-col items-center justify-center relative z-10">
         {/* 1. RotatingText */}
-        <div className="text-center px-4 mb-4 md:mb-8">
-          <ShinyText
-            text="SOULISACK DUANGVILAY"
-            disabled={false}
-            speed={3}
-            className='bg-discord-blue text-lg sm:text-xl md:text-3xl lg:text-5xl font-bold mb-4 md:mb-8 py-2 px-4 sm:mx-12 md:mx-0 cursor-target'
-          />
+        <div className="px-4 mb-4 md:mb-8">
+          <p className="text-lg sm:text-xl md:text-3xl lg:text-5xl leading-tight text-center">
+            For founders ready to build,
+            I specialize in crafting the seamless digital experiences that drive growth and engagement.
+          </p>
         </div>
 
         {/* 2. Typing Animation */}
@@ -58,9 +56,9 @@ export const Hero = () => {
               sequence={[
                 "こんにちは、私の名前はアレックスです。よろしくね！",
                 3000,
-                "Hi, I'm alex. Nice to meet you!",
+                "Hi, I'm Soulisack DUANGVILAY, a Web developer.",
                 1000,
-                "I'm backend developer.",
+                "Nice to meet you!",
                 1000,
               ]}
               wrapper="span"

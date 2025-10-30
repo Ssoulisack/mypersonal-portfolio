@@ -42,8 +42,10 @@ const useBodyOverflow = (isVisible: boolean) => {
         if (isVisible) {
             const previousOverflow = document.body.style.overflow;
             document.body.style.overflow = "hidden";
+            document.body.classList.add('preloading-active');
             return () => {
                 document.body.style.overflow = previousOverflow;
+                document.body.classList.remove('preloading-active');
             };
         }
     }, [isVisible]);
@@ -55,12 +57,7 @@ const animateCardsWithRefs = (
     positionCardRef: React.RefObject<HTMLDivElement | null>,
     socialCardRef: React.RefObject<HTMLDivElement | null>
 ): void => {
-    console.log("Animating cards...", {
-        nameCard: !!nameCardRef.current,
-        positionCard: !!positionCardRef.current,
-        socialCard: !!socialCardRef.current
-    });
-
+    
     // Animate name card
     if (nameCardRef.current) {
         console.log("Animating name card");
@@ -208,9 +205,9 @@ export function Preloading() {
                     style={{ opacity: 0 }}
                 >
                     <div className="flex flex-col text-center font-medium leading-tight">
-                        <p className="text-md lg:text-lg mb-1">Hello,</p>
-                        <p className="text-md lg:text-lg font-semibold">I am</p>
-                        <p className="text-md lg:text-lg font-bold text-gray-500">Soulisack DUANGVILAY</p>
+                        <p className="font-doto font-extrabold text-md lg:text-lg mb-1">Hello,</p>
+                        <p className="font-doto font-extrabold text-md lg:text-lg">I am</p>
+                        <p className="font-doto font-extrabold text-md lg:text-lg text-gray-500">Soulisack DUANGVILAY</p>
                     </div>
                 </div>
             </div>
@@ -227,7 +224,7 @@ export function Preloading() {
                     className="w-48 h-32 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-discord-white rotate-[-14deg] flex items-center justify-center p-4 lg:p-8 text-sm md:text-md lg:text-lg shadow-xl"
                     style={{ opacity: 0 }}
                 >
-                    <code className="text-foreground font-bold">
+                    <code className="text-foreground font-bold font-doto">
                         My position is Backend developer
                     </code>
                 </div>

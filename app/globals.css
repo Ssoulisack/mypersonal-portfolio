@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -118,6 +119,11 @@
   /* GitHub Activity Styles */
   .grid-cols-53 {
     grid-template-columns: repeat(53, minmax(0, 1fr));
+  }
+
+  /* Font utility bound to next/font CSS variable */
+  .font-doto {
+    font-family: var(--font-doto);
   }
 
   .bg-nav {
@@ -381,5 +387,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    --nav-fg: #ffffff;
   }
+  body.preloading-active { --nav-fg: var(--color-foreground) }
 }

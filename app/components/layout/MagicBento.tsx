@@ -24,7 +24,7 @@ const MagicBento = () => {
                             enableStars={true}
                             enableSpotlight={true}
                             enableBorderGlow={true}
-                            enableTilt={true}
+                            enableTilt={false}
                             enableMagnetism={false}
                             clickEffect={true}
                             spotlightRadius={500}
@@ -48,37 +48,37 @@ const MagicBento = () => {
                                         </>
                                     ),
                                 },
-                                {
-                                    label: 'GitHub Activity',
-                                    title: 'Activity',
-                                    description: 'Contributions',
-                                    color: '#080113',
-                                    hideOnMobile: true,
-                                    customContent: (
-                                        <>
-                                            <GithubActivity />
-                                        </>
-                                    ),
-                                },
-                                {
-                                    label: 'Typing Performance',
-                                    title: 'Activity',
-                                    description: 'Contributions',
-                                    color: '#080113',
-                                    customContent: (
-                                        <>
-                                            <WPMDisplay targetTests={100} />
-                                        </>
-                                    ),
-                                    hideOnMobile: true,
-                                },
-                                {
-                                    label: 'My favorite playlist',
-                                    title: 'Spotify',
-                                    color: '#080113',
-                                    description: 'Centralized data view',
-                                    hideOnMobile: true, // This card will be hidden on mobile screens
-                                },
+                                // {
+                                //     label: 'GitHub Activity',
+                                //     title: 'Activity',
+                                //     description: 'Contributions',
+                                //     color: '#080113',
+                                //     hideOnMobile: true,
+                                //     customContent: (
+                                //         <>
+                                //             <GithubActivity />
+                                //         </>
+                                //     ),
+                                // },
+                                // {
+                                //     label: 'Typing Performance',
+                                //     title: 'Activity',
+                                //     description: 'Contributions',
+                                //     color: '#080113',
+                                //     customContent: (
+                                //         <>
+                                //             <WPMDisplay targetTests={100} />
+                                //         </>
+                                //     ),
+                                //     hideOnMobile: true,
+                                // },
+                                // {
+                                //     label: 'My favorite playlist',
+                                //     title: 'Spotify',
+                                //     color: '#080113',
+                                //     description: 'Centralized data view',
+                                //     hideOnMobile: true, // This card will be hidden on mobile screens
+                                // },
                             ]}
                         />
                     </div>
