@@ -12,17 +12,26 @@ export function CardBox() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1220) {
-        setRound(true);
-        setBaseWidth(150);
-        setBaseHeight(150);
+      if (window.innerWidth < 768) {
+        setRound(false);
+        setBaseWidth(200);
+        setBaseHeight(200);
         setIsHorizontal(true);
-      } else if (window.innerWidth >= 1220) {
+      }
+      else if (window.innerWidth >= 768) {
         setRound(false);
         setBaseWidth(400);
         setBaseHeight(300);
         setIsHorizontal(false);
-      } else {
+      }
+      // else if (window.innerWidth >= 768 && window.innerWidth < 1220) {
+      //   setRound(true);
+      //   setBaseWidth(400);
+      //   setBaseHeight(400);
+      //   setIsHorizontal(true);
+      // }
+       else 
+      {
         setRound(false);
         setBaseWidth(800);
         setBaseHeight(500);

@@ -191,7 +191,6 @@
 
   .typing {
     color: var(--discord-purple);
-    animation: pulse 1.5s ease-in-out infinite alternate;
     text-shadow: 0 0 20px rgb(119, 95, 255);
   }
 
@@ -345,10 +344,6 @@
   .hide-during-preloading {
     display: initial;
   }
-}
-
-body.preloading-active .hide-during-preloading {
-  display: none;
 }
 
 /* Discord button styles */

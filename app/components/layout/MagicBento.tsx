@@ -6,8 +6,8 @@ import { SpotifyEmbed } from "@/app/components/shared/SpotifyEmbed";
 const MagicBento = () => {
     return (
         <>
-            <div className="flex-1 flex justify-center items-center p-4 mx-8 md:mx-12 lg:mx-24 xl:mx-32">
-                <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="flex-1 flex justify-center items-center md:p-4 mx-8 md:mx-12 lg:mx-24 xl:mx-32">
+                <div className="w-full lg:px-8">
                     <div className="flex flex-col justify-center items-center p-4 gap-y-2">
                         <h1 className="text-xl text-muted-foreground sm:text-3xl lg:text-4xl font-bold">Welcome</h1>
                         <p className="text-sm sm:text-base text-muted-foreground">
@@ -48,37 +48,37 @@ const MagicBento = () => {
                                         </>
                                     ),
                                 },
-                                // {
-                                //     label: 'GitHub Activity',
-                                //     title: 'Activity',
-                                //     description: 'Contributions',
-                                //     color: '#080113',
-                                //     hideOnMobile: true,
-                                //     customContent: (
-                                //         <>
-                                //             <GithubActivity />
-                                //         </>
-                                //     ),
-                                // },
-                                // {
-                                //     label: 'Typing Performance',
-                                //     title: 'Activity',
-                                //     description: 'Contributions',
-                                //     color: '#080113',
-                                //     customContent: (
-                                //         <>
-                                //             <WPMDisplay targetTests={100} />
-                                //         </>
-                                //     ),
-                                //     hideOnMobile: true,
-                                // },
-                                // {
-                                //     label: 'My favorite playlist',
-                                //     title: 'Spotify',
-                                //     color: '#080113',
-                                //     description: 'Centralized data view',
-                                //     hideOnMobile: true, // This card will be hidden on mobile screens
-                                // },
+                                {
+                                    label: 'GitHub Activity',
+                                    title: 'Activity',
+                                    description: 'Contributions',
+                                    color: '#080113',
+                                    hideOnMobile: true,
+                                    customContent: (
+                                        <>
+                                            <GithubActivity />
+                                        </>
+                                    ),
+                                },
+                                {
+                                    label: 'Typing Performance',
+                                    title: 'Activity',
+                                    description: 'Contributions',
+                                    color: '#080113',
+                                    customContent: (
+                                        <>
+                                            <WPMDisplay targetTests={100} />
+                                        </>
+                                    ),
+                                    hideOnMobile: true,
+                                },
+                                {
+                                    label: 'My favorite playlist',
+                                    title: 'Spotify',
+                                    color: '#080113',
+                                    description: 'Centralized data view',
+                                    hideOnMobile: true, // This card will be hidden on mobile screens
+                                },
                             ]}
                         />
                     </div>

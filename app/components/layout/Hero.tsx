@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GithubIcon, Linkedin, Mail } from "lucide-react";
+import { ChevronDown, GithubIcon, Linkedin, Mail } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
-import { Button } from "@/app/components/ui/button";
 import Lanyard from "@/app/components/shared/Lanyard";
 import { useEffect } from "react";
 // import ShinyText from "../shared/shinyText";
@@ -37,17 +36,17 @@ export const Hero = () => {
       {/* Content Container - Column Layout */}
       <div className="w-full md:w-1/2 flex flex-col items-center justify-center relative z-10">
         {/* 1. RotatingText */}
-      <div className="px-4 mb-4 md:mb-8">
-        <p className="text-center leading-tight">
-          <span className="inline-block uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-sm text-white/60">
-            Where
-          </span>
-          <span className="block mt-2 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-instrument-serif text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)]">
-            your ideas take shape.
-          </span>
-          <span className="block mt-4 h-px w-24 sm:w-32 md:w-40 mx-auto bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-        </p>
-      </div>
+        <div className="px-4 mb-4 md:mb-8">
+          <p className="text-center leading-tight">
+            <span className="inline-block uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-sm text-white/60">
+              Where
+            </span>
+            <span className="block mt-2 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-instrument-serif text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)]">
+              your ideas take shape.
+            </span>
+            <span className="block mt-4 h-px w-24 sm:w-32 md:w-40 mx-auto bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          </p>
+        </div>
 
         {/* 2. Typing Animation */}
         <motion.div
@@ -96,10 +95,9 @@ export const Hero = () => {
         </div>
 
         {/* Go to Homepage Button */}
-        <div className="mt-6">
-          <Button className="text-anti-flash-white hover:cursor-pointer hover:text-anti-flash-white/80">
-            Go to homepage
-          </Button>
+        <div className="flex flex-col items-center gap-2 mt-6">
+          <span className="text-sm text-white/40 animate-pulse">scroll down</span>
+          <ChevronDown size={24} className='text-white/40 animate-bounce' style={{ animationDuration: '1s' }} />
         </div>
       </div>
     </div>
