@@ -40,11 +40,24 @@ const useProgressAnimation = () => {
 const useBodyOverflow = (isVisible: boolean) => {
     useEffect(() => {
         if (isVisible) {
-            const previousOverflow = document.body.style.overflow;
+            const previousBodyOverflow = document.body.style.overflow;
+            const previousHtmlOverflow = document.documentElement.style.overflow;
+            const previousBodyPosition = document.body.style.position;
+            const previousBodyWidth = document.body.style.width;
+            const previousBodyHeight = document.body.style.height;
+
             document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+            document.body.style.position = "fixed";
+            document.body.style.width = "100%";
+            document.body.style.height = "100%";
             document.body.classList.add('preloading-active');
             return () => {
-                document.body.style.overflow = previousOverflow;
+                document.body.style.overflow = previousBodyOverflow;
+                document.documentElement.style.overflow = previousHtmlOverflow;
+                document.body.style.position = previousBodyPosition;
+                document.body.style.width = previousBodyWidth;
+                document.body.style.height = previousBodyHeight;
                 document.body.classList.remove('preloading-active');
             };
         }
@@ -195,7 +208,7 @@ export function Preloading() {
     return (
         <div 
             ref={pageLoadingRef}
-            className="page-loading flex flex-col justify-around items-center bg-background-secondary fixed w-full h-full z-50"
+            className="page-loading fixed inset-0 flex flex-col justify-around items-center bg-background-secondary w-full h-[100svh] min-h-[100dvh] z-[9999] overscroll-none pb-[env(safe-area-inset-bottom)]"
         >
             {/* Top section with name card */}
             <div className="flex justify-end w-full px-12 md:px-50">

@@ -26,7 +26,7 @@ const Scrollbar = () => {
   }, []);
 
   return (
-    <div className="fixed top-1/2 right-6 transform -translate-y-1/2 z-50">
+    <div className="hide-during-preloading fixed top-1/2 right-6 transform -translate-y-1/2 z-50">
       {/* Background track */}
       <div className="h-[150px] w-[5px] bg-gray-800 rounded-2xl relative overflow-hidden">
         {/* Progress fill - starts from top */}

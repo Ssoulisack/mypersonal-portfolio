@@ -31,15 +31,18 @@ const getContributionLevel = (count: number): number => {
 
 export function GitHubContributions({ data, username }: GitHubContributionsProps) {
   const [baseWidth, setBaseWidth] = useState(12);
+  const [showLabels, setShowLabels] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1330) {
         setBaseWidth(8);
+        setShowLabels(false);
         console.log("horizontal mode", true);
       } else {
         setBaseWidth(16);
         console.log("vertical mode", true);
+        setShowLabels(true);
       }
     };
 
@@ -72,8 +75,8 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
             dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353']
           }}
           colorScheme="dark"
-          showWeekdayLabels={true}
-          hideMonthLabels={false}
+          showWeekdayLabels={showLabels}
+          hideMonthLabels={showLabels}
           blockSize={baseWidth}
           blockMargin={2}
           fontSize={10}

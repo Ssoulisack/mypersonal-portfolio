@@ -57,7 +57,7 @@ function Navbar() {
             const hour = now.getHours();
             const nextGreeting =
                 hour >= 5 && hour < 12
-                    ? `Mornin'. Busy day ahead?'`
+                    ? `Mornin'. Busy day ahead?`
                     : hour >= 12 && hour < 17
                         ? 'Good afternoon. Anything interesting happen yet?'
                         : hour >= 17 && hour < 22
@@ -88,22 +88,22 @@ function Navbar() {
         <>
             {/* Greeting popup (initial) */}
             <div
-                className={`animate-slideDownIn fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col justify-center items-center gap-y-2 p-[8px] rounded-3xl backdrop-blur-[2.9px] transition-all duration-500 ${showGreeting ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                className={`hide-during-preloading fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col justify-center items-center gap-y-1 p-[8px] rounded-3xl ${showGreeting ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
                 style={{ WebkitBackdropFilter: 'blur(2px)' }}
             >
-                <span className='text-[var(--nav-fg)]/80 text-xs md:text-sm px-2'>
+                <p className='text-[var(--nav-fg)]/80 text-center text-xs md:text-sm px-2'>
                     {timeString}
-                </span>
+                </p>
                 {timeString && (
-                    <span className='font-doto uppercase font-bold text-[var(--nav-fg)] text-base md:text-2xl px-2'>
+                    <p className='flex items-center justify-center font-doto uppercase font-bold text-[var(--nav-fg)] text-xs lg:text-lg text-center text-align-center px-2'>
                         {greeting}
-                    </span>
+                    </p>
                 )}
             </div>
 
             {/* Navbar (appears after scroll) */}
             <div
-                className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center p-[5px] rounded-3xl border border-[rgba(66,66,66,0.3)] bg-[rgba(66,66,66,0.44)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[2.9px] transition-all duration-500 ${showMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                className={`hide-during-preloading fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center p-[5px] rounded-3xl border border-[rgba(66,66,66,0.3)] bg-[rgba(66,66,66,0.44)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[2.9px] transition-all duration-500 ${showMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
                 style={{ WebkitBackdropFilter: 'blur(2px)' }}
             >
                 {menu
@@ -112,9 +112,8 @@ function Navbar() {
                         <Link
                             key={item.label}
                             href={item.href || '/'}
-                            className={`text-[var(--nav-fg)] px-4 py-2 rounded-3xl transition ${
-                                (item.href || '/') === pathname ? 'bg-white/10' : 'bg-transparent'
-                            }`}
+                            className={`text-[var(--nav-fg)] px-4 py-2 rounded-3xl transition ${(item.href || '/') === pathname ? 'bg-white/10' : 'bg-transparent'
+                                }`}
                         >
                             {item.label}
                         </Link>
@@ -127,9 +126,8 @@ function Navbar() {
                             asChild
                             variant="ghost"
                             size="sm"
-                            className={`text-[var(--nav-fg)] rounded-3xl transition ${
-                                (item.href || '/') === pathname ? 'bg-white/10' : 'bg-transparent'
-                            }`}
+                            className={`text-[var(--nav-fg)] rounded-3xl transition ${(item.href || '/') === pathname ? 'bg-white/10' : 'bg-transparent'
+                                }`}
                         >
                             <Link href={item.href || '/'}>
                                 {item.label}

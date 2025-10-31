@@ -35,14 +35,19 @@ export const Hero = () => {
       </div>
 
       {/* Content Container - Column Layout */}
-      <div className="w-1/2 flex flex-col items-center justify-center relative z-10">
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center relative z-10">
         {/* 1. RotatingText */}
-        <div className="px-4 mb-4 md:mb-8">
-          <p className="text-lg sm:text-xl md:text-3xl lg:text-5xl leading-tight text-center">
-            For founders ready to build,
-            I specialize in crafting the seamless digital experiences that drive growth and engagement.
-          </p>
-        </div>
+      <div className="px-4 mb-4 md:mb-8">
+        <p className="text-center leading-tight">
+          <span className="inline-block uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-sm text-white/60">
+            Where
+          </span>
+          <span className="block mt-2 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-instrument-serif text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)]">
+            your ideas take shape.
+          </span>
+          <span className="block mt-4 h-px w-24 sm:w-32 md:w-40 mx-auto bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+        </p>
+      </div>
 
         {/* 2. Typing Animation */}
         <motion.div

@@ -125,6 +125,17 @@
   .font-doto {
     font-family: var(--font-doto);
   }
+  .font-instrument-serif {
+    font-family: var(--font-instrument-serif);
+  }
+
+  .font-instrument-serif {
+    font-family: var(--font-instrument-serif);
+  }
+
+  .font-geist-mono {
+    font-family: var(--font-geist-mono);
+  }
 
   .bg-nav {
     background: var(--primary-foreground);
@@ -330,6 +341,14 @@
   .animate-shine {
     animation: shine 5s linear infinite;
   }
+  /* Hide elements while preloader active via body class */
+  .hide-during-preloading {
+    display: initial;
+  }
+}
+
+body.preloading-active .hide-during-preloading {
+  display: none;
 }
 
 /* Discord button styles */
@@ -375,10 +394,26 @@
 }
 
 /* ========================================
-   🎨 SCROLLBAR STYLES
+   🎨 SCROLLBAR STYLES (Global custom)
    ======================================== */
-::-webkit-scrollbar {
-  background: none;
+/* WebKit (Chrome, Edge, Safari) - hide entirely */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox - hide entirely */
+html,
+body,
+* {
+  scrollbar-width: none; /* hides scrollbar */
+}
+
+/* IE/old Edge */
+html,
+body {
+  -ms-overflow-style: none; /* hides scrollbar */
 }
 
 @layer base {
@@ -388,6 +423,9 @@
   body {
     @apply bg-background text-foreground;
     --nav-fg: #ffffff;
+
   }
-  body.preloading-active { --nav-fg: var(--color-foreground) }
+  body.preloading-active {
+    --nav-fg: var(--color-foreground);
+  }
 }

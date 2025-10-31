@@ -550,7 +550,7 @@ const CardMagic: React.FC<BentoProps> = ({
           
           .card-responsive { grid-template-columns: 1fr; width: 100%; margin: 0 auto; padding: 0.25rem; }
           
-          @media (min-width: 768px) {
+          @media (min-width: 820px) {
             .card-responsive {
               grid-template-columns: repeat(4, 1fr);
             }
