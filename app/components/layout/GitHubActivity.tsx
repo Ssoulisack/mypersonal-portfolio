@@ -57,24 +57,24 @@ export const GithubActivity = () => {
         <div className="flex flex-col items-center p-2 sm:p-2 xl:p-4 rounded">
           <Github className="h-3 w-3 sm:h-4 sm:w-4 xl:h-5 xl:w-5 text-primary mb-1" />
           <p className="text-xs sm:text-sm xl:text-base font-bold">{totalContributions}</p>
-          <p className="text-xs xl:text-sm text-muted-foreground">Total</p>
+          <p className="hidden md:block text-xs xl:text-sm text-muted-foreground">Total</p>
         </div>
 
         <div className="flex flex-col items-center p-2 sm:p-2 xl:p-4 rounded">
           <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 xl:h-5 xl:w-5 text-primary mb-1" />
           <p className="text-xs sm:text-sm xl:text-base font-bold">{maxContributions}</p>
-          <p className="text-xs xl:text-sm text-muted-foreground">Max</p>
+          <p className="hidden md:block text-xs xl:text-sm text-muted-foreground">Max</p>
         </div>
 
         <div className="flex flex-col items-center p-2 sm:p-2 xl:p-4 rounded">
           <Calendar className="h-3 w-3 sm:h-4 sm:w-4 xl:h-5 xl:w-5 text-primary mb-1" />
           <p className="text-xs sm:text-sm xl:text-base font-bold">{activeDays}</p>
-          <p className="text-xs xl:text-sm text-muted-foreground">Days</p>
+          <p className="hidden md:block text-xs xl:text-sm text-muted-foreground">Days</p>
         </div>
       </div>
       {/* Contribution Calendar */}
       {contributionData.length > 0 && (
-        <div className="sm:p-2 xl:px-4 rounded overflow-hidden">
+        <div className="p-2 md:p-4 rounded overflow-hidden">
           <GitHubContributions
             data={contributionData}
             username={username || ""}

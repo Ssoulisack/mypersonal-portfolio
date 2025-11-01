@@ -58,9 +58,9 @@ export const Hero = () => {
           <div className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl typing h-12 sm:h-16 md:h-20 mb-4 md:mb-8">
             <TypeAnimation
               sequence={[
-                "こんにちは、私の名前はアレックスです。よろしくね！",
+                "はじめまして、私の名前はアレックスです。よろしくね！",
                 3000,
-                "Hi, I'm Soulisack DUANGVILAY, a Web developer.",
+                "Hi, I'm Alex, a Web developer.",
                 1000,
                 "Nice to meet you!",
                 1000,

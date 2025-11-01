@@ -1,5 +1,6 @@
 import gsap from "gsap"
 import { useEffect, useState, useRef, useCallback } from "react"
+import Image from "next/image"
 
 // Constants
 const PROGRESS_BOXES = Array.from({ length: 10 }, (_, i) => ({
@@ -70,11 +71,11 @@ const animateCardsWithRefs = (
     positionCardRef: React.RefObject<HTMLDivElement | null>,
     socialCardRef: React.RefObject<HTMLDivElement | null>
 ): void => {
-    
+
     // Animate name card
     if (nameCardRef.current) {
         console.log("Animating name card");
-        gsap.fromTo(nameCardRef.current, 
+        gsap.fromTo(nameCardRef.current,
             { opacity: 0, scale: 0.8, y: -20 },
             { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power2.out", delay: .5 }
         );
@@ -85,7 +86,7 @@ const animateCardsWithRefs = (
         console.log("Animating position card");
         gsap.fromTo(positionCardRef.current,
             { opacity: 0, scale: 0.8, y: 20 },
-            { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 1 }
+            { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 1.5 }
         );
     }
 
@@ -94,7 +95,7 @@ const animateCardsWithRefs = (
         console.log("Animating social card");
         gsap.fromTo(socialCardRef.current,
             { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: 2 }
+            { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: 2.5 }
         );
     }
 };
@@ -114,7 +115,7 @@ export function Preloading() {
     const [isVisible, setIsVisible] = useState(true);
     const hasExitRunRef = useRef(false);
     const progress = useProgressAnimation();
-    
+
     // Refs for GSAP animations
     const nameCardRef = useRef<HTMLDivElement>(null);
     const positionCardRef = useRef<HTMLDivElement>(null);
@@ -130,6 +131,7 @@ export function Preloading() {
     useEffect(() => {
         if (progress >= 100 && !hasExitRunRef.current) {
             hasExitRunRef.current = true;
+            //MARK: COMMENT ANIMATION EXIT
             const timeoutId = setTimeout(() => {
                 animateExit(handleExit, pageLoadingRef);
             }, EXIT_DELAY);
@@ -157,30 +159,36 @@ export function Preloading() {
         return (
             <div
                 key={box.id}
-                className={`${
-                    isActive 
-                        ? "bg-foreground scale-100 opacity-100" 
-                        : "scale-95 opacity-60"
-                } w-[10px] h-[10px] rounded-sm lg:w-[30px] lg:h-[30px] lg:rounded-md transition-discrete duration-500 ease-out flex items-center justify-center`}
+                className={`${isActive
+                    ? "bg-foreground scale-100 opacity-100"
+                    : "scale-95 opacity-60"
+                    } w-[10px] h-[10px] rounded-sm lg:w-[30px] lg:h-[30px] lg:rounded-md transition-discrete duration-500 ease-out flex items-center justify-center`}
             />
         );
     };
 
-    const LoadingDots = () => (
-        <div className="flex justify-center gap-x-1 p-2">
-            {[0, 150, 300].map((delay) => (
-                <span
-                    key={delay}
-                    className="w-2 h-2 sm:w-3 sm:h-3 bg-black rounded-full animate-pulse"
-                    style={{ animationDelay: `${delay}ms` }}
-                />
-            ))}
-        </div>
-    );
+    const LoadingDots = () => {
+        const dotColors = [
+            'bg-[#FF5F56]', // Red (macOS close)
+            'bg-[#FFBD2E]', // Yellow (macOS minimize)
+            'bg-[#27C93F]'  // Green (macOS maximize)
+        ];
+        return (
+            <div className="flex justify-center gap-x-1 p-2">
+                {[0, 150, 300].map((delay, index) => (
+                    <span
+                        key={delay}
+                        className={`w-2 h-2 sm:w-3 sm:h-3 ${dotColors[index]} rounded-full`}
+                        style={{ animationDelay: `${delay}ms` }}
+                    />
+                ))}
+            </div>
+        );
+    };
 
     const ProgressBar = () => (
         <div className="flex justify-center gap-y-2 w-full">
-            <div className="flex justify-start items-center gap-x-2 lg:gap-x-4 p-2 bg-anti-flash-white rounded-md">
+            <div className="flex justify-start items-center gap-x-2 lg:gap-x-4 p-2 bg-gray-200/50 rounded-md">
                 {PROGRESS_BOXES.map((box) => (
                     <ProgressBox key={box.id} box={box} />
                 ))}
@@ -190,11 +198,11 @@ export function Preloading() {
 
     const LoadingCard = () => (
         <div className="flex flex-col items-start justify-between w-[250px] h-25 lg:w-[500px] lg:h-50 bg-discord-white rounded-2xl">
-            <div className="flex items-center justify-between w-full px-2 border-b-1 border-sidebar-foreground">
+            <div className="flex items-center justify-between w-full px-2 border-b-1 border-gray-200">
+                <LoadingDots />
                 <div>
                     <p className="text-[10px] lg:p-2 lg:text-sm">LOADER</p>
                 </div>
-                <LoadingDots />
             </div>
             <ProgressBar />
             <div className="w-full text-center lg:text-end lg:pb-2 lg:px-4 text-xs lg:text-lg font-semibold">
@@ -206,21 +214,26 @@ export function Preloading() {
     if (!isVisible) return null;
 
     return (
-        <div 
+        <div
             ref={pageLoadingRef}
             className="page-loading fixed inset-0 flex flex-col justify-around items-center bg-background-secondary w-full h-[100svh] min-h-[100dvh] z-[9999] overscroll-none pb-[env(safe-area-inset-bottom)]"
         >
             {/* Top section with name card */}
             <div className="flex justify-end w-full px-12 md:px-50">
-                <div 
+                <div
                     ref={nameCardRef}
-                    className="w-48 h-32 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-discord-white p-4 md:p-8 rotate-12 flex flex-col justify-center items-center shadow-xl"
+                    className="w-48 h-38 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-discord-white p-4 md:p-8 rotate-12 flex flex-col justify-center items-center shadow-xl"
                     style={{ opacity: 0 }}
                 >
-                    <div className="flex flex-col text-center font-medium leading-tight">
-                        <p className="font-doto font-extrabold text-md lg:text-lg mb-1">Hello,</p>
-                        <p className="font-doto font-extrabold text-md lg:text-lg">I am</p>
-                        <p className="font-doto font-extrabold text-md lg:text-lg text-gray-500">Soulisack DUANGVILAY</p>
+                    <div className="flex flex-col text-center justify-center items-center py-4 font-medium leading-tight">
+                        <Image
+                            className="rotate-[-5deg] bg-transparent mb-2"
+                            src="/images/anyagigi.png"
+                            alt="Profile"
+                            width={70}
+                            height={70}
+                        />
+                        <p className="text-md lg:text-lg text-gray-500">ちょっと待ってくださいね</p>
                     </div>
                 </div>
             </div>
@@ -232,7 +245,7 @@ export function Preloading() {
 
             {/* Bottom section with position and social cards */}
             <div className="flex justify-evenly items-center gap-16 md:gap-24 lg:gap-32 w-full">
-                <div 
+                <div
                     ref={positionCardRef}
                     className="w-48 h-32 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-discord-white rotate-[-14deg] flex items-center justify-center p-4 lg:p-8 text-sm md:text-md lg:text-lg shadow-xl"
                     style={{ opacity: 0 }}
@@ -241,9 +254,9 @@ export function Preloading() {
                         My position is Backend developer
                     </code>
                 </div>
-                <div 
+                <div
                     ref={socialCardRef}
-                    className="flex text-xs sm:text-sm font-semibold"
+                    className="flex flex-col justify-center items-center gap-y-2 text-xs sm:text-sm font-semibold"
                     style={{ opacity: 0 }}
                 >
                     <span className="bg-gradient-to-r from-[#feda75] via-[#d62976] to-[#4f5bd5] bg-clip-text text-transparent">

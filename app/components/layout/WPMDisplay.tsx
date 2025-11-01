@@ -124,34 +124,34 @@ export function WPMDisplay({ showChart = true, variant = 'card', targetTests }: 
   // Success state - Display the data
   const containerClass =
     variant === 'plain'
-      ? "w-full bg-background rounded-none shadow-none text-white"
-      : "w-full bg-background rounded-lg p-4 shadow-lg text-white"
+      ? "w-full bg-transparent rounded-none shadow-none text-white"
+      : "w-full bg-transparent rounded-lg p-4 shadow-lg text-white"
 
   return (
     <div className={containerClass}>
       {/* Profile Header */}
-      <div className="flex sm:flex-row sm:items-center justify-evenly gap-4 mb-6">
+      <div className="hidden xl:flex sm:flex-row sm:items-center justify-evenly gap-4 mb-2">
         <div className='flex flex-col items-center gap-4'>
-          <div className="text-xs text-gray-400 mb-1">started</div>
+          <div className="text-sm text-gray-400 mb-1">started</div>
           <div className="text-lg sm:text-xl font-bold">{testsStarted}</div>
         </div>
         <div className='flex flex-col items-center gap-4'>
-          <div className="text-xs text-gray-400 mb-1">completed</div>
+          <div className="text-sm text-gray-400 mb-1">completed</div>
           <div className="text-lg sm:text-xl font-bold">{testsCompleted}</div>
         </div>
         <div className='flex flex-col items-center gap-4'>
-          <div className="text-xs text-gray-400 mb-1">time typing</div>
+          <div className="text-sm text-gray-400 mb-1">time typing</div>
           <div className="text-sm sm:text-lg font-bold">{formatTime(totalTimeTyping)}</div>
         </div>
       </div>
 
       {/* Progress Bar */}
       <div className="mb-6">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-lg font-bold">{testsCompleted}</span>
+        <div className="flex items-center gap-x-2 mb-2">
+          <span className="text-md font-bold">{testsCompleted}</span>
           <div className="flex-1 bg-gray-700 rounded-full h-2">
             <div
-              className="bg-yellow-500 h-2 rounded-full transition-all duration-300"
+              className="h-2 rounded-full transition-all duration-300 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600"
               style={{ width: `${Math.min((testsCompleted / progressTarget) * 100, 100)}%` }}
             ></div>
           </div>
@@ -160,11 +160,10 @@ export function WPMDisplay({ showChart = true, variant = 'card', targetTests }: 
       </div>
 
       {/* Test Results Table */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="flex justify-center items-center gap-6">
         {/* Time-based tests */}
         <div className="space-y-3">
-          <div className="text-sm font-semibold text-gray-300 mb-3">Time Tests</div>
-          <div className="grid grid-cols-4 gap-2 mb-2 text-xs text-gray-400">
+          <div className="grid grid-cols-4 gap-x-8 mb-2 text-xs text-gray-400">
             <div className="text-center">15s</div>
             <div className="text-center">30s</div>
             <div className="text-center">60s</div>
@@ -197,35 +196,7 @@ export function WPMDisplay({ showChart = true, variant = 'card', targetTests }: 
             })}
           </div>
         </div>
-
-        {/* Word-based tests */}
-        <div className="space-y-3">
-          <div className="text-sm font-semibold text-gray-300 mb-3">Word Tests</div>
-          <div className="grid grid-cols-4 gap-2 mb-2 text-xs text-gray-400">
-            <div className="text-center">10w</div>
-            <div className="text-center">25w</div>
-            <div className="text-center">50w</div>
-            <div className="text-center">100w</div>
-          </div>
-          <div className="grid grid-cols-4 gap-2 mb-1">
-            {['10', '25', '50', '100'].map((wordCount) => {
-              const result = getTestResult('words', wordCount)
-              const isCurrentTest = mode === 'words' && mode2 === wordCount
-              return (
-                <div key={wordCount} className="text-center">
-                  <div className={`text-lg sm:text-xl font-bold ${result?.isPb ? 'text-yellow-400' :
-                    isCurrentTest ? 'text-blue-400' :
-                      result ? 'text-white' : 'text-gray-500'
-                    }`}>
-                    {result ? Math.round(result.wpm) : '-'}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
       </div>
-
       {/* Personal Best Indicator */}
       {isPersonalBest && (
         <div className="mt-4 text-center">
@@ -238,17 +209,17 @@ export function WPMDisplay({ showChart = true, variant = 'card', targetTests }: 
       {/* Additional Stats */}
       {showChart && (
         <div className="mt-6 pt-4 border-t border-gray-600">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-sm">
+          <div className="grid grid-cols-3 gap-4 text-center text-sm">
             <div>
-              <div className="text-gray-400">Consistency</div>
+              <div className="text-xs md:text-xl text-gray-400">Consistency</div>
               <div className="font-bold">{consistency.toFixed(1)}%</div>
             </div>
             <div>
-              <div className="text-gray-400">Raw WPM</div>
+              <div className="text-xs md:text-xl text-gray-400">Raw WPM</div>
               <div className="font-bold">{rawWpm.toFixed(1)}</div>
             </div>
             <div>
-              <div className="text-gray-400">Characters</div>
+              <div className="text-xs md:text-xl text-gray-400">Characters</div>
               <div className="font-bold text-xs lg:text-sm">
                 {charStats ? `${charStats.correct}/${charStats.incorrect}/${charStats.extra}/${charStats.missed}` : '-'}
               </div>

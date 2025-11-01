@@ -7,14 +7,13 @@ import { Hero } from "@/app/components/layout/Hero";
 import { Preloading } from "@/app/components/layout/Preloading";
 import Scrollbar from "./components/shared/scrollbar";
 import Navbar from "./components/layout/navbar";
-import Finder from "@/app/components/shared/finder";
 
 export default function Home() {
   return (
     <div className="relative w-full min-h-screen">
-      {/* <Preloading/> */}
-      {/* <BackgroundStart /> */}
-      {/* <ShootingStars /> */}
+      <Preloading/>
+      <BackgroundStart />
+      <ShootingStars />
       <Scrollbar />
       <Navbar />
       <div className="relative z-10 min-h-screen flex flex-col gap-y-2">

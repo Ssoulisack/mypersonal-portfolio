@@ -32,9 +32,13 @@ const getContributionLevel = (count: number): number => {
 export function GitHubContributions({ data, username }: GitHubContributionsProps) {
   const [baseWidth, setBaseWidth] = useState(12);
   const [showLabels, setShowLabels] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
+      const isMobileScreen = window.innerWidth < 768;
+      setIsMobile(isMobileScreen);
+      
       if (window.innerWidth < 1330) {
         setBaseWidth(8);
         setShowLabels(false);
@@ -51,19 +55,33 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Filter data to show only last 6 months on mobile
+  const filteredData = useMemo(() => {
+    if (!isMobile) return data;
+    
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+    
+    return data.filter(day => {
+      const dayDate = new Date(day.date);
+      return dayDate >= sixMonthsAgo;
+    });
+  }, [data, isMobile]);
+
   // Transform data to the format expected by react-activity-calendar
   const calendarData = useMemo(() => {
-    return transformDataForCalendar(data);
-  }, [data]);
+    return transformDataForCalendar(filteredData);
+  }, [filteredData]);
 
   // Calculate total contributions
-  const totalContributions = data.reduce((sum, day) => sum + day.contributionCount, 0);
+  const totalContributions = filteredData.reduce((sum, day) => sum + day.contributionCount, 0);
 
   return (
     <>
       <div className='flex justify-center'>
-        <p className="text-xs sm:text-sm xl:text-base text-muted-foreground py-2">
-          {username} has {totalContributions} contributions in the last year
+        <p className="hidden md:block text-xs sm:text-sm xl:text-base text-muted-foreground py-2">
+          {username} has {totalContributions} contributions
         </p>
       </div>
 
@@ -83,7 +101,7 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
           weekStart={0} // Start week on Sunday
         />
       </div>
-      <div className='flex justify-center'>
+      <div className='flex justify-center mt-2'>
         <GitHubButton href="https://github.com/Ssoulisack" />
       </div>
     </>

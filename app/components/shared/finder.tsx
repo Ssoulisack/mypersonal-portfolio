@@ -60,7 +60,7 @@ const Finder = ({ onClose }: FinderProps) => {
                 <section
                     role="dialog"
                     aria-modal="true"
-                    className="w-[90%] sm:w-[600px] lg:w-[720px] flex flex-col gap-y-2 rounded-2xl border border-[rgba(66,66,66,0.3)] bg-[rgba(66,66,66,0.44)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[2.9px] transition-all duration-300 max-h-[80svh] overflow-hidden"
+                    className="w-[90%] sm:w-[600px] lg:w-[720px] flex flex-col gap-y-2 rounded-2xl border border-[rgba(66,66,66,0.3)] bg-[rgba(66,66,66,0.44)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4px] transition-all duration-300 max-h-[80svh] overflow-hidden"
                 >
                     {/* Header */}
                     <div className="flex items-center gap-3 px-4 py-3">

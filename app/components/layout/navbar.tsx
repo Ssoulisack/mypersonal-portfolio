@@ -156,20 +156,27 @@ function Navbar() {
                                 ))}
                             {menu
                                 .filter((item) => item.tag === TagTypes.button)
-                                .map((item) => (
-                                    <Button
-                                        key={item.label}
-                                        asChild
-                                        variant="ghost"
-                                        size="sm"
-                                        className={`text-[var(--nav-fg)] rounded-3xl transition px-3 sm:px-4 py-1.5 sm:py-2 text-sm ${(item.href || '/') === pathname ? 'bg-white/10' : 'bg-transparent'
-                                            }`}
-                                    >
-                                        <Link href={item.href || '/'}>
-                                            {item.label}
-                                        </Link>
-                                    </Button>
-                                ))}
+                                .map((item, index, array) => {
+                                    const isFirst = index === 0;
+                                    const isLast = index === array.length - 1;
+                                    const isActive = isLast || (item.href || '/') === pathname;
+                                    
+                                    return (
+                                        <Button
+                                            key={item.label}
+                                            asChild
+                                            variant="ghost"
+                                            size="sm"
+                                            className={`text-[var(--nav-fg)] rounded-3xl transition px-3 sm:px-4 py-1.5 sm:py-2 text-sm ${isActive ? 'bg-white/10' : 'bg-transparent'
+                                                }`}
+                                        >
+                                            <Link href={item.href || '/'} className="flex items-center gap-1">
+                                                {item.label}
+                                                {isFirst && <ChevronDown className="size-3" />}
+                                            </Link>
+                                        </Button>
+                                    );
+                                })}
                         </div>
                     </div>
 

@@ -6,6 +6,7 @@ export interface BentoCardProps {
   textAutoHide?: boolean;
   disableAnimations?: boolean;
   customContent?: React.ReactNode;
+  backgroundComponent?: React.ReactNode;
   hideOnMobile?: boolean;
 }
 

@@ -282,7 +282,12 @@ const ParticleCard: React.FC<{
             <div
                 ref={cardRef}
                 className={`${className} relative overflow-hidden`}
-                style={{ ...style, position: 'relative', overflow: 'hidden' }}
+                style={{ 
+                    ...style, 
+                    position: 'relative', 
+                    overflow: 'hidden',
+                    boxShadow: 'inset 4px 0 8px -2px rgba(132, 80, 255, 0.1), inset -4px 0 8px -2px rgba(132, 80, 255, 0.1)'
+                }}
             >
                 {children}
             </div>
@@ -468,7 +473,7 @@ export const MagicBentoCard: React.FC<{
     clickEffect = true,
     enableMagnetism = false,
 }) => {
-        const baseClassName = `card flex flex-col gap-4 relative aspect-[]/3] min-h-[100px] w-full p-5 rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] bg-card card-bd card--border-glow ${className}`;
+        const baseClassName = `card flex flex-col gap-4 relative aspect-[1/3] min-h-[100px] w-full p-5 rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] bg-card card-bd card--border-glow ${className}`;
 
         const cardStyle = {
             backgroundColor: '#101104',
@@ -548,58 +553,31 @@ const CardMagic: React.FC<BentoProps> = ({
             --purple-border: rgba(132, 0, 255, 0.8);
           }
           
-          .card-responsive { grid-template-columns: 1fr; width: 100%; margin: 0 auto; padding: 0.25rem; }
-          
-          @media (min-width: 820px) {
-            .card-responsive {
-              grid-template-columns: repeat(4, 1fr);
-            }
-            .card-responsive .card:nth-child(1) {
-              grid-column: 1 / span 2;
-              grid-row: 1;
-            }
-            .card-responsive .card:nth-child(2) {
-              grid-column: 3 / span 2;
-              grid-row: 1;
-            }
-            .card-responsive .card:nth-child(3) {
-              grid-column: 1 / span 4;
-              grid-row: 2;
-            }
-            .card-responsive .card:nth-child(4) {
-              grid-column: 1 / span 2;
-              grid-row: 3;
-            }
-            .card-responsive .card:nth-child(5) {
-            grid-column: 3 / span 2;
-            grid-row: 3;
-            }
-          }
           
           @media (min-width: 1024px) {
             .card-responsive {
-              grid-template-columns: repeat(4, 1fr);
-              grid-template-rows: 1fr;
+              grid-template-columns: repeat(6, 1fr);
+              grid-template-rows: repeat(3, 1fr);
             }
 
             .card-responsive .card:nth-child(1) {
-              grid-column: 1 / span 2;
+              grid-column: 1 / span 4;
               grid-row: 1;
             }
             .card-responsive .card:nth-child(2) {
-              grid-column: 3 / span 2;
-              grid-row: 1;
+              grid-column: 5 / 7;
+              grid-row: 1 / 3;
             }
             .card-responsive .card:nth-child(3) {
-              grid-column: 1 / span 4;
+              grid-column: 1 / span 2;
               grid-row: 2;
             }
             .card-responsive .card:nth-child(4) {
-              grid-column: 1 / span 2;
-              grid-row: 3;
+              grid-column: 3 / span 2;
+              grid-row: 2;
             }
             .card-responsive .card:nth-child(5) {
-            grid-column: 3 / span 2;
+            grid-column: 1 / span 7;
             grid-row: 3;
             }
           }
@@ -752,7 +730,7 @@ const CardMagic: React.FC<BentoProps> = ({
                         const baseClassName = `card flex flex-col items-center gap-1 relative w-full max-w-full rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] bg-card card-bd ${enableBorderGlow ? 'card--border-glow' : ''
                             } ${isShortCard
                                 ? 'min-h-[200px] max-h-[600px] p-3 mobile:min-h-[300px] mobile:p-4'
-                                : 'aspect-[4/3] min-h-[300px] p-5 mobile:aspect-auto mobile:min-h-[250px] mobile:p-4'
+                                : 'min-h-[300px] p-5 mobile:min-h-[250px] mobile:p-4'
                             } ${card.hideOnMobile ? 'hide-on-mobile' : ''}`;
 
                         const cardStyle = {
@@ -778,10 +756,17 @@ const CardMagic: React.FC<BentoProps> = ({
                                     clickEffect={clickEffect}
                                     enableMagnetism={enableMagnetism}
                                 >
-                                    <div className="card__header flex justify-between gap-3 relative text-[hsl(var(--card-foreground))]">
-                                        <span className="card__label font-bold text-base">{card.label}</span>
+                                    {/* Background Component */}
+                                    {card.backgroundComponent && (
+                                        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+                                            {card.backgroundComponent}
+                                        </div>
+                                    )}
+                                    
+                                    <div className="card__header flex justify-between gap-3 relative text-[hsl(var(--card-foreground))] z-10">
+                                        <span className="font-bold text-sm text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)">{card.label}</span>
                                     </div>
-                                    <div className="card__content flex flex-col relative text-[hsl(var(--card-foreground))]">
+                                    <div className="card__content flex flex-col relative text-[hsl(var(--card-foreground))] z-10">
                                         {card.customContent ? (
                                             <>{card.customContent}</>
                                         ) : (
@@ -916,10 +901,19 @@ const CardMagic: React.FC<BentoProps> = ({
                                     el.addEventListener('click', handleClick);
                                 }}
                             >
-                                <div className="card__header flex justify-between gap-3 relative text-[hsl(var(--card-foreground))]">
+                                {/* Background Component */}
+                                {card.backgroundComponent && (
+                                    <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+                                        {card.backgroundComponent}
+                                    </div>
+                                )}
+                                
+                                <div className="card__header flex justify-between gap-3 relative text-[hsl(var(--card-foreground))] z-10">
                                     <span className="card__label text-base">{card.label}</span>
                                 </div>
-                                <div className="card__content flex flex-col relative text-[hsl(var(--card-foreground))]">
+                                <div className="card__content flex flex-col relative text-[hsl(var(--card-foreground))] z-10" style={{
+                                    boxShadow: 'inset 4px 0 8px -2px rgba(132, 80, 255, 0.4), inset -4px 0 8px -2px rgba(132, 80, 255, 0.4)'
+                                }}>
                                     {card.customContent ? (
                                         <>{card.customContent}</>
                                     ) : (

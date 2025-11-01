@@ -91,7 +91,7 @@
   --sidebar-accent: hsl(263 70% 12%);
   --sidebar-accent-foreground: hsl(0, 0%, 64%);
   --sidebar-border: hsl(263 40% 20%);
-  --sidebar-ring: hsl(233 79% 64%);
+  --sidebar-ring: rgb(91, 108, 236);
   --dark-gunmetal: hsl(225 21% 15%);
   --dark-gunmetal: hsl(225 20% 7%);
   --maximum-blue: hsl(194 61% 55%);
