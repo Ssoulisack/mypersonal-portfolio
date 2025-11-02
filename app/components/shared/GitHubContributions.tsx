@@ -31,11 +31,10 @@ const getContributionLevel = (count: number): number => {
 
 export function GitHubContributions({ data, username }: GitHubContributionsProps) {
   const [baseWidth, setBaseWidth] = useState(12);
-  const [showLabels, setShowLabels] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState<'3M' | '6M' | '9M' | '12M'>(() => {
     if (typeof window !== 'undefined') {
-      return window.innerWidth < 768 ? '9M' : '12M';
+      return window.innerWidth < 768 ? '6M' : '12M';
     }
     return '12M';
   });
@@ -47,12 +46,8 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
       
       if (window.innerWidth < 1330) {
         setBaseWidth(8);
-        setShowLabels(false);
-        console.log("horizontal mode", true);
       } else {
         setBaseWidth(16);
-        console.log("vertical mode", true);
-        setShowLabels(true);
       }
     };
 
@@ -93,6 +88,14 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
     { label: '12M', value: '12M' },
   ];
 
+  // Filter options for mobile - hide 9M and 12M
+  const visibleFilterOptions = useMemo(() => {
+    if (isMobile) {
+      return filterOptions.filter(option => option.value !== '9M' && option.value !== '12M');
+    }
+    return filterOptions;
+  }, [isMobile]);
+
   return (
     <>
       <div className='flex justify-center lg:justify-between  px-8 lg:px-4 items-center gap-2 mb-4'>
@@ -102,7 +105,7 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
           {selectedFilter !== '12M' && ` in the last ${parseInt(selectedFilter)} months`}
         </p>
         <div className="flex items-center rounded-lg bg-[rgba(66,66,66,0.44)] border border-[rgba(66,66,66,0.3)] backdrop-blur-[2.9px]">
-          {filterOptions.map((option) => (
+          {visibleFilterOptions.map((option) => (
             <button
               key={option.label}
               onClick={() => setSelectedFilter(option.value)}
@@ -127,8 +130,8 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
             dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353']
           }}
           colorScheme="dark"
-          showWeekdayLabels={showLabels}
-          hideMonthLabels={showLabels}
+          showWeekdayLabels={true}
+          hideMonthLabels={false}
           blockSize={baseWidth}
           blockMargin={2}
           fontSize={10}

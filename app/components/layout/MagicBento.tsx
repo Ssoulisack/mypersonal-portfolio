@@ -50,7 +50,7 @@ const MagicBento = () => {
                                     )
                                 },
                                 {
-                                    label: 'Soulisack DUANGVILAY',
+                                    label: 'Passionate about cutting-edge technologies',
                                     title: '',
                                     description: 'introduction',
                                     color: '#080113',
@@ -63,7 +63,7 @@ const MagicBento = () => {
                                         <Silk
                                             speed={5}
                                             scale={1}
-                                            color="#23212b"
+                                            color="#171617"
                                             noiseIntensity={0}
                                             rotation={0}
                                         />
@@ -90,7 +90,7 @@ const MagicBento = () => {
                                     ),
                                 },
                                 {
-                                    label: 'My favorite playlist',
+                                    label: '',
                                     title: 'Spotify',
                                     color: '#080113',
                                     description: 'Centralized data view',

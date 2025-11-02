@@ -59,6 +59,10 @@ export const NAV_ITEMS: NavItemType[] = [
   },
 ];
 
+export const INFORMATION = {
+  EMAIL: process.env.NEXT_PUBLIC_EMAIL_USER
+}
+
 // Configuration constants
 export const GITHUB_CONFIG = {
   GITHUB_USERNAME: process.env.PUBLIC_GITHUB_USERNAME,

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { INFORMATION } from "@/app/core/config/constants";
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
@@ -12,14 +13,14 @@ export async function POST(req: Request) {
     const transporter = nodemailer.createTransport({
       service: "Gmail", // Use Gmail or other email providers
       auth: {
-        user: process.env.EMAIL_USER, // Your email
+        user: INFORMATION.EMAIL, // Your email
         pass: process.env.EMAIL_PASS, // Your app password
       },
     });
 
     const mailOptions = {
       from: email,
-      to: process.env.EMAIL_USER, // Your email to receive messages
+      to: INFORMATION.EMAIL, // Your email to receive messages
       subject: `New Message from ${name}`,
       text: message,
       html: `<p><strong>Name:</strong> ${name}</p>
