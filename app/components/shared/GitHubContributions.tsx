@@ -33,6 +33,12 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
   const [baseWidth, setBaseWidth] = useState(12);
   const [showLabels, setShowLabels] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState<'3M' | '6M' | '9M' | '12M'>(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768 ? '9M' : '12M';
+    }
+    return '12M';
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -56,18 +62,21 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Filter data to show only last 6 months on mobile
+  // Filter data based on selected filter (3, 6, 9, 12 months or full 12M)
   const filteredData = useMemo(() => {
-    if (!isMobile) return data;
+    if (selectedFilter === '12M') return data;
     
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+    // Extract number from string like '3M' -> 3, '6M' -> 6, etc.
+    const months = parseInt(selectedFilter);
+    
+    const monthsAgo = new Date();
+    monthsAgo.setMonth(monthsAgo.getMonth() - months);
     
     return data.filter(day => {
       const dayDate = new Date(day.date);
-      return dayDate >= sixMonthsAgo;
+      return dayDate >= monthsAgo;
     });
-  }, [data, isMobile]);
+  }, [data, selectedFilter]);
 
   // Transform data to the format expected by react-activity-calendar
   const calendarData = useMemo(() => {
@@ -77,12 +86,37 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
   // Calculate total contributions
   const totalContributions = filteredData.reduce((sum, day) => sum + day.contributionCount, 0);
 
+  const filterOptions: Array<{ label: string; value: '3M' | '6M' | '9M' | '12M' }> = [
+    { label: '3M', value: '3M' },
+    { label: '6M', value: '6M' },
+    { label: '9M', value: '9M' },
+    { label: '12M', value: '12M' },
+  ];
+
   return (
     <>
-      <div className='flex justify-center'>
+      <div className='flex justify-center lg:justify-between  px-8 lg:px-4 items-center gap-2 mb-4'>
+        {/* Filter Buttons */}
         <p className="hidden md:block text-xs sm:text-sm xl:text-base text-muted-foreground py-2">
           {username} has {totalContributions} contributions
+          {selectedFilter !== '12M' && ` in the last ${parseInt(selectedFilter)} months`}
         </p>
+        <div className="flex items-center rounded-lg bg-[rgba(66,66,66,0.44)] border border-[rgba(66,66,66,0.3)] backdrop-blur-[2.9px]">
+          {filterOptions.map((option) => (
+            <button
+              key={option.label}
+              onClick={() => setSelectedFilter(option.value)}
+              className={`px-3 py-1.5 text-xs sm:text-sm rounded-md transition-all duration-200 ${
+                selectedFilter === option.value
+                  ? 'bg-white/10 text-[var(--nav-fg)] font-medium'
+                  : 'text-[var(--nav-fg)]/60 hover:text-[var(--nav-fg)]/80 hover:bg-white/5'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        
       </div>
 
       <div className="overflow-x-auto px-4">

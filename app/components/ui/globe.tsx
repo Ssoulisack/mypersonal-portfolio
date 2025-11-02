@@ -75,7 +75,7 @@ const Earth: React.FC<EarthProps> = ({
   return (
     <div
       className={cn(
-        'flex items-center justify-center z-[10] w-full max-w-[550px] mx-auto relative',
+        'flex items-center justify-center z-[-50] w-full max-w-[550px] mx-auto relative',
         className
       )}
     >

@@ -3,8 +3,10 @@ import CardMagic from "@/app/components/shared/CardMagic";
 import { CardBox } from "@/app/components/layout/cardbox";
 import { GithubActivity } from "@/app/components/layout/GithubActivity";
 import { SpotifyEmbed } from "@/app/components/shared/SpotifyEmbed";
+import Silk from "@/app/components/shared/backgroundSilk";
+import Orb from "@/app/components/shared/backgroundOrb";
 import GlobeCard from "./GlobeCard";
-import LightRays from '@/app/components/shared/bgLighter';
+import { TechnologyTags } from "@/app/components/shared/TechnologyTags";
 const MagicBento = () => {
     return (
         <>
@@ -38,26 +40,32 @@ const MagicBento = () => {
                                     title: 'Dashboard',
                                     color: '#080113',
                                     description: 'Centralized data view',
+                                    backgroundComponent: (
+                                        <Orb
+                                            hoverIntensity={4}
+                                            rotateOnHover={true}
+                                            hue={360}
+                                            forceHoverState={false}
+                                        />
+                                    )
                                 },
                                 {
                                     label: 'Soulisack DUANGVILAY',
                                     title: '',
                                     description: 'introduction',
                                     color: '#080113',
+                                    customContent: (
+                                        <>
+                                            <TechnologyTags />
+                                        </>
+                                    ),
                                     backgroundComponent: (
-                                        <LightRays 
-                                            raysOrigin="top-center" 
-                                            raysColor="#333333" 
-                                            raysSpeed={1} 
-                                            lightSpread={1} 
-                                            rayLength={3} 
-                                            pulsating={false} 
-                                            fadeDistance={1} 
-                                            saturation={2} 
-                                            followMouse={true} 
-                                            mouseInfluence={0.1} 
-                                            noiseAmount={.5} 
-                                            distortion={0.0} 
+                                        <Silk
+                                            speed={5}
+                                            scale={1}
+                                            color="#23212b"
+                                            noiseIntensity={0}
+                                            rotation={0}
                                         />
                                     ),
                                 },
@@ -72,19 +80,12 @@ const MagicBento = () => {
                                         </>
                                     ),
                                     backgroundComponent: (
-                                        <LightRays 
-                                            raysOrigin="top-left" 
-                                            raysColor="#333333" 
-                                            raysSpeed={1} 
-                                            lightSpread={1} 
-                                            rayLength={3} 
-                                            pulsating={false} 
-                                            fadeDistance={1} 
-                                            saturation={2} 
-                                            followMouse={true} 
-                                            mouseInfluence={0.1} 
-                                            noiseAmount={.5} 
-                                            distortion={0.0} 
+                                        <Silk
+                                            speed={5}
+                                            scale={.9}
+                                            color="#1b1608"
+                                            noiseIntensity={0}
+                                            rotation={4}
                                         />
                                     ),
                                 },
@@ -112,19 +113,12 @@ const MagicBento = () => {
                                         </>
                                     ),
                                     backgroundComponent: (
-                                        <LightRays 
-                                            raysOrigin="top-center" 
-                                            raysColor="#333333" 
-                                            raysSpeed={1} 
-                                            lightSpread={2} 
-                                            rayLength={1.5} 
-                                            pulsating={false} 
-                                            fadeDistance={1} 
-                                            saturation={2} 
-                                            followMouse={true} 
-                                            mouseInfluence={0.1} 
-                                            noiseAmount={.5} 
-                                            distortion={0.0} 
+                                        <Silk
+                                            speed={5}
+                                            scale={.9}
+                                            color="#1b1637"
+                                            noiseIntensity={0}
+                                            rotation={4}
                                         />
                                     ),
                                 },
