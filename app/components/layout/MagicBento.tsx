@@ -1,12 +1,14 @@
+"use client";
 import { WPMDisplay } from "@/app/components/layout/wpmDisplay";
 import CardMagic from "@/app/components/shared/CardMagic";
-import { CardBox } from "@/app/components/layout/cardbox";
+import { Testimonials } from "@/app/data/mock/testimonials";
 import { GithubActivity } from "@/app/components/layout/GithubActivity";
 import { SpotifyEmbed } from "@/app/components/shared/SpotifyEmbed";
+import { BackgroundBeams } from "@/app/components/shared/backgroundBeams";
 import Silk from "@/app/components/shared/backgroundSilk";
-import Orb from "@/app/components/shared/backgroundOrb";
 import GlobeCard from "./GlobeCard";
 import { TechnologyTags } from "@/app/components/shared/TechnologyTags";
+import { ProjectInfoCard } from "@/app/components/shared/ProjectInfoCard";
 const MagicBento = () => {
     return (
         <>
@@ -40,88 +42,99 @@ const MagicBento = () => {
                                     title: 'Dashboard',
                                     color: '#080113',
                                     description: 'Centralized data view',
+                                    customContent: (
+                                        <div className="flex flex-col gap-4 h-full">
+                                            <ProjectInfoCard
+                                                label="The Inside Scoop"
+                                                title="Currently building a SaaS Application"
+                                                buttonText="View Recent Work"
+                                                infiniteCardsItems={Testimonials}
+                                                infiniteCardsDirection="left"
+                                                infiniteCardsSpeed="fast"
+                                                onButtonClick={() => {
+                                                    console.log("View recent work clicked");
+                                                    // Add your navigation or action here
+                                                }}
+                                            />
+                                        </div>
+                                    ),
                                     backgroundComponent: (
-                                        <Orb
-                                            hoverIntensity={4}
-                                            rotateOnHover={true}
-                                            hue={360}
-                                            forceHoverState={false}
-                                        />
+                                        <BackgroundBeams />
                                     )
                                 },
-                                {
-                                    label: 'Passionate about cutting-edge technologies',
-                                    title: '',
-                                    description: 'introduction',
-                                    color: '#080113',
-                                    customContent: (
-                                        <>
-                                            <TechnologyTags />
-                                        </>
-                                    ),
-                                    backgroundComponent: (
-                                        <Silk
-                                            speed={5}
-                                            scale={1}
-                                            color="#171617"
-                                            noiseIntensity={0}
-                                            rotation={0}
-                                        />
-                                    ),
-                                },
-                                {
-                                    label: 'Typing Performance',
-                                    title: 'Activity',
-                                    description: 'Contributions',
-                                    color: '#080113',
-                                    customContent: (
-                                        <>
-                                            <WPMDisplay targetTests={100} />
-                                        </>
-                                    ),
-                                    backgroundComponent: (
-                                        <Silk
-                                            speed={5}
-                                            scale={.9}
-                                            color="#1b1608"
-                                            noiseIntensity={0}
-                                            rotation={4}
-                                        />
-                                    ),
-                                },
-                                {
-                                    label: '',
-                                    title: 'Spotify',
-                                    color: '#080113',
-                                    description: 'Centralized data view',
-                                    hideOnMobile: false, // This card will be hidden on mobile screens
-                                    customContent: (
-                                        <>
-                                            <GlobeCard />
-                                        </>
-                                    ),
-                                },
-                                {
-                                    label: 'GitHub Activity',
-                                    title: 'Activity',
-                                    description: 'Contributions',
-                                    color: '#080113',
-                                    hideOnMobile: false,
-                                    customContent: (
-                                        <>
-                                            <GithubActivity />
-                                        </>
-                                    ),
-                                    backgroundComponent: (
-                                        <Silk
-                                            speed={5}
-                                            scale={.9}
-                                            color="#1b1637"
-                                            noiseIntensity={0}
-                                            rotation={4}
-                                        />
-                                    ),
-                                },
+                                    {
+                                        label: 'Passionate about cutting-edge technologies',
+                                        title: '',
+                                        description: 'introduction',
+                                        color: '#080113',
+                                        customContent: (
+                                            <>
+                                                <TechnologyTags />
+                                            </>
+                                        ),
+                                        backgroundComponent: (
+                                            <Silk
+                                                speed={5}
+                                                scale={1}
+                                                color="#171617"
+                                                noiseIntensity={0}
+                                                rotation={0}
+                                            />
+                                        ),
+                                    },
+                                    {
+                                        label: 'Typing Performance',
+                                        title: 'Activity',
+                                        description: 'Contributions',
+                                        color: '#080113',
+                                        customContent: (
+                                            <>
+                                                <WPMDisplay targetTests={100} />
+                                            </>
+                                        ),
+                                        backgroundComponent: (
+                                            <Silk
+                                                speed={5}
+                                                scale={.9}
+                                                color="#1b1608"
+                                                noiseIntensity={0}
+                                                rotation={4}
+                                            />
+                                        ),
+                                    },
+                                    {
+                                        label: '',
+                                        title: 'Spotify',
+                                        color: '#080113',
+                                        description: 'Centralized data view',
+                                        hideOnMobile: false, // This card will be hidden on mobile screens
+                                        customContent: (
+                                            <>
+                                                <GlobeCard />
+                                            </>
+                                        ),
+                                    },
+                                    {
+                                        label: 'GitHub Activity',
+                                        title: 'Activity',
+                                        description: 'Contributions',
+                                        color: '#080113',
+                                        hideOnMobile: false,
+                                        customContent: (
+                                            <>
+                                                <GithubActivity />
+                                            </>
+                                        ),
+                                        backgroundComponent: (
+                                            <Silk
+                                                speed={5}
+                                                scale={.9}
+                                                color="#1b1637"
+                                                noiseIntensity={0}
+                                                rotation={4}
+                                            />
+                                        ),
+                                    },
                             ]}
                         />
                     </div>

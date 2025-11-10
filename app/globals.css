@@ -224,14 +224,24 @@
     box-shadow: 0 4px 8px rgba(88, 101, 242, 0.2);
   }
 
-  #svg-logo {
-    stroke: var(--foreground);
-    stroke-dasharray: 300;
-    animation: draw 8s ease;
+  #logo {
+    stroke: var(--anti-flash-white);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 1000;
+    filter: drop-shadow(0 4 8px rgba(100, 100, 255, 0.4))
+      drop-shadow(0 8px 24px rgba(150, 100, 255, 0.3))
+      drop-shadow(0 12px 36px rgba(200, 150, 255, 0.2));
   }
-
-  #name-logo {
-    font-family: "Michroma", sans-serif;
+  #svg-logo {
+    stroke: var(--primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 1000;
+    animation: draw 8s ease;
+    filter: drop-shadow(0 4 8px rgba(100, 100, 255, 0.4))
+      drop-shadow(0 8px 24px rgba(150, 100, 255, 0.3))
+      drop-shadow(0 12px 36px rgba(200, 150, 255, 0.2));
   }
 }
 
@@ -240,11 +250,26 @@
    ======================================== */
 @keyframes draw {
   0% {
-    stroke-dashoffset: 300;
+    stroke-dashoffset: 1000;
   }
   100% {
     stroke-dashoffset: 0;
   }
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+}
+
+.animate-scroll.pause-on-hover:has(li:hover) {
+  animation-play-state: paused;
 }
 
 @keyframes pulse {
@@ -273,24 +298,6 @@
 /* ========================================
    🎨 INFINITE LOOP ANIMATION
    ======================================== */
-@keyframes slideToDown {
-  0% {
-    bottom: max(calc(100px * 8), 100%);
-  }
-  100% {
-    bottom: -100px;
-  }
-}
-
-@keyframes slideToRight {
-  0% {
-    left: -100px;
-  }
-  100% {
-    left: max(calc(100px * 8), 100%);
-  }
-}
-
 @keyframes star-movement-bottom {
   0% {
     transform: translate(0%, 0%);
@@ -325,12 +332,6 @@
 
 /* Make animations available to Tailwind */
 @layer utilities {
-  .animate-slideToDown {
-    animation-name: slideToDown;
-  }
-  .animate-slideToRight {
-    animation-name: slideToRight;
-  }
   .animate-star-movement-bottom {
     animation: star-movement-bottom linear infinite alternate;
   }
@@ -418,9 +419,34 @@ body {
   body {
     @apply bg-background text-foreground;
     --nav-fg: #ffffff;
-
   }
   body.preloading-active {
     --nav-fg: var(--color-foreground);
   }
+}
+
+/* ========================================
+   🔁 InfiniteMovingCards styles (global)
+   ======================================== */
+.tools-wrapper { position: relative; }
+.tools-wrapper .item {
+  position: absolute;
+  width: var(--item-width);
+  height: 100%;
+  top: 0;
+  left: 100%;
+  animation-duration: var(--duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+.pause-on-hover:hover .item { animation-play-state: paused; }
+
+@keyframes slideToLeft { 
+  from { left: 100%; }
+  to { left: calc(var(--item-width) * -1); } 
+}
+@keyframes slideToRight { 
+  from { left: calc(var(--item-width) * -1); }
+  to { left: 100%; } 
 }

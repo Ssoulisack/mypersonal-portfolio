@@ -27,7 +27,7 @@ export const Hero = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-transparent dark">
+    <section id="hero-section" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-transparent dark">
       {/* Lanyard - Tailwind responsive (iPad Mini 768px+) */}
       <div className="absolute right-0 top-0 w-1/2 h-full z-5 overflow-visible hidden md:block">
         <Lanyard position={[0, 0, 25]} gravity={[0, -20, 0]} />
@@ -100,6 +100,6 @@ export const Hero = () => {
           <ChevronDown size={24} className='text-white/40 animate-bounce' style={{ animationDuration: '1s' }} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
