@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown, GithubIcon, Linkedin, Mail } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
-import Lanyard from "@/app/components/shared/Lanyard";
+import Lanyard from "@/app/components/ui/Lanyard";
 import { useEffect } from "react";
 // import ShinyText from "../shared/shinyText";
 

@@ -3,7 +3,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, PanelsTopLeft } from "lucide-react";
-import { InfiniteMovingCards } from "@/app/components/shared/infinite-moving-card";
+import { InfiniteMovingCards } from "@/app/components/ui/infinite-moving-card";
 
 interface ProjectInfoCardProps {
     icon?: React.ReactNode;
@@ -35,14 +35,14 @@ export const ProjectInfoCard = ({
     return (
         <div
             className={cn(
-                "group relative flex w-[340px] h-[220px] sm:w-[560px] sm:h-[220px] md:w-[640px] md:h-[280px] lg:w-[530px] lg:h-[380px] xl:w-[720px] 2xl:w-[950px] flex-col justify-between overflow-hidden",
+                "group relative flex w-[340px] h-[220px] sm:w-[560px] sm:h-[220px] md:w-[640px] md:h-[280px] lg:w-[530px] lg:h-[340px] xl:w-[720px] 2xl:w-[950px] flex-col justify-between overflow-hidden",
                 className
             )}
         >
             <div className="size-full">
                 {/* Infinite Moving Cards */}
                 {infiniteCardsItems && infiniteCardsItems.length > 0 && (
-                    <div className="flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row absolute top-0 left-0 right-0 font-instrument-serif [--duration:20s] [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)]">
+                    <div className="flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row absolute top-0 left-0 right-0 font-instrument-serif [--duration:20s] [mask-image:linear-gradient(to_top,transparent_20%,#000_100%)]">
                         <InfiniteMovingCards
                             items={infiniteCardsItems}
                             direction={infiniteCardsDirection}
@@ -82,10 +82,10 @@ export const ProjectInfoCard = ({
                 Button CTA
                 FIX: Default (mobile/tablet) keeps button visible and in normal flow; lg+ reintroduces hover reveal animation
             */}
-            <div className="pointer-events-none flex w-full transform-gpu flex-row items-center px-4 py-1 md:py-4 text-base tracking-wider transition-all duration-300 z-20 translate-y-0 opacity-100 lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:translate-y-10 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 animate-pulse">
+            <div className="pointer-events-none flex w-full transform-gpu flex-row items-center px-4 py-1 md:py-4 text-base tracking-wider transition-all duration-300 z-20 translate-y-0 opacity-100 lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:translate-y-10 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
                 <button
                     onClick={onButtonClick}
-                    className="pointer-events-auto inline-flex shrink-0 cursor-pointer items-center justify-center whitespace-nowrap font-medium text-xs md:text-sm outline-none transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5 hover:bg-gray-400/10 hover:text-white/80"
+                    className="pointer-events-auto inline-flex shrink-0 cursor-pointer items-center justify-center whitespace-nowrap font-medium text-xs md:text-sm outline-none transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5 hover:bg-gray-400/20 hover:text-white/80"
                 >
                     {buttonText}
                     <ArrowRight className="size-4 " aria-hidden="true" />

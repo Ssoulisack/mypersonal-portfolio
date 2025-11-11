@@ -6,7 +6,7 @@ import { Button } from '../ui/button'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Search } from 'lucide-react'
 import { MenuItems, TagTypes } from '@/app/data/mock/menu'
-import Finder from '../shared/finder'
+import Finder from '../ui/finder'
 
 function Navbar() {
     const pathname = usePathname();

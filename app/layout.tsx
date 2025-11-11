@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import { Doto, Outfit, Instrument_Serif, Geist_Mono } from "next/font/google";
 import Footer from "@/app/components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
-import { Preloading } from "@/app/components/layout/Preloading";
-import { ShootingStars } from "@/app/components/shared/backgroundShootingStar";
-import { BackgroundStart } from "@/app/components/shared/backgroundStart";
+// import { Preloading } from "@/app/components/layout/Preloading";
+// import { ShootingStars } from "@/app/components/shared/backgroundShootingStar";
+// import { BackgroundStart } from "@/app/components/shared/backgroundStart";
 import Contact from "@/app/components/layout/Contact";
-import Scrollbar from "@/app/components/shared/scrollbar";
+import Scrollbar from "@/app/components/ui/scrollbar";
 
 const doto = Doto({
   subsets: ["latin"],
@@ -51,9 +51,9 @@ export default function RootLayout({
         suppressHydrationWarning
         style={{ fontFamily: outfit.style.fontFamily }}
       >
-        <Preloading />
+        {/* <Preloading />
         <BackgroundStart />
-        <ShootingStars />
+        <ShootingStars /> */}
         <Navbar />
         <Scrollbar />
         {children}

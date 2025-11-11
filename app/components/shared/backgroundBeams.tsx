@@ -143,10 +143,10 @@ export const BackgroundBeams = React.memo(
                 y1="0%"
                 y2="0%"
               >
-                <stop stopColor="#18CCFC" stopOpacity="0"></stop>
-                <stop stopColor="#18CCFC"></stop>
-                <stop offset="32.5%" stopColor="#6344F5"></stop>
-                <stop offset="100%" stopColor="#AE48FF" stopOpacity="0"></stop>
+                <stop stopColor="rgba(248, 249, 250, 0)"></stop>
+                <stop stopColor="rgba(248, 249, 250, 0.6)"></stop>
+                <stop offset="45%" stopColor="rgba(192, 200, 209, 0.8)"></stop>
+                <stop offset="100%" stopColor="rgba(192, 200, 209, 0)" ></stop>
               </linearGradient>
             ))}
 
@@ -158,9 +158,9 @@ export const BackgroundBeams = React.memo(
               gradientUnits="userSpaceOnUse"
               gradientTransform="translate(352 34) rotate(90) scale(555 1560.62)"
             >
-              <stop offset="0.0666667" stopColor="#d4d4d4"></stop>
-              <stop offset="0.243243" stopColor="#d4d4d4"></stop>
-              <stop offset="0.43594" stopColor="white" stopOpacity="0"></stop>
+              <stop offset="0.0666667" stopColor="rgba(248, 249, 250, 0.35)"></stop>
+              <stop offset="0.243243" stopColor="rgba(192, 200, 209, 0.25)"></stop>
+              <stop offset="0.43594" stopColor="rgba(192, 200, 209, 0)" stopOpacity="0"></stop>
             </radialGradient>
           </defs>
         </svg>

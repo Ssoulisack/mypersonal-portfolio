@@ -1,7 +1,6 @@
-import LightRays from "@/app/components/shared/background-lightray"
-import Magnet from "../shared/Magnet"
+import Magnet from "../ui/Magnet"
 import { ArrowRightIcon } from "lucide-react"
-import DraggableBadge from "../shared/DraggableBadge"
+import DraggableBadge from "../ui/DraggableBadge"
 
 function Contact() {
     return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { Github, Calendar, TrendingUp } from "lucide-react";
-import { GitHubContributions } from "@/app/components/shared/GitHubContributions";
+import { GitHubContributions } from "@/app/components/ui/GitHubContributions";
 import { useGitHubData } from "@/app/hooks/useGitHubData";
 
 export const GithubActivity = () => {

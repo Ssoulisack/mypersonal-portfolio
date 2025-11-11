@@ -1,14 +1,14 @@
 "use client";
 import { WPMDisplay } from "@/app/components/layout/wpmDisplay";
-import CardMagic from "@/app/components/shared/CardMagic";
+import CardMagic from "@/app/components/ui/CardMagic";
 import { Testimonials } from "@/app/data/mock/testimonials";
 import { GithubActivity } from "@/app/components/layout/GithubActivity";
-import { SpotifyEmbed } from "@/app/components/shared/SpotifyEmbed";
+import { SpotifyEmbed } from "@/app/components/ui/SpotifyEmbed";
 import { BackgroundBeams } from "@/app/components/shared/backgroundBeams";
 import Silk from "@/app/components/shared/backgroundSilk";
 import GlobeCard from "./GlobeCard";
-import { TechnologyTags } from "@/app/components/shared/TechnologyTags";
-import { ProjectInfoCard } from "@/app/components/shared/ProjectInfoCard";
+import { TechnologyTags } from "@/app/components/ui/TechnologyTags";
+import { ProjectInfoCard } from "@/app/components/ui/ProjectInfoCard";
 const MagicBento = () => {
     return (
         <>
@@ -28,12 +28,12 @@ const MagicBento = () => {
                         <CardMagic
                             textAutoHide={true}
                             enableStars={true}
-                            enableSpotlight={true}
+                            enableSpotlight={false}
                             enableBorderGlow={true}
                             enableTilt={false}
                             enableMagnetism={false}
-                            clickEffect={true}
-                            spotlightRadius={500}
+                            clickEffect={false}
+                            spotlightRadius={200}
                             particleCount={22}
                             glowColor="132, 0, 255"
                             cards={[
