@@ -235,7 +235,7 @@ export function DraggableBadge({
     >
       <div
         ref={ringRef}
-        className={`relative rounded-full bg-blue-700 p-1.5 font-medium leading-none ${className}`}
+        className={`relative rounded-full bg-primary p-1.5 font-medium leading-none ${className}`}
       >
         <div className="relative size-[95px] rounded-full bg-black p-2">
           <div className="absolute top-1/2 left-1/2 size-20 -translate-x-1/2 -translate-y-1/2">

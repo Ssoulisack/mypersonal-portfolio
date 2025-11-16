@@ -135,7 +135,10 @@ export const BackgroundStart: React.FC<StarBackgroundProps> = ({
   return (
     <canvas
       ref={canvasRef}
-      className={cn("h-full w-full absolute inset-0", className)}
+      className={cn(
+        "fixed inset-0 h-full w-full -z-10 pointer-events-none",
+        className
+      )}
     />
   );
 };

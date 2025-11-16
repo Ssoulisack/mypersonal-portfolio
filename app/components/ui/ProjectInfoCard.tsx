@@ -93,7 +93,7 @@ export const ProjectInfoCard = ({
             </div>
 
             {/* Backdrop overlay on hover */}
-            <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] dark:group-hover:bg-neutral-800/10 z-0"></div>
+            <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300group-hover:bg-neutral-800/10 z-0"></div>
         </div>
         
     );

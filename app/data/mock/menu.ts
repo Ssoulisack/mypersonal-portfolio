@@ -37,12 +37,12 @@ export const MenuItems: MenuType[] = [
   },
   {
     label: "Work",
-    href: "/work",
+    href: "/works",
     tag: TagTypes.a,
   },
   {
     label: "Blog",
-    href: "/blog",
+    href: "/blogs",
     tag: TagTypes.a,
   },
   {

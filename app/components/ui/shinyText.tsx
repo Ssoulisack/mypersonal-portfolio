@@ -14,8 +14,14 @@ const ShinyText: React.FC<ShinyTextProps> = ({ text, disabled = false, speed = 5
     <div
       className={`text-[#b5b5b5a4]  ${disabled ? '' : 'animate-shine'} ${className}`}
       style={{
-        backgroundImage:
-          'linear-gradient(120deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 60%)',
+        backgroundImage: `linear-gradient(
+          120deg,
+          transparent 0%,
+          var(--discord-blue) 25%,
+          var(--discord-purple) 50%,
+          var(--discord-fuchsia) 75%,
+          transparent 100%
+        )`,
         backgroundSize: '200% 100%',
         WebkitBackgroundClip: 'text',
         animationDuration: animationDuration

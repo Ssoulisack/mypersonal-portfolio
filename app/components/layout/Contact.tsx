@@ -7,10 +7,10 @@ function Contact() {
         <section
             id="contact-section"
             className="relative w-full min-h-screen overflow-hidden bg-cover bg-start bg-no-repeat px-6 py-24"
-            style={{ backgroundImage: "url('/images/cover-contact.jpg')" }}
+            // style={{ backgroundImage: "url('/images/cover-contact.jpg')" }}
         >
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[rgba(8,1,19,0.92)]"></div>
-            <div aria-hidden="true" className="absolute inset-0 z-10 bg-gradient-to-t from-[rgba(8,1,19,0.95)] via-[rgba(20,9,44,0.88)] to-[rgba(8,1,19,0.95)]"></div>
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[rgba(8,1,19,0.92)] opacity-50"></div>
+            <div aria-hidden="true" className="absolute inset-0 z-10 bg-gradient-to-t from-[rgba(8,1,19,0.95)] via-[rgba(20,9,44,0.88)] to-[rgba(8,1,19,0.95)] opacity-20"></div>
 
             <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-12 text-center">
                 <div>

@@ -27,6 +27,7 @@ const MagicBento = () => {
                     <div className="w-full">
                         <CardMagic
                             textAutoHide={true}
+                            disableAnimations={true}
                             enableStars={true}
                             enableSpotlight={false}
                             enableBorderGlow={true}

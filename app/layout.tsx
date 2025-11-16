@@ -51,8 +51,9 @@ export default function RootLayout({
         suppressHydrationWarning
         style={{ fontFamily: outfit.style.fontFamily }}
       >
-        {/* <Preloading />
-        <BackgroundStart />
+        {/* 
+        <Preloading /> */}
+        {/* <BackgroundStart />
         <ShootingStars /> */}
         <Navbar />
         <Scrollbar />
