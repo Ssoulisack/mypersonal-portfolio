@@ -13,9 +13,12 @@ interface ScrollableCardListProps {
 }
 
 
-export const StickyScroll = ({ content }: StickyScrollProps) => {
+export const StickyScroll = ({ content, limit }: StickyScrollProps) => {
   const [activeCard, setActiveCard] = useState(0);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  
+  // Limit content if limit prop is provided
+  const displayedContent = limit ? content.slice(0, limit) : content;
 
   // Track which card is in view using Intersection Observer
   useEffect(() => {
@@ -64,16 +67,16 @@ export const StickyScroll = ({ content }: StickyScrollProps) => {
       observers.forEach((observer) => observer.disconnect());
       intersectionRatios.clear();
     };
-  }, [content.length]);
+  }, [displayedContent.length]);
 
-  const activeItem = content[activeCard];
+  const activeItem = displayedContent[activeCard];
 
   return (
     <motion.div
       className="container mx-auto relative flex flex-col gap-12 lg:flex-row "
     >
       <ScrollableCardList
-        content={content}
+        content={displayedContent}
         activeCard={activeCard}
         sectionRefs={sectionRefs}
         setActiveCard={setActiveCard}
@@ -89,7 +92,7 @@ const ScrollableCardList = ({
   sectionRefs,
 }: ScrollableCardListProps) => (
   <div
-    className=" flex flex-col gap-y-6 px-16 lg:max-w-[65%] lg:gap-y-28"
+    className=" flex flex-col gap-y-6 px-16 lg:max-w-[50%] lg:gap-y-28"
   >
     {content.map((item, index) => (
       <CardSection
@@ -122,7 +125,9 @@ const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
             : "opacity-60 hover:opacity-80"
         )}
       >
-        {item.content}
+        <div key={`content-${item.title}`} className="w-full">
+          {item.content}
+        </div>
         <div className="block lg:hidden">
           <h2 className="text-2xl font-semibold text-white break-words">
             {item.title}

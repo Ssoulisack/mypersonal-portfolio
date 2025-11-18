@@ -3,7 +3,6 @@ import { WPMDisplay } from "@/app/components/layout/wpmDisplay";
 import CardMagic from "@/app/components/ui/CardMagic";
 import { Testimonials } from "@/app/data/mock/testimonials";
 import { GithubActivity } from "@/app/components/layout/GithubActivity";
-import { SpotifyEmbed } from "@/app/components/ui/SpotifyEmbed";
 import { BackgroundBeams } from "@/app/components/shared/backgroundBeams";
 import Silk from "@/app/components/shared/backgroundSilk";
 import GlobeCard from "./GlobeCard";
@@ -29,14 +28,14 @@ const MagicBento = () => {
                             textAutoHide={true}
                             disableAnimations={true}
                             enableStars={true}
-                            enableSpotlight={false}
+                            enableSpotlight={true}
                             enableBorderGlow={true}
                             enableTilt={false}
                             enableMagnetism={false}
                             clickEffect={false}
                             spotlightRadius={200}
                             particleCount={22}
-                            glowColor="132, 0, 255"
+                            glowColor="149, 155, 163"
                             cards={[
                                 {
                                     label: 'Profile summary',
@@ -63,79 +62,85 @@ const MagicBento = () => {
                                         <BackgroundBeams />
                                     )
                                 },
-                                    {
-                                        label: 'Passionate about cutting-edge technologies',
-                                        title: '',
-                                        description: 'introduction',
-                                        color: '#080113',
-                                        customContent: (
-                                            <>
-                                                <TechnologyTags />
-                                            </>
-                                        ),
-                                        backgroundComponent: (
-                                            <Silk
-                                                speed={5}
-                                                scale={1}
-                                                color="#171617"
-                                                noiseIntensity={0}
-                                                rotation={0}
-                                            />
-                                        ),
-                                    },
-                                    {
-                                        label: 'Typing Performance',
-                                        title: 'Activity',
-                                        description: 'Contributions',
-                                        color: '#080113',
-                                        customContent: (
-                                            <>
-                                                <WPMDisplay targetTests={100} />
-                                            </>
-                                        ),
-                                        backgroundComponent: (
-                                            <Silk
-                                                speed={5}
-                                                scale={.9}
-                                                color="#1b1608"
-                                                noiseIntensity={0}
-                                                rotation={4}
-                                            />
-                                        ),
-                                    },
-                                    {
-                                        label: '',
-                                        title: 'Spotify',
-                                        color: '#080113',
-                                        description: 'Centralized data view',
-                                        hideOnMobile: false, // This card will be hidden on mobile screens
-                                        customContent: (
-                                            <>
-                                                <GlobeCard />
-                                            </>
-                                        ),
-                                    },
-                                    {
-                                        label: 'GitHub Activity',
-                                        title: 'Activity',
-                                        description: 'Contributions',
-                                        color: '#080113',
-                                        hideOnMobile: false,
-                                        customContent: (
-                                            <>
-                                                <GithubActivity />
-                                            </>
-                                        ),
-                                        backgroundComponent: (
-                                            <Silk
-                                                speed={5}
-                                                scale={.9}
-                                                color="#1b1637"
-                                                noiseIntensity={0}
-                                                rotation={4}
-                                            />
-                                        ),
-                                    },
+                                {
+                                    label: 'Passionate about cutting-edge technologies',
+                                    title: '',
+                                    description: 'introduction',
+                                    color: '#080113',
+                                    customContent: (
+                                        <>
+                                            <TechnologyTags />
+                                        </>
+                                    ),
+                                    backgroundComponent: (
+                                        <BackgroundBeams />
+                                    )
+                                },
+                                // {
+                                //     label: 'Relaxing',
+                                //     title: '',
+                                //     description: 'introduction',
+                                //     color: '#080113',
+                                //     customContent: (
+                                //         <>
+                                //             <SpotifyEmbed width="450px" height="300px" />
+                                //             {/* <TechnologyTags /> */}
+                                //         </>
+                                //     ),
+                                //     backgroundComponent: (
+                                //         <Silk
+                                //             speed={5}
+                                //             scale={1}
+                                //             color="#171617"
+                                //             noiseIntensity={0}
+                                //             rotation={0}
+                                //         />
+                                //     ),
+                                // },
+                                {
+                                    label: 'Typing Performance',
+                                    title: 'Activity',
+                                    description: 'Contributions',
+                                    color: '#080113',
+                                    // customContent: (
+                                    //     <>
+                                    //         <WPMDisplay targetTests={100} />
+                                    //     </>
+                                    // ),
+                                    backgroundComponent: (
+                                        <BackgroundBeams />
+                                    )
+                                },
+                                {
+                                    label: '',
+                                    title: 'Spotify',
+                                    color: '#080113',
+                                    description: 'Centralized data view',
+                                    hideOnMobile: false, // This card will be hidden on mobile screens
+                                    customContent: (
+                                        <>
+                                            <GlobeCard />
+                                        </>
+                                    ),
+                                    backgroundComponent: (
+                                        <BackgroundBeams />
+                                    )
+                                },
+                                {
+                                    label: 'GitHub Activity',
+                                    title: 'Activity',
+                                    description: 'Contributions',
+                                    color: '#080113',
+                                    hideOnMobile: false,
+                                    customContent: (
+                                        <>
+                                            <GithubActivity />
+                                        </>
+                                    ),
+                                    backgroundComponent: (
+                                        <BackgroundBeams />
+                                    )
+                                },
                             ]}
                         />
                     </div>

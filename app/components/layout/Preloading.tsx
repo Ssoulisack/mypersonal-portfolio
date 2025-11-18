@@ -10,7 +10,7 @@ const PROGRESS_BOXES = Array.from({ length: 10 }, (_, i) => ({
     percent: (i + 1) * 10
 }));
 
-const PROGRESS_INTERVAL = 30;
+const PROGRESS_INTERVAL = 20;
 const EXIT_DELAY = 1500;
 
 // Types
@@ -123,6 +123,16 @@ export function Preloading() {
     const positionCardRef = useRef<HTMLDivElement>(null);
     const socialCardRef = useRef<HTMLDivElement>(null);
     const pageLoadingRef = useRef<HTMLDivElement>(null);
+
+    // Add preloading-active class immediately on mount
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            document.body.classList.add('preloading-active');
+            return () => {
+                document.body.classList.remove('preloading-active');
+            };
+        }
+    }, []);
 
     useBodyOverflow(isVisible);
 

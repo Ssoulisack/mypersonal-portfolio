@@ -234,6 +234,27 @@
     var(--animation-direction, forwards) linear infinite;
 }
 
+.animate-slideToLeft {
+  animation-name: slideToLeft;
+  animation-duration: var(--animation-duration, 20s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.animate-slideToRight {
+  animation-name: slideToRight;
+  animation-duration: var(--animation-duration, 20s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+/* 
+.slide-item {
+  position: absolute;
+  left: max(calc(var(--item-width) * var(--items-length)), 100%);
+} */
+
+
+
 .animate-scroll.pause-on-hover:has(li:hover) {
   animation-play-state: paused;
 }
@@ -389,6 +410,11 @@ body {
   body.preloading-active {
     --nav-fg: var(--color-foreground);
   }
+}
+
+/* Hide scrollbar during preloading */
+body.preloading-active .hide-during-preloading {
+  display: none !important;
 }
 
 /* ========================================

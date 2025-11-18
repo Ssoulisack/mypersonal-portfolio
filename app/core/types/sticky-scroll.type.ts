@@ -9,6 +9,7 @@ export interface StickyScrollContentItem {
 export interface StickyScrollProps {
   content: StickyScrollContentItem[];
   contentClassName?: string;
+  limit?: number;
 }
 
 export interface ScrollBoundary {

@@ -1,54 +1,123 @@
-import { Database } from "lucide-react";
 import { LogoItem } from "../../core/types/logo.type";
-import {
-    Go as GoIcon,
-    Bun as BunIcon,
-    Reactjs as ReactIcon,
-    Node as NodejsIcon,
-    Database as DB,
-    PHP as PhpIcon,
-    Java as JavaIcon,
-    TypeScript as TypeScriptIcon,
-    Jenkins as JenkinsIcon,
-    Next as NextIcon, 
-    Shell as ShellIcon,
-    Tailwind as TailwindIcon,
-    Docker as DockerIcon,
-    Git as GitIcon,
-    Yaml as YamlIcon,
-    Prisma as PrismaIcon,
-    VisualStudio as VscodeIcon,
-    Netlify as NetifyIcon,
-    MongoDB as MongoDBIcon,
-    Robot as N8nIcon,
-  } from "@react-symbols/icons";
+import { ToolIcon } from "@/app/components/ui/logos";
+
+
 //adding ariaLabel i will define categories like library, tools, framework, language, database, etc.
 export const programmingLanguages: LogoItem[] = [
-  { title: "React", node: <ReactIcon width={36} height={36} />, ariaLabel: "Frontend" },
-  { title: "Tailwind", node: <TailwindIcon width={36} height={36} />, ariaLabel: "Frontend" },
-  { title: "CSS", node: <TailwindIcon width={36} height={36} />, ariaLabel: "Frontend" },
-  { title: "Docker", node: <DockerIcon width={36} height={36} />, ariaLabel: "Tools" },
-  { title: "Next.js", node: <NextIcon width={36} height={36} />, ariaLabel: "Frontend" },
-  { title: "TypeScript", node: <TypeScriptIcon width={36} height={36} />, ariaLabel: "Frontend" },
-  { title: "Go", node: <GoIcon width={36} height={36} />, ariaLabel: "Backend" },
-  { title: "Bun", node: <BunIcon width={36} height={36} />, ariaLabel: "Backend" },
-  { title: "PHP", node: <PhpIcon width={36} height={36} />, ariaLabel: "Backend" },
-  { title: "Java", node: <JavaIcon width={36} height={36} />, ariaLabel: "Backend" },
-  { title: "Node.js", node: <NodejsIcon width={36} height={36} />, ariaLabel: "Backend" },
-  { title: "Git", node: <GitIcon width={36} height={36} />, ariaLabel: "Tools" },
-  { title: "Yaml", node: <YamlIcon width={36} height={36} />, ariaLabel: "Configuration Language" },
-  { title: "Prisma", node: <PrismaIcon width={36} height={36} />, ariaLabel: "Database" },
-  { title: "Jenkins", node: <JenkinsIcon width={36} height={36} />, ariaLabel: "Tools" },
-  { title: "Shell", node: <ShellIcon width={36} height={36} />, ariaLabel: "Tools" },
-  { title: "Visual Studio Code", node: <VscodeIcon width={36} height={36} />, ariaLabel: "Tools" },
-  { title: "Netify", node: <NetifyIcon width={36} height={36} />, ariaLabel: "Tools" },
-  { title: "MongoDB", node: <MongoDBIcon width={36} height={36} />, ariaLabel: "Database" },
-  { title: "Postgresql", node: <DB width={36} height={36} />, ariaLabel: "Database" },
-  { title: "N8N", node: <N8nIcon width={36} height={36} />, ariaLabel: "Tools" },
-  { title: "Redis", node: <DB width={36} height={36} />, ariaLabel: "Database" },
-  {title: "GORM", node: <DB width={36} height={36} />, ariaLabel: "Database" },
-  {title: "MySQL", node: <DB width={36} height={36} />, ariaLabel: "Database" },
-  {title: "Fiber", node: <DB width={36} height={36} />, ariaLabel: "Backend" },
-  {title: "Cursor", node: <VscodeIcon width={36} height={36} />, ariaLabel: "Tools" },
-  {title: "Express", node: <VscodeIcon width={36} height={36} />, ariaLabel: "Backend" },
+  {
+    title: "React",
+    node: <ToolIcon name="react" width={36} height={36} />,
+    ariaLabel: "Frontend"
+  },
+  {
+    title: "Tailwind",
+    node: <ToolIcon name="tailwindcss" width={36} height={36} />,
+    ariaLabel: "Frontend"
+  },
+  {
+    title: "CSS",
+    node: <ToolIcon name="css" width={36} height={36} />,
+    ariaLabel: "Frontend"
+  },
+  {
+    title: "Docker",
+    node: <ToolIcon name="docker" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  {
+    title: "Next.js",
+    node: <ToolIcon name="nextjs" width={36} height={36} className="bg-white border border-white/10 rounded-[150px]" />,
+    ariaLabel: "Frontend"
+  },
+  {
+    title: "TypeScript",
+    node: <ToolIcon name="typescript" width={36} height={36} />,
+    ariaLabel: "Backend"
+  },
+  //LINUX
+  {
+    title: "Linux",
+    node: <ToolIcon name="linux" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  {
+    title: "Netlify",
+    node: <ToolIcon name="netlify" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  {
+    title: "Go",
+    node: <ToolIcon name="go" width={36} height={36} />,
+    ariaLabel: "Backend"
+  },
+  {
+    title: "Bun",
+    node: <ToolIcon name="bun" width={36} height={36} />,
+    ariaLabel: "Backend"
+  },
+  {
+    title: "Java",
+    node: <ToolIcon name="java" width={36} height={36} />,
+    ariaLabel: "Backend"
+  },
+  {
+    title: "Git",
+    node: <ToolIcon name="git" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  {
+    //gafana
+    title: "Grafana",
+    node: <ToolIcon name="grafana" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  //github
+  {
+    title: "GitHub",
+    node: <ToolIcon name="github" width={36} height={36} className="bg-white/80 border border-white/10 rounded-[150px]" />,
+    ariaLabel: "Tools"
+  },
+  //portainer
+  {
+    title: "Portainer",
+    node: <ToolIcon name="portainer" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  //cloudflare
+  {
+    title: "Cloudflare",
+    node: <ToolIcon name="cloudflare" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  //jenkins
+  {
+    title: "Jenkins",
+    node: <ToolIcon name="jenkins" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  {
+    title: "MongoDB",
+    node: <ToolIcon name="mongodb" width={36} height={36} />,
+    ariaLabel: "Database"
+  },
+  {
+    title: "Postgresql",
+    node: <ToolIcon name="postgresql" width={36} height={36} />,
+    ariaLabel: "Database"
+  },
+  {
+    title: "N8N",
+    node: <ToolIcon name="n8n" width={36} height={36} />,
+    ariaLabel: "Tools"
+  },
+  {
+    title: "Redis",
+    node: <ToolIcon name="redis" width={36} height={36} />,
+    ariaLabel: "Database"
+  },
+  {
+    title: "MySQL",
+    node: <ToolIcon name="mysql" width={36} height={36} />,
+    ariaLabel: "Database"
+  },
 ];

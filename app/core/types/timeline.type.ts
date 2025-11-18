@@ -7,13 +7,14 @@ interface TimelineEntryProps {
   description: string;
   isLeft: boolean;
   icon: IconType;
+  
 }
 
 interface TimelineItem {
     date: string;
     title: string;
-    subtitle: string;
     description: string;
-    icon: IconType;
+    badge: string;
+    image: string;
 }
 export type { TimelineEntryProps, TimelineItem };

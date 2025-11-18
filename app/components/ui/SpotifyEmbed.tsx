@@ -19,7 +19,8 @@ export const SpotifyEmbed: React.FC<SpotifyEmbedProps> = ({
     playlistID,
 }) => {
     const [playlistId, setPlaylistId] = useState<string>('');
-    const [responsiveWidth, setResponsiveWidth] = useState<string>(width || "400px");
+    const [responsiveWidth, setResponsiveWidth] = useState<string>(width || "300px");
+    const [responsiveHeight, setResponsiveHeight] = useState<string>(height || "300px");
     const [loading, setLoading] = useState(true);
 
 
@@ -35,8 +36,10 @@ export const SpotifyEmbed: React.FC<SpotifyEmbedProps> = ({
         const handleResize = () => {
             if (window.innerWidth > 1330) {
                 setResponsiveWidth(width || "400px");
+                setResponsiveHeight(height || "400px");
             } else {
-                setResponsiveWidth("150px");
+                setResponsiveWidth("100px");
+                setResponsiveHeight("150px");
             }
         };
 
@@ -62,20 +65,18 @@ export const SpotifyEmbed: React.FC<SpotifyEmbedProps> = ({
     }
 
     return (
-        <div className={`spotify-embed${className} hidden md:block`}>
-            <div className="bg-transparent">
-                <iframe
-                    title={`Spotify Embed: ${title}`}
-                    src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0&autoplay=true`}
-                    width={responsiveWidth}
-                    height={height}
-                    style={{ minHeight: '80px', minWidth: '300px' }}
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    className="rounded-lg"
-                />
-            </div>
+        <div className={`spotify-embed${className} relative top-24`}>
+            <iframe
+                title={`Spotify Embed: ${title}`}
+                src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0&autoplay=true`}
+                width={responsiveWidth}
+                height={height}
+                style={{ minHeight: '80px', minWidth: '300px' }}
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; web-share"
+                loading="lazy"
+                className="rounded-lg"
+            />
         </div>
     );
 };
