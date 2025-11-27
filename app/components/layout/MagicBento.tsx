@@ -76,37 +76,16 @@ const MagicBento = () => {
                                         <BackgroundBeams />
                                     )
                                 },
-                                // {
-                                //     label: 'Relaxing',
-                                //     title: '',
-                                //     description: 'introduction',
-                                //     color: '#080113',
-                                //     customContent: (
-                                //         <>
-                                //             <SpotifyEmbed width="450px" height="300px" />
-                                //             {/* <TechnologyTags /> */}
-                                //         </>
-                                //     ),
-                                //     backgroundComponent: (
-                                //         <Silk
-                                //             speed={5}
-                                //             scale={1}
-                                //             color="#171617"
-                                //             noiseIntensity={0}
-                                //             rotation={0}
-                                //         />
-                                //     ),
-                                // },
                                 {
                                     label: 'Typing Performance',
                                     title: 'Activity',
                                     description: 'Contributions',
                                     color: '#080113',
-                                    // customContent: (
-                                    //     <>
-                                    //         <WPMDisplay targetTests={100} />
-                                    //     </>
-                                    // ),
+                                    customContent: (
+                                        <>
+                                            <WPMDisplay targetTests={100} />
+                                        </>
+                                    ),
                                     backgroundComponent: (
                                         <BackgroundBeams />
                                     )

@@ -221,7 +221,7 @@ export const TechnologyTags = () => {
         <p className="font-instrument-serif text-md text-[var(--nav-fg)]/70 text-center italic">
           I am still learning. Hopefully I can keep getting better and not stop where i am now.
         </p>
-        <SpotifyEmbed width="450px" height="300px" />
+        <SpotifyEmbed className="hidden xl:block top-4 xl:top-16" width="450px" height="300px" />
       </div>
     </div>
   );

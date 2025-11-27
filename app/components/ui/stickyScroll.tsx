@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { StickyScrollProps } from "@/app/core/types/sticky-scroll.type";
 
@@ -16,7 +17,7 @@ interface ScrollableCardListProps {
 export const StickyScroll = ({ content, limit }: StickyScrollProps) => {
   const [activeCard, setActiveCard] = useState(0);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
-  
+
   // Limit content if limit prop is provided
   const displayedContent = limit ? content.slice(0, limit) : content;
 
@@ -92,7 +93,7 @@ const ScrollableCardList = ({
   sectionRefs,
 }: ScrollableCardListProps) => (
   <div
-    className=" flex flex-col gap-y-6 px-16 lg:max-w-[50%] lg:gap-y-28"
+    className=" flex flex-col gap-y-6 px-16 lg:max-w-[50%] "
   >
     {content.map((item, index) => (
       <CardSection
@@ -114,18 +115,15 @@ interface CardSectionProps {
 }
 
 const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
-  ({ item, isActive }, ref) => {
-    return (
+  ({ item }, ref) => {
+    const cardContent = (
       <section
         ref={ref}
-        className={cn(
-          "flex flex-col gap-y-6 lg:flex-row h-full rounded-3xl border border-white/10 bg-black/30 p-6 transition-all duration-500 cursor-pointer",
-          isActive
-            ? "border-white/30 bg-black/30 shadow-2xl"
-            : "opacity-60 hover:opacity-80"
-        )}
+        className={
+          "flex flex-col gap-y-6 lg:flex-row h-[80%] w-full rounded-3xl transition-all duration-500 cursor-pointer"
+        }
       >
-        <div key={`content-${item.title}`} className="w-full">
+        <div key={`content-${item.title}`} className="w-full h-[100%] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 bg-black border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
           {item.content}
         </div>
         <div className="block lg:hidden">
@@ -138,6 +136,17 @@ const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
         </div>
       </section>
     );
+
+    // If item has a slug, wrap with Link for navigation
+    if (item.slug) {
+      return (
+        <Link href={`/works/${item.slug}`} className="block">
+          {cardContent}
+        </Link>
+      );
+    }
+
+    return cardContent;
   }
 );
 

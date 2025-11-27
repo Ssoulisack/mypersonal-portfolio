@@ -2,12 +2,12 @@ import Magnet from "../ui/Magnet"
 import { ArrowRightIcon } from "lucide-react"
 import DraggableBadge from "../ui/DraggableBadge"
 import { AnimatedArrow } from '@/app/components/ui/ArrowAnime';
-
+import { SpotifyEmbed } from "@/app/components/ui/SpotifyEmbed";
 function Contact() {
     return (
         <section
             id="contact-section"
-            className="relative w-full min-h-screen overflow-hidden bg-cover bg-start bg-no-repeat px-6 py-24"
+            className="relative w-full h-full overflow-hidden bg-cover bg-start bg-no-repeat px-6 py-24"
         // style={{ backgroundImage: "url('/images/cover-contact.jpg')" }}
         >
             <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[rgba(8,1,19,0.92)] opacity-50"></div>
@@ -41,7 +41,7 @@ function Contact() {
                     <div>
                         <Magnet padding={100} disabled={false} magnetStrength={5} wrapperClassName="" innerClassName="">
                             <button className="group relative my-12 inline-flex items-center justify-between overflow-hidden rounded-full border-[rgba(66,66,66,0.3)] bg-[rgba(66,66,66,0.44)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[2.9px] transition-all duration-300 ease-in-out cursor-pointer hover:bg-[rgba(66,66,66,0.6)] active:scale-105 md:py-2.5 md:pl-5 md:pr-3">
-                                <span className="z-10 px-4 text-white transition-colors duration-300 group-hover:text-black group-hover:scale-105">Get In Touch</span>
+                                <span className="z-10 px-4 text-white transition-colors duration-1000 group-hover:text-black group-hover:scale-105">Get In Touch</span>
                                 <span className="absolute inset-0 translate-x-[45%] scale-0 rounded-full bg-white opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100"></span>
                                 <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-white/80 p-3 transition-colors duration-300 group-hover:bg-transparent md:p-3.5">
                                     <AnimatedArrow ArrowClass="text-black" MainClass="border-none" />
@@ -56,6 +56,11 @@ function Contact() {
                     <p className="text-sm tracking-wide text-white/80 lg:text-xl">
                         I thrive on crafting dynamic web applications and delivering seamless user experiences.
                     </p>
+                </div>
+                <div>
+                    <Magnet padding={100} disabled={false} magnetStrength={5} wrapperClassName="" innerClassName="">
+                        <SpotifyEmbed width="450px" height="300px" className="block xl:hidden" />
+                    </Magnet>
                 </div>
             </div>
         </section>

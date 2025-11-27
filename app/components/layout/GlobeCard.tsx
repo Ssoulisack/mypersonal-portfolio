@@ -73,7 +73,7 @@ function GlobeCard() {
             {isCopied ? <Check className="w-4 h-4 text-green-400" /> : <Clipboard className="w-4 h-4 text-white/50" />}
           </Button>
         </div>
-        <div className="absolute -right-0 -bottom-50 mx-auto flex h-full w-full max-w-[450px] items-center justify-center transition-all duration-700 hover:scale-105 md:-right-90 md:-bottom-38 md:-translate-y-8 md:max-w-[550px] lg:-right-18 lg:-bottom-48 lg:-translate-y-8 xl:-right-18 xl:-bottom-48 xl:-translate-y-8 z-0">
+        <div className="absolute -right-0 -bottom-50 mx-auto flex h-full w-full max-w-[450px] items-center justify-center transition-all duration-700 hover:scale-105 md:-right-40 md:-bottom-30 md:-translate-y-8 md:max-w-[550px] lg:-right-18 lg:-bottom-48 lg:-translate-y-8 xl:-right-18 xl:-bottom-48 xl:-translate-y-8 z-0">
           <Earth
             baseColor={[0.314, 0.463, 0.996]}  // Discord purple base
             markerColor={[0.314, 0.463, 0.996]}  // Discord purple marker

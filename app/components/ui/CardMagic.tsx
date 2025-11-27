@@ -765,7 +765,7 @@ const CardMagic: React.FC<BentoProps> = ({
                                     <div className="card__header flex justify-between gap-3 relative text-[hsl(var(--card-foreground))] z-10">
                                         <span className="font-bold text-sm text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,1.15)">{card.label}</span>
                                     </div>
-                                    <div className="card__content flex flex-col relative text-[hsl(var(--card-foreground))]">
+                                    <div className="card__content flex flex-col lg:mt-4 lg:-mb-6 relative text-[hsl(var(--card-foreground))]">
                                         {card.customContent ? (
                                             <>{card.customContent}</>
                                         ) : (

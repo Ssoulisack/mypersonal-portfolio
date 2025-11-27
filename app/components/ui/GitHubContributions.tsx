@@ -104,6 +104,9 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
           {username} has {totalContributions} contributions
           {selectedFilter !== '12M' && ` in the last ${parseInt(selectedFilter)} months`}
         </p>
+        <div className='flex justify-center'>
+        <GitHubButton href="https://github.com/Ssoulisack" />
+      </div>
         <div className="flex items-center rounded-lg bg-[rgba(66,66,66,0.44)] border border-[rgba(66,66,66,0.3)] backdrop-blur-[2.9px]">
           {visibleFilterOptions.map((option) => (
             <button
@@ -137,9 +140,6 @@ export function GitHubContributions({ data, username }: GitHubContributionsProps
           fontSize={10}
           weekStart={0} // Start week on Sunday
         />
-      </div>
-      <div className='flex justify-center mt-2'>
-        <GitHubButton href="https://github.com/Ssoulisack" />
       </div>
     </>
   );
