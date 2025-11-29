@@ -123,7 +123,7 @@ const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
           "flex flex-col gap-y-6 lg:flex-row h-[80%] w-full rounded-3xl transition-all duration-500 cursor-pointer"
         }
       >
-        <div key={`content-${item.title}`} className="w-full h-[100%] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 bg-black border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
+        <div key={`content-${item.title}`} className="w-full h-[100%] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 bg-black/80 border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
           {item.content}
         </div>
         <div className="block lg:hidden">

@@ -1,4 +1,4 @@
-import { Categories, MenuType } from "@/app/core/types/menu.type";
+import { Categories, MenuType, DropdownMenuItem } from "@/app/core/types/menu.type";
 
 export const TagTypes = {
   button: "button",
@@ -21,6 +21,45 @@ export const CATEGORIES: Categories[] = [
   {
     ID: 4,
     label: "Social",
+  },
+];
+
+// Dropdown menu items for "More" button
+export const MoreDropdownItems: DropdownMenuItem[] = [
+  {
+    label: "Guestbook",
+    href: "/guestbook",
+    description: "Let me know you were here",
+    image: "/images/nagi.jpeg", // You'll need to add this image
+    type: "image",
+  },
+  {
+    label: "Bucket List",
+    href: "/bucket-list",
+    description: "Things to do at least once in my life",
+    image: "/images/nagi_chibi.jpeg", // You'll need to add this image
+    type: "image",
+  },
+  {
+    label: "Links",
+    href: "/links",
+    description: "All my links are here",
+    iconName: "Link2",
+    type: "icon",
+  },
+  {
+    label: "Uses",
+    href: "/uses",
+    description: "A peek into my digital workspace",
+    iconName: "BookHeart",
+    type: "icon",
+  },
+  {
+    label: "Attribution",
+    href: "/attribution",
+    description: "Journey to create this site",
+    iconName: "CreditCard",
+    type: "icon",
   },
 ];
 
@@ -49,6 +88,7 @@ export const MenuItems: MenuType[] = [
     label: "More",
     href: "/more",
     tag: TagTypes.button,
+    dropdownItems: MoreDropdownItems,
   },
   {
     label: "Book a Call",

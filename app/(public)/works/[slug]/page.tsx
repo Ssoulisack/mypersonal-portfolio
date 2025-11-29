@@ -57,18 +57,19 @@ export default async function WorkPage({ params }: WorkPageProps) {
 
                 <div className='flex flex-1 mx-auto w-full'>
                     <div className="flex min-w-0 w-full flex-col gap-8 px-4 pt-8 md:px-6 md:mx-auto xl:pt-12 xl:px-12 mx-auto prose-lg prose-a:underline-offset-4 prose-a:decoration-blue-500">
-                        <div className="w-full flex flex-col justify-center items-center">
-                            <h1 className="text-4xl lg:text-5xl font-instrument-serif tracking-tight mb-4 text-white">
-                                {work.title}
-                            </h1>
-                            <p className="text-lg text-white/80 leading-relaxed">
-                                {work.description}
-                            </p>
-
-                        </div>
-                        <div className="w-1/2 mx-auto h-[25%] bg-black border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
-                            {work.content}
-                        </div>
+                        <section id="overview" className="scroll-m-28">
+                            <div className="w-full flex flex-col gap-4 justify-center items-center mb-4">
+                                <h1 className="text-4xl lg:text-5xl font-instrument-serif tracking-tight mb-4 text-white">
+                                    {work.title}
+                                </h1>
+                                <p className="text-lg text-white/80 leading-relaxed">
+                                    {work.description}
+                                </p>
+                            </div>
+                            <div className="w-1/2 mx-auto h-[60%] bg-black border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
+                                {work.content}
+                            </div>
+                        </section>
                         <div className='w-full flex flex-col'>
                             {/* Key Features */}
                             {work.keyFeatures && work.keyFeatures.length > 0 && (
