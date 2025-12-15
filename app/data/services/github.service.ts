@@ -1,30 +1,29 @@
-import { GitHubDataResponse } from '@/app/core/types/github.type';
+import { GitHubDataResponse } from '@/app/core/types/apiGithub.type';
 
 /**
  * Fetch GitHub data from the API
  */
 export const fetchGitHubData = async (): Promise<GitHubDataResponse> => {
   try {
-    console.log('🔄 Fetching GitHub data...');
+    // console.log('🔄 Fetching GitHub data...');
     
-    const response = await fetch('/api/github');
-    console.log(response)
+    const response = await fetch('/api/v1/github');
 
     if (!response.ok) {
       throw new Error(`GitHub API request failed: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log(data)    
+    // console.log(data)    
     if (!data.success) {
       throw new Error(data.error || 'GitHub API returned unsuccessful response');
     }
 
-    console.log('✅ GitHub data fetched successfully');
+    // console.log('✅ GitHub data fetched successfully');
     return data.data as GitHubDataResponse;
     
   } catch (error) {
-    console.error('❌ Error fetching GitHub data:', error);
+    // console.error('❌ Error fetching GitHub data:', error);
     throw new Error(`Failed to fetch GitHub data: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 };

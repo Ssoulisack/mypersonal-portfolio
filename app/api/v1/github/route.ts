@@ -5,7 +5,7 @@ import {
   GitHubResponse,
   GitHubAPIError,
   GitHubUserNotFoundError,
-} from "@/app/core/types/github.type";
+} from "@/app/core/types/apiGithub.type";
 import { GITHUB_CONFIG, CACHE_CONFIG } from "@/app/core/config/constants";
 import { BODY_QUERY } from "@/app/core/config/graphql";
 

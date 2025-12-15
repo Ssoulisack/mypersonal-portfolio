@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityCalendar } from 'react-activity-calendar';
-import { ContributionDay } from '@/app/core/types/github.type';
+import { ContributionDay } from '@/app/core/types/apiGithub.type';
 import GitHubButton from "@/app/components/ui/github-button";
 
 

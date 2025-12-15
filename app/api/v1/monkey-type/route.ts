@@ -3,7 +3,7 @@ import axios from 'axios'
 import { 
   MonkeyTypeAPIResponse, 
   MonkeyTypeAPIError,
-} from '@/app/core/types/monkey-type.type'
+} from '@/app/core/types/apiMonkeyType.type'
 import { API_ENDPOINTS } from '@/app/core/config/constants'
 import { CACHE_CONFIG } from '@/app/core/config/constants'
 

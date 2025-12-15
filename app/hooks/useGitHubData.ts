@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchGitHubData } from '@/app/data/services/github.service';
-import { ContributionDay } from '@/app/core/types/github.type';
+import { ContributionDay } from '@/app/core/types/apiGithub.type';
 
 interface UseGitHubDataReturn {
   data: ContributionDay[] | null;

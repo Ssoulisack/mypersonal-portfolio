@@ -1,4 +1,4 @@
-import React from "react";
+
 import type { StickyScrollContentItem } from "@/app/core/types/sticky-scroll.type";
 
 export const worksData: StickyScrollContentItem[] = [

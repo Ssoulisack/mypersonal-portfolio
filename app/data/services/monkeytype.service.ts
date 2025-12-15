@@ -1,4 +1,4 @@
-import { MonkeyTypeResult } from "@/app/core/types/monkey-type.type";
+import { MonkeyTypeResult } from "@/app/core/types/apiMonkeyType.type";
 
 /**
  * Fetch MonkeyType WPM data from the API
@@ -6,17 +6,17 @@ import { MonkeyTypeResult } from "@/app/core/types/monkey-type.type";
  */
 export const fetchWPMData = async (): Promise<MonkeyTypeResult[]> => {
   try {
-    const response = await fetch("/api/monkey-type");
+    const response = await fetch("/api/v1/monkey-type");
     if (!response.ok) {
       throw new Error(
         `MonkeyType API request failed: ${response.status} ${response.statusText}`
       );
     }
-    console.log(response);
+    // console.log(response);
     const result = await response.json();
 
     if (!result.success) {
-      console.log("❌ API returned error:", result.error);
+      // console.log("❌ API returned error:", result.error);
       throw new Error(
         result.error || "MonkeyType API returned unsuccessful response"
       );
@@ -27,16 +27,13 @@ export const fetchWPMData = async (): Promise<MonkeyTypeResult[]> => {
     const monkeyTypeResponse = result.data;
 
     return monkeyTypeResponse.data as MonkeyTypeResult[];
-
   } catch (error) {
-
     console.error("❌ Error fetching WPM data:", error);
     throw new Error(
       `Failed to fetch WPM data: ${
         error instanceof Error ? error.message : "Unknown error"
       }`
     );
-    
   }
 };
 

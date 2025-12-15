@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchWPMData } from '@/app/data/services/monkeytype.service';
-import { MonkeyTypeResult } from '@/app/core/types/monkey-type.type';
+import { MonkeyTypeResult } from '@/app/core/types/apiMonkeyType.type';
 
 interface UseWPMDataReturn {
   data: MonkeyTypeResult[] | null;
