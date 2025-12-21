@@ -33,14 +33,14 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --color-anti-flash-white: var(--anti-flash-white);
-  --color-discord-white: var(--discord-white);
-  --color-discord-blue: var(--discord-blue);
-  --color-discord-purple: var(--discord-purple);
-  --color-discord-green: var(--discord-green);
-  --color-discord-yellow: var(--discord-yellow);
-  --color-discord-fuchsia: var(--discord-fuchsia);
-  --color-discord-red: var(--discord-red);
-  --color-discord-black: var(--discord-black);
+  --color-white: var(--white);
+  --color-blue: var(--blue);
+  --color-purple: var(--purple);
+  --color-green: var(--green);
+  --color-yellow: var(--yellow);
+  --color-fuchsia: var(--fuchsia);
+  --color-red: var(--red);
+  --color-black: var(--black);
 }
 
 :root {
@@ -73,19 +73,17 @@
   --lavender-purple: hsl(264 22% 62%);
   --space-cadet: hsl(243 35% 22%);
   --anti-flash-white: hsl(270 46% 95%);
-  --aka: hsl(0 85% 59%);
-  --ao: hsl(210 100% 63%);
 
   --radius: 0.375rem;
 
-  --discord-purple: #5076fe; /* 🟣 Updated Blurple */
-  --discord-blue: #2553f6; /* 🟦 Discord Blue */
-  --discord-green: #3ba55d; /* 🟢 Discord Green */
-  --discord-yellow: #faa61a; /* 🟡 Discord Yellow */
-  --discord-fuchsia: #eb459f; /* 🩷 Discord Fuchsia */
-  --discord-red: #ed4245; /* 🔴 Discord Red */
-  --discord-black: #000000; /* ⬛ Discord Black */
-  --discord-white: #ffffff; /* ⬜ Discord White */
+  --purple: #5076fe; /* 🟣 Updated Blurple */
+  --blue: #2553f6; /* 🟦 Discord Blue */
+  --green: #3ba55d; /* 🟢 Discord Green */
+  --yellow: #faa61a; /* 🟡 Discord Yellow */
+  --fuchsia: #eb459f; /* 🩷 Discord Fuchsia */
+  --red: #ed4245; /* 🔴 Discord Red */
+  --black: #000000; /* ⬛ Discord Black */
+  --white: #ffffff; /* ⬜ Discord White */
 }
 
 /* Custom Utility Classes for Tailwind v4 */
@@ -141,14 +139,14 @@
   }
 
   .cursor-circle {
-    border: 2px solid var(--discord-purple);
+    border: 2px solid var(--purple);
     box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
-    color: var(--discord-purple);
+    color: var(--purple);
   }
 
   .my-name {
     border-radius: var(--radius);
-    background: var(--discord-purple);
+    background: var(--purple);
     color: var(--anti-flash-white);
     opacity: 0.9;
     box-shadow: 0 4px 20px 0 rgba(88, 101, 242, 0.4),
@@ -164,7 +162,7 @@
   }
 
   .typing {
-    color: var(--discord-purple);
+    color: var(--purple);
     text-shadow: 0 0 20px rgb(119, 95, 255);
   }
 
@@ -178,22 +176,22 @@
 
   /* Hover variants */
   .card-bd:hover {
-    border-color: var(--discord-purple);
+    border-color: var(--purple);
     box-shadow: 0 1px 3px 0 rgba(88, 101, 242, 0.1),
       0 1px 2px 0 rgba(88, 101, 242, 0.06);
   }
 
   .my-icon:hover {
-    color: var(--discord-purple);
+    color: var(--purple);
     transform: translateY(-1px);
     scale: 1.2;
     filter: drop-shadow(0 4px 30px rgb(255, 255, 255));
   }
 
   .icon-nav:hover {
-    background: var(--discord-purple);
-    border-color: var(--discord-purple);
-    color: var(--discord-white);
+    background: var(--purple);
+    border-color: var(--purple);
+    color: var(--white);
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(88, 101, 242, 0.2);
   }
@@ -336,7 +334,7 @@
 
 /* Discord button styles */
 .discord-btn-primary {
-  background: var(--discord-purple);
+  background: var(--purple);
   color: var(--primary-foreground);
   border: none;
   border-radius: var(--radius);
@@ -347,8 +345,8 @@
 
 .discord-btn-secondary {
   background: transparent;
-  color: var(--discord-purple);
-  border: 1px solid var(--discord-purple);
+  color: var(--purple);
+  border: 1px solid var(--purple);
   border-radius: var(--radius);
   padding: 0.5rem 1rem;
   font-weight: 500;
@@ -358,7 +356,7 @@
 /* Discord mention style */
 .discord-mention {
   background: rgba(88, 101, 242, 0.1);
-  color: var(--discord-purple);
+  color: var(--purple);
   border-radius: 0.1875rem;
   padding: 0 0.125rem;
   font-weight: 500;
@@ -371,7 +369,7 @@
 }
 
 .discord-btn-secondary:hover {
-  background: var(--discord-purple);
+  background: var(--purple);
   color: var(--primary-foreground);
   transform: translateY(-1px);
 }

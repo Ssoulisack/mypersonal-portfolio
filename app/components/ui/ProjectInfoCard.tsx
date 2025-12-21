@@ -4,6 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, PanelsTopLeft } from "lucide-react";
 import { InfiniteMovingCards } from "@/app/components/ui/infinite-moving-card";
+import { StickyScrollContentItem } from "@/app/core/types/sticky-scroll.type";
 
 interface ProjectInfoCardProps {
     icon?: React.ReactNode;
@@ -12,11 +13,7 @@ interface ProjectInfoCardProps {
     buttonText?: string;
     onButtonClick?: () => void;
     className?: string;
-    infiniteCardsItems?: {
-        quote: string;
-        name: string;
-        title: string;
-    }[];
+    infiniteCardsItems?: StickyScrollContentItem[];
     infiniteCardsDirection?: "left" | "right";
     infiniteCardsSpeed?: "fast" | "normal" | "slow";
 }

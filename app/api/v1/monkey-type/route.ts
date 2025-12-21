@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import axios from 'axios'
+import { monkeyTypeAxios, handleAxiosError } from '@/app/core/config/axios'
 import { 
   MonkeyTypeAPIResponse, 
   MonkeyTypeAPIError,
@@ -53,17 +53,6 @@ export async function GET(request: NextRequest) {
 
     console.log("🌐 Fetching MonkeyType contributions...", { cacheKey });
 
-    // Create axios instance for this request
-    const monkeyTypeAxios = axios.create({
-      baseURL: process.env.MONKEY_URL || 'https://api.monkeytype.com',
-      timeout: 10000,
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Portfolio-App/1.0',
-        ...(process.env.APE_KEY && { 'Authorization': `ApeKey ${process.env.APE_KEY}` })
-      }
-    })
-
     let data: MonkeyTypeAPIResponse;
     try {
       const response = await monkeyTypeAxios.get<MonkeyTypeAPIResponse>(url);
@@ -106,43 +95,15 @@ export async function GET(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
     
-    // Handle axios errors
-    if (axios.isAxiosError(error)) {
-      if (error.response?.status === 403) {
-        return NextResponse.json({
-          success: false,
-          error: 'MonkeyType API access forbidden. API key may be invalid or insufficient permissions.'
-        }, { status: 403 })
-      }
-
-      if (error.response?.status === 429) {
-        return NextResponse.json({
-          success: false,
-          error: 'MonkeyType API rate limit exceeded. Please try again later.'
-        }, { status: 429 })
-      }
-
-      if (error.response?.status === 479) {
-        return NextResponse.json({
-          success: false,
-          error: 'ApeKey rate limit exceeded.'
-        }, { status: 479 })
-      }
-      
-      return NextResponse.json({
-        success: false,
-        error: `MonkeyType API error: ${error.response?.status} ${error.response?.statusText}`
-      }, { status: error.response?.status || 500 })
-    }
-    
+    // Use centralized error handler from axios config
+    const errorResponse = handleAxiosError(error);
     return NextResponse.json(
       {
-        success: false,
-        error:
-          error instanceof Error ? error.message : "Unknown error occurred",
-        code: "UNKNOWN_ERROR",
+        success: errorResponse.success,
+        error: errorResponse.error,
+        code: "API_ERROR",
       },
-      { status: 500 }
+      { status: errorResponse.status }
     );
   }
 }

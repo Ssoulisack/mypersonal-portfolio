@@ -12,15 +12,15 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ data, className }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>(data.items[0]?.id || '');
+  const [activeId, setActiveId] = useState<number>(data.items[0]?.id || 0);
   const [scrollProgress, setScrollProgress] = useState({ top: 0, height: 0 });
   const linksContainerRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const itemRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
   // Update progress indicator when activeId or refs change
   useEffect(() => {
     const updateProgress = () => {
-      const activeLink = itemRefs.current.get(activeId);
+      const activeLink = itemRefs.current.get(activeId as number);
       const container = linksContainerRef.current;
 
       if (activeLink && container) {
@@ -86,7 +86,7 @@ export function TableOfContents({ data, className }: TableOfContentsProps) {
       // Always start with overview when at the top
       const scrollY = window.scrollY || window.pageYOffset;
       if (scrollY < 250) {
-        setActiveId(data.items[0]?.id || '');
+        setActiveId(data.items[0]?.id || 0);
         return;
       }
 
@@ -98,7 +98,7 @@ export function TableOfContents({ data, className }: TableOfContentsProps) {
       // This makes the TOC wait until more content has scrolled past
       // Using 60% of viewport height means the section needs to scroll much further down
       const threshold = window.innerHeight * 0.5;
-      let activeSection = data.items[0]?.id || '';
+      let activeSection = data.items[0]?.id || 0;
 
       // Find the last section that has scrolled past the threshold
       // This ensures we wait for more content to pass before switching

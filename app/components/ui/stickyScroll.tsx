@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import type { StickyScrollProps } from "@/app/core/types/sticky-scroll.type";
+import type { WorkItems, StickyScrollProps } from "@/app/core/types/sticky-scroll.type";
+import Image from "next/image";
 
 // Sub-component: Scrollable card list
 interface ScrollableCardListProps {
@@ -110,7 +110,7 @@ const ScrollableCardList = ({
 
 // Sub-component: Individual card section
 interface CardSectionProps {
-  item: StickyScrollProps["content"][number];
+  item: WorkItems;
   isActive: boolean;
 }
 
@@ -123,8 +123,8 @@ const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
           "flex flex-col gap-y-6 lg:flex-row h-[80%] w-full rounded-3xl transition-all duration-500 cursor-pointer"
         }
       >
-        <div key={`content-${item.title}`} className="w-full h-[100%] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 bg-black/80 border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
-          {item.content}
+        <div key={item.id} className="w-full h-[100%] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 bg-black/80 border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
+          <Image src={item.content || ""} alt={item.title} className="w-full h-[95%] object-cover rounded-lg" width={1000} height={950} />
         </div>
         <div className="block lg:hidden">
           <h2 className="text-2xl font-semibold text-white break-words">
@@ -138,9 +138,9 @@ const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
     );
 
     // If item has a slug, wrap with Link for navigation
-    if (item.slug) {
+    if (item.id) {
       return (
-        <Link href={`/works/${item.slug}`} className="block">
+        <Link href={`/works/${item.id}`} className="block">
           {cardContent}
         </Link>
       );
@@ -154,7 +154,7 @@ CardSection.displayName = "CardSection";
 
 // Sub-component: Active card display
 interface ActiveCardDisplayProps {
-  activeItem: StickyScrollProps["content"][number] | undefined;
+  activeItem: WorkItems;
   activeCard: number;
 }
 

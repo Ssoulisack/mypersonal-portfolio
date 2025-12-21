@@ -17,9 +17,9 @@ const ShinyText: React.FC<ShinyTextProps> = ({ text, disabled = false, speed = 5
         backgroundImage: `linear-gradient(
           120deg,
           transparent 0%,
-          var(--discord-blue) 25%,
-          var(--discord-purple) 50%,
-          var(--discord-fuchsia) 75%,
+          var(--blue) 25%,
+          var(--purple) 50%,
+          var(--fuchsia) 75%,
           transparent 100%
         )`,
         backgroundSize: '200% 100%',

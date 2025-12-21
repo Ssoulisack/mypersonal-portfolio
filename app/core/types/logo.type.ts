@@ -5,18 +5,17 @@ export type LogoItem = {
   ariaLabel?: string;
 };
 
-export interface LogoLoopProps {
-  logos: LogoItem[];
-  speed?: number;
-  direction?: "left" | "right";
-  width?: number | string;
-  logoHeight?: number;
-  gap?: number;
-  pauseOnHover?: boolean;
-  fadeOut?: boolean;
-  fadeOutColor?: string;
-  scaleOnHover?: boolean;
-  ariaLabel?: string;
-  className?: string;
-  style?: React.CSSProperties;
+export type ThemeOptions = {
+  dark: string;
+  light: string;
+};
+
+export interface SVG {
+  id: number;
+  title: string;
+  category: string | string[];
+  route: string | ThemeOptions;
+  url: string;
+  wordmark?: string | ThemeOptions;
+  brandUrl?: string;
 }

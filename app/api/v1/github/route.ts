@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { githubAxios } from "@/app/core/config/axios";
+import { githubAxios, handleAxiosError } from "@/app/core/config/axios";
+import axios from "axios";
 import {
   ContributionDay,
   GitHubResponse,
@@ -23,14 +24,14 @@ export async function GET(request: NextRequest) {
 
     const cacheKey = `${username}-${from || "default"}-${to || "default"}`;
 
-    // Check cache first
-    console.log("🔍 Cache check:", {
-      useCache,
-      cacheKey,
-      cacheSize: CACHE_CONFIG.CACHE.size,
-      cacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
-      hasCachedData: CACHE_CONFIG.CACHE.has(cacheKey),
-    });
+    // // Check cache first
+    // console.log("🔍 Cache check:", {
+    //   useCache,
+    //   cacheKey,
+    //   cacheSize: CACHE_CONFIG.CACHE.size,
+    //   cacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
+    //   hasCachedData: CACHE_CONFIG.CACHE.has(cacheKey),
+    // });
 
     if (useCache) {
       const cached = CACHE_CONFIG.CACHE.get(cacheKey);
@@ -57,7 +58,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    console.log("🌐 Fetching GitHub contributions...", { username, cacheKey });
+    // console.log("🌐 Fetching GitHub contributions...", { username, cacheKey });
 
     let data: GitHubResponse;
     try {
@@ -120,16 +121,16 @@ export async function GET(request: NextRequest) {
         timestamp,
         hash: JSON.stringify(contributions)
       });
-      console.log("💾 Cache stored:", {
-        cacheKey,
-        dataLength: contributions.length,
-        timestamp,
-        cacheSize: CACHE_CONFIG.CACHE.size,
-        allCacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
-      });
+      // console.log("💾 Cache stored:", {
+      //   cacheKey,
+      //   dataLength: contributions.length,
+      //   timestamp,
+      //   cacheSize: CACHE_CONFIG.CACHE.size,
+      //   allCacheKeys: Array.from(CACHE_CONFIG.CACHE.keys()),
+      // });
     }
 
-    console.log("✅ GitHub contributions fetched successfully");
+    // console.log("✅ GitHub contributions fetched successfully");
 
     return NextResponse.json({
       success: true,
@@ -147,36 +148,18 @@ export async function GET(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    // Handle axios errors
-    if (error instanceof Error && "response" in error) {
-      const axiosError = error as any;
-      if (axiosError.response?.status === 404) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: `GitHub user '${username}' not found`,
-            code: "USER_NOT_FOUND",
-          },
-          { status: 404 }
-        );
-      }
-
-      const rateLimitRemaining = parseInt(
-        axiosError.response?.headers["x-ratelimit-remaining"] || "0"
-      );
-
+    // Handle custom domain errors
+    if (error instanceof GitHubUserNotFoundError) {
       return NextResponse.json(
         {
           success: false,
-          error: `GitHub API error: ${axiosError.response?.status} ${axiosError.response?.statusText}`,
-          code: "API_ERROR",
-          rateLimitRemaining,
+          error: error.message,
+          code: "USER_NOT_FOUND",
         },
-        { status: axiosError.response?.status || 500 }
+        { status: 404 }
       );
     }
 
-    // Handle custom errors
     if (error instanceof GitHubAPIError) {
       return NextResponse.json(
         {
@@ -189,26 +172,21 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    if (error instanceof GitHubUserNotFoundError) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: error.message,
-          code: "USER_NOT_FOUND",
-        },
-        { status: 404 }
-      );
-    }
+    // All axios errors go through centralized handler
+    // (axios interceptor already added error metadata)
+    const errorResponse = handleAxiosError(error);
+    const rateLimitRemaining = axios.isAxiosError(error)
+      ? parseInt(error.response?.headers["x-ratelimit-remaining"] || "0", 10)
+      : 0;
 
-    // Generic error
     return NextResponse.json(
       {
         success: false,
-        error:
-          error instanceof Error ? error.message : "Unknown error occurred",
-        code: "UNKNOWN_ERROR",
+        error: errorResponse.error,
+        code: axios.isAxiosError(error) ? "API_ERROR" : "UNKNOWN_ERROR",
+        rateLimitRemaining,
       },
-      { status: 500 }
+      { status: errorResponse.status }
     );
   }
 }

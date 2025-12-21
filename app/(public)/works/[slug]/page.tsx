@@ -1,9 +1,10 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getWorkBySlug, getAllWorkSlugs } from '@/app/data/mock/works';
+import { getWorkById } from '@/app/data/mock/works';
 import { getTocDataBySlug } from '@/app/data/mock/toc';
 import { TableOfContents } from '@/app/components/ui/TableOfContents';
+import Image from 'next/image';
 
 interface WorkPageProps {
     params: Promise<{
@@ -12,34 +13,34 @@ interface WorkPageProps {
 }
 
 // Generate static params for all works at build time
-export async function generateStaticParams() {
-    const slugs = getAllWorkSlugs();
-    return slugs.map((slug) => ({
-        slug,
-    }));
-}
+// export async function generateStaticParams() {
+//     const ids = getAllWorkIds();
+//     return ids.map((id) => ({
+//         slug: String(id),
+//     }));
+// }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: WorkPageProps) {
-    const { slug } = await params;
-    const work = getWorkBySlug(slug);
-    console.log(work)
-    if (!work) {
-        return {
-            title: 'Work Not Found',
-        };
-    }
+// export async function generateMetadata({ params }: WorkPageProps) {
+//     const { slug } = await params;
+//     const work = getWorkById(Number(slug));
+//     console.log(work)
+//     if (!work) {
+//         return {
+//             title: 'Work Not Found',
+//         };
+//     }
 
-    return {
-        title: `${work.title} | Works`,
-        description: work.description,
-    };
-}
+//     return {
+//         title: `${work.title} | Works`,
+//         description: work.description,
+//     };
+// }
 
 export default async function WorkPage({ params }: WorkPageProps) {
     const { slug } = await params;
-    const work = getWorkBySlug(slug);
-    const tocData = getTocDataBySlug(slug);
+    const work = getWorkById(Number(slug));
+    const tocData = getTocDataBySlug();
 
     if (!work) {
         notFound();
@@ -66,9 +67,9 @@ export default async function WorkPage({ params }: WorkPageProps) {
                                     {work.description}
                                 </p>
                             </div>
-                            <div className="w-1/2 mx-auto h-[60%] bg-black border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
-                                {work.content}
-                            </div>
+                            <Link href={work.url || ""} className="w-1/2 mx-auto h-[60%] bg-black border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
+                                <Image src={work.content || ""} alt={work.title} className="w-full h-[95%] object-cover rounded-lg" width={1000} height={950} />
+                            </Link>
                         </section>
                         <div className='w-full flex flex-col'>
                             {/* Key Features */}

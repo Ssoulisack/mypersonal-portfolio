@@ -1,20 +1,9 @@
-import type { IconType } from "react-icons";
-
-interface TimelineEntryProps {
-  date: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  isLeft: boolean;
-  icon: IconType;
-  
-}
-
 interface TimelineItem {
+    id: number;
     date: string;
     title: string;
     description: string;
     badge: string;
     image: string;
 }
-export type { TimelineEntryProps, TimelineItem };
+export type { TimelineItem };

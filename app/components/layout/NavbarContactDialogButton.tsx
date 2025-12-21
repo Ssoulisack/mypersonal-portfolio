@@ -45,7 +45,7 @@ export function NavbarContactDialogButton({
 
       <DialogContent
         showCloseButton={false}
-        className="fixed inset-x-0 bottom-0 top-auto left-1/2 z-[9999] mx-auto flex h-auto w-full max-w-xl -translate-x-1/2 translate-y-0 flex-col rounded-t-[10px] border bg-background px-6 pb-6 pt-4 sm:px-8"
+        className="fixed inset-x-1/2 bottom-0 top-auto left-1/2 z-[9999] mx-auto flex h-auto w-full max-w-xl -translate-x-1/2 translate-y-0 flex-col rounded-t-[10px] border bg-background px-6 pb-6 pt-4 sm:px-8"
       >
         {/* Accessible title for screen readers (visually hidden) */}
         <DialogTitle className="sr-only">

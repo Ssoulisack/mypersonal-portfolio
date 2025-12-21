@@ -6,29 +6,79 @@ datasource db {
   provider = "postgresql"
 }
 
-model BucketList {
-  id        Int       @id @default(autoincrement())
-  title     String    @db.VarChar(255)
-  status    Boolean?  @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+// model BucketList {
+//   id        Int       @id @default(autoincrement())
+//   title     String    @db.VarChar(255)
+//   status    Boolean?  @default(false)
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime? @updatedAt
 
-  @@map("bucket_list")
-}
+//   @@map("bucket_list")
+// }
 
 model Work {
-  id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar
-  slug        String   @unique @db.VarChar
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url       String?  @db.VarChar(255)
+
+  translations WorkTranslation[]
+
+  @@map("works")
+}
+
+model WorkTranslation {
+  id          Int     @id @default(autoincrement())
+  workId      Int
+  locale      String  @db.VarChar(10) // "en", "lo", "th"
+  title       String  @db.VarChar
   description String
   content     String?
   outcome     String?
-  keyFeatures Json?    @default("[]")
-  techStack   Json?    @default("[]")
-  challenges  Json?    @default("[]")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  keyFeatures Json?   @default("[]")
+  techStack   Json?   @default("[]")
+  challenges  Json?   @default("[]")
 
-  @@index([slug])
-  @@map("works")
+  work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  @@unique([workId, locale])
+  @@index([locale])
+  @@map("work_translations")
+}
+
+model TocItem {
+  id    Int     @id @default(autoincrement())
+  label String  @db.VarChar(255)
+  href  String  @db.VarChar(255)
+  level Int     @default(0) // 0 for top level, 1 for nested
+  icon  String? @db.VarChar(10) // Optional emoji
+  order Int     @default(0) // Sort order
+
+  @@map("toc_items")
+}
+
+model TimelineItem {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+
+  date                 String                @db.VarChar
+  badge                String
+  image                String?
+  timeLineTranslations TimeLineTranslation[]
+
+  @@map("timeline_items")
+}
+
+model TimeLineTranslation {
+  id             Int    @id @default(autoincrement())
+  timelineItemId Int
+  locale         String @db.VarChar
+  title          String @db.VarChar
+  description    String @db.VarChar
+
+  timelineItem TimelineItem @relation(fields: [timelineItemId], references: [id], onDelete: Cascade)
+
+  @@index([locale, timelineItemId])
+  @@map("timeline_translations")
 }

@@ -15,11 +15,12 @@ export interface Challenge {
   description?: string;
 }
 
-export interface StickyScrollContentItem {
+export interface WorkItems {
+  id: number;
   title: string;
   description: string;
-  content?: ReactNode;
-  slug?: string;
+  content?: string;
+  url?: string
   keyFeatures?: KeyFeature[];
   techStack?: TechStackItem[];
   challenges?: Challenge[];
@@ -27,7 +28,7 @@ export interface StickyScrollContentItem {
 }
 
 export interface StickyScrollProps {
-  content: StickyScrollContentItem[];
+  content: WorkItems[];
   contentClassName?: string;
   limit?: number;
 }

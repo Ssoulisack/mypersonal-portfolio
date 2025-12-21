@@ -1,13 +1,12 @@
 "use client";
 import { WPMDisplay } from "@/app/components/layout/wpmDisplay";
 import CardMagic from "@/app/components/ui/CardMagic";
-import { Testimonials } from "@/app/data/mock/testimonials";
 import { GithubActivity } from "@/app/components/layout/GithubActivity";
 import { BackgroundBeams } from "@/app/components/shared/backgroundBeams";
-import Silk from "@/app/components/shared/backgroundSilk";
 import GlobeCard from "./GlobeCard";
 import { TechnologyTags } from "@/app/components/ui/TechnologyTags";
 import { ProjectInfoCard } from "@/app/components/ui/ProjectInfoCard";
+import { worksData } from "@/app/data/mock/works";
 const MagicBento = () => {
     return (
         <>
@@ -18,10 +17,6 @@ const MagicBento = () => {
                         <p className="text-sm sm:text-base text-muted-foreground">
                             Explore my work, skills, and experience using the sidebar navigation.
                         </p>
-                        <div className="w-full flex justify-end items-center gap-y-2">
-                            {/* <SpotifyEmbed width="400px"
-                  height="80px" /> */}
-                        </div>
                     </div>
                     <div className="w-full">
                         <CardMagic
@@ -48,7 +43,7 @@ const MagicBento = () => {
                                                 label="The Inside Scoop"
                                                 title="Currently building a SaaS Application"
                                                 buttonText="View Recent Work"
-                                                infiniteCardsItems={Testimonials}
+                                                infiniteCardsItems={worksData}
                                                 infiniteCardsDirection="left"
                                                 infiniteCardsSpeed="fast"
                                                 onButtonClick={() => {
