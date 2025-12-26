@@ -21,6 +21,7 @@ model Work {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   url       String?  @db.VarChar(255)
+  colorCode String?  @db.VarChar(255)
 
   translations WorkTranslation[]
 
@@ -41,8 +42,8 @@ model WorkTranslation {
 
   work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
 
-  @@unique([workId, locale])
-  @@index([locale])
+  @@unique([workId])
+  @@index([locale, workId])
   @@map("work_translations")
 }
 
@@ -60,7 +61,7 @@ model TocItem {
 model TimelineItem {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   date                 String                @db.VarChar
   badge                String
@@ -81,4 +82,60 @@ model TimeLineTranslation {
 
   @@index([locale, timelineItemId])
   @@map("timeline_translations")
+}
+
+model PersonalInfo {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email                    String                    @db.VarChar(255)
+  phone                    String                    @db.VarChar(255)
+  position                 String?                   @db.VarChar(255)
+  avatar                   String?                   @db.VarChar(255)
+  personalInfoTranslations PersonalInfoTranslation[]
+  socials                  Social[]
+
+  @@map("personal_infos")
+}
+
+model PersonalInfoTranslation {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+  personalInfoId Int
+  locale         String   @db.VarChar(10)
+  name           String   @db.VarChar(255)
+  bio            String?  @db.VarChar(255)
+  address        String?  @db.VarChar(255)
+
+  personalInfo PersonalInfo @relation(fields: [personalInfoId], references: [id], onDelete: Cascade)
+
+  @@map("personal_info_translations")
+}
+
+model Social {
+  id             Int    @id @default(autoincrement())
+  username       String @db.VarChar(50)
+  platform       String @db.VarChar(50)
+  url            String @db.VarChar(255)
+  icon           String @db.VarChar(255)
+  personalInfoId Int?
+
+  personalInfo PersonalInfo? @relation(fields: [personalInfoId], references: [id], onDelete: Cascade)
+
+  @@unique([platform])
+  @@map("socials")
+}
+
+model Card {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title     String @db.VarChar(255)
+  image     String @db.VarChar(255)
+  className String @db.VarChar(255)
+
+  @@map("cards")
 }

@@ -2,21 +2,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import type { WorkItems, StickyScrollProps } from "@/app/core/types/sticky-scroll.type";
+import type { CardSectionProps, ActiveCardDisplayProps, ScrollableCardListProps, StickyScrollProps } from "@/app/core/types/sticky-scroll.type";
 import Image from "next/image";
 
 // Sub-component: Scrollable card list
-interface ScrollableCardListProps {
-  content: StickyScrollProps["content"];
-  activeCard: number;
-  sectionRefs: React.MutableRefObject<(HTMLElement | null)[]>;
-  setActiveCard: (index: number) => void;
-}
-
 
 export const StickyScroll = ({ content, limit }: StickyScrollProps) => {
   const [activeCard, setActiveCard] = useState(0);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const activeCardRef = useRef(0);
 
   // Limit content if limit prop is provided
   const displayedContent = limit ? content.slice(0, limit) : content;
@@ -29,7 +23,7 @@ export const StickyScroll = ({ content, limit }: StickyScrollProps) => {
     // Require cards to be more centered in viewport
     const options = {
       root: null,
-      rootMargin: "-30% 0px -30% 0px", // Card must be in middle 60% of viewport
+      rootMargin: "-10% 0px -10% 0px", // Card must be in middle 80% of viewport
       threshold: [0, 0.25, 0.5, 0.75, 1],
     };
 
@@ -45,7 +39,8 @@ export const StickyScroll = ({ content, limit }: StickyScrollProps) => {
         }
       });
 
-      if (maxRatio > 0) {
+      if (maxRatio > 0.99 && maxIndex !== activeCardRef.current) {
+        activeCardRef.current = maxIndex;
         setActiveCard(maxIndex);
       }
     };
@@ -74,7 +69,7 @@ export const StickyScroll = ({ content, limit }: StickyScrollProps) => {
 
   return (
     <motion.div
-      className="container mx-auto relative flex flex-col gap-12 lg:flex-row "
+      className="container mx-auto relative flex gap-12 lg:flex-row "
     >
       <ScrollableCardList
         content={displayedContent}
@@ -93,7 +88,7 @@ const ScrollableCardList = ({
   sectionRefs,
 }: ScrollableCardListProps) => (
   <div
-    className=" flex flex-col gap-y-6 px-16 lg:max-w-[50%] "
+    className=" flex flex-col gap-y-6 px-16 lg:w-1/2 "
   >
     {content.map((item, index) => (
       <CardSection
@@ -109,28 +104,21 @@ const ScrollableCardList = ({
 );
 
 // Sub-component: Individual card section
-interface CardSectionProps {
-  item: WorkItems;
-  isActive: boolean;
-}
-
 const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
   ({ item }, ref) => {
     const cardContent = (
       <section
         ref={ref}
-        className={
-          "flex flex-col gap-y-6 lg:flex-row h-[80%] w-full rounded-3xl transition-all duration-500 cursor-pointer"
-        }
+        className="flex flex-col gap-y-2 p-4 my-6 lg:my-12 lg:flex-row rounded-3xl transition-all duration-500 cursor-pointer"
       >
-        <div key={item.id} className="w-full h-[100%] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 bg-black/80 border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
-          <Image src={item.content || ""} alt={item.title} className="w-full h-[95%] object-cover rounded-lg" width={1000} height={950} />
+        <div key={item.id} style={{ backgroundColor: item.colorCode }} className="w-full h-[450px] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
+          <Image src={item.content || ""} alt={item.title} className="w-full h-[95%] object-cover rounded-lg" width={500} height={50} />
         </div>
-        <div className="block lg:hidden">
-          <h2 className="text-2xl font-semibold text-white break-words">
+        <div className="block md:hidden">
+          <h2 className="text-base lg:text-2xl font-semibold text-white break-words">
             {item.title}
           </h2>
-          <p className="text-sm text-white/80 break-words whitespace-normal">
+          <p className="hidden lg:block text-sm text-white/80 break-words whitespace-normal">
             {item.description}
           </p>
         </div>
@@ -153,11 +141,6 @@ const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
 CardSection.displayName = "CardSection";
 
 // Sub-component: Active card display
-interface ActiveCardDisplayProps {
-  activeItem: WorkItems;
-  activeCard: number;
-}
-
 const ActiveCardDisplay = ({ activeItem, activeCard }: ActiveCardDisplayProps) => {
   if (!activeItem) return null;
 
@@ -165,16 +148,26 @@ const ActiveCardDisplay = ({ activeItem, activeCard }: ActiveCardDisplayProps) =
 
   return (
     <div className="hidden lg:block lg:w-1/2 lg:self-start sticky top-32">
-      <div className="w-full rounded-2xl p-5 text-left text-white shadow-lg">
-        <span className="text-sm font-semibold uppercase tracking-wide text-white/70">
+      <div className="flex items-center gap-x-2 p-4">
+        <span style={{ color: activeItem.colorCode }} className="text-lg font-semibold font-instrument-serif uppercase bg-white/90 p-2 rounded-3xl tracking-wide text-white/70">
           {cardNumber}
         </span>
-        <h2 className="mt-2 text-xl font-semibold text-white break-words">
+        <span style={{ backgroundColor: activeItem.colorCode }} className="text-xl font-semibold font-instrument-serif text-white break-words rounded-2xl p-2">
           {activeItem.title}
-        </h2>
-        <p className="mt-2 text-sm text-white/80 break-words whitespace-normal">
-          {activeItem.description}
-        </p>
+        </span>
+      </div>
+      <p className="mt-2 text-sm text-white/80 break-words whitespace-normal">
+        {activeItem.description}
+      </p>
+      <div className="flex flex-wrap gap-2 mt-2">
+        {activeItem.techStack?.map((tech, index) => (
+          <span key={index} className="flex items-center gap-2 mr-2 bg-white/10 p-2 rounded-2xl">
+            {tech.icon && (
+              <Image src={tech.icon} alt={tech.name} width={20} height={20} />
+            )}
+            {tech.name}
+          </span>
+        ))}
       </div>
     </div>
 

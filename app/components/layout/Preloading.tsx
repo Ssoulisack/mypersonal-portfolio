@@ -209,7 +209,7 @@ export function Preloading() {
     );
 
     const LoadingCard = () => (
-        <div className="flex flex-col items-start justify-between w-[250px] h-25 lg:w-[500px] lg:h-50 bg-discord-white rounded-2xl">
+        <div className="flex flex-col items-start justify-between w-[250px] h-25 lg:w-[500px] lg:h-50 bg-white rounded-2xl">
             <div className="flex items-center justify-between w-full px-2 border-b-1 border-gray-200">
                 <LoadingDots />
                 <div>
@@ -234,7 +234,7 @@ export function Preloading() {
             <div className="flex justify-end w-full px-12 md:px-50">
                 <div
                     ref={nameCardRef}
-                    className="w-48 h-38 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-discord-white p-4 md:p-8 rotate-12 flex flex-col justify-center items-center shadow-xl"
+                    className="w-48 h-38 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-white p-4 md:p-8 rotate-12 flex flex-col justify-center items-center shadow-xl"
                     style={{ opacity: 0 }}
                 >
                     <div className="flex flex-col text-center justify-center items-center py-4 font-medium leading-tight">
@@ -259,7 +259,7 @@ export function Preloading() {
             <div className="flex justify-evenly items-center gap-16 md:gap-24 lg:gap-32 w-full">
                 <div
                     ref={positionCardRef}
-                    className="w-48 h-32 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-discord-white rotate-[-14deg] flex items-center justify-center p-4 lg:p-8 text-sm md:text-md lg:text-lg shadow-xl"
+                    className="w-48 h-32 sm:w-48 sm:h-40 md:w-60 md:h-48 bg-white rotate-[-14deg] flex items-center justify-center p-4 lg:p-8 text-sm md:text-md lg:text-lg shadow-xl"
                     style={{ opacity: 0 }}
                 >
                     <code className="text-foreground font-bold font-doto">

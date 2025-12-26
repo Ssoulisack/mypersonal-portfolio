@@ -36,21 +36,22 @@ export const Timeline = ({ data }: { data: TimelineItem[] }) => {
       className="w-full bg-transparent font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="w-full py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-          Changelog from my journey
+      <div className="w-full py-8 px-4 flex items-center justify-center md:px-8 lg:px-10">
+        <h2 className="text-lg md:text-4xl max-w-4xl text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)]">
+          {/* Changelog from my journey */}
+          CHANGELOG FROM MY JOURNEY
         </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
+        {/* <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
           I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s
           a timeline of my journey.
-        </p>
+        </p> */}
       </div>
 
       <div ref={ref} className="relative w-full pb-20">
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-4"
+            className="flex justify-start md:pt-40 md:gap-4"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start">
               <div className="h-10 w-10 absolute left-3 md:left-3  bg-black flex items-center justify-center">

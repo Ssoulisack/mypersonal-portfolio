@@ -1,4 +1,5 @@
-export const cardData = [
+import { Cards } from "@/app/core/types/information.type";
+export const cardData: Cards[] = [
     {
         title: "Self investment",
         image:

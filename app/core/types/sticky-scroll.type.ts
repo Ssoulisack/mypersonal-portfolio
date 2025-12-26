@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
 
 export interface TechStackItem {
+  icon?: string;
   name: string;
   url?: string;
 }
@@ -25,6 +25,7 @@ export interface WorkItems {
   techStack?: TechStackItem[];
   challenges?: Challenge[];
   outcome?: string;
+  colorCode?: string;
 }
 
 export interface StickyScrollProps {
@@ -38,4 +39,21 @@ export interface ScrollBoundary {
   isAtBottom: boolean;
   scrollingDown: boolean;
   scrollingUp: boolean;
+}
+
+export interface CardSectionProps {
+  item: WorkItems;
+  isActive: boolean;
+}
+
+export interface ActiveCardDisplayProps {
+  activeItem: WorkItems;
+  activeCard: number;
+}
+
+export interface ScrollableCardListProps {
+  content: WorkItems[];
+  activeCard: number;
+  sectionRefs: React.MutableRefObject<(HTMLElement | null)[]>;
+  setActiveCard: (index: number) => void;
 }

@@ -1,12 +1,18 @@
+"use client"
 import Experience from "@/app/components/layout/Experience"
 import ShinyText from "@/app/components/ui/shinyText"
 import { DraggableCardContainer, DraggableCardBody } from '@/app/components/ui/DraggleCard'
 import { cardData } from "@/app/data/mock/card"
 import { cn } from "@/lib/utils"
+import { InformationMock } from "@/app/core/types/information.type"
+import { useState } from "react"
+import { Cards, Information } from "@/app/core/types/information.type"
 
 
 function About() {
-    const items = cardData
+    const items: Cards[] = cardData
+    const [info, setInfo] = useState<Information>(InformationMock)
+
     return (
         <main className='container mx-auto px-4 flex flex-col items-center justify-center overflow-visible'>
             <section className="min-h-screen flex flex-col justify-center items-center gap-4 lg:gap-12 overflow-visible">
@@ -16,8 +22,12 @@ function About() {
                         <ShinyText className="text-4xl font-instrument-serif tracking-tight" text="I'm Soulisack Duangvilay, a Software Developer" />
                         <p className='text-lg text-muted-foreground text-start leading-loose'>
                             <span className="font-extrabold">
-                                Now, my main position is Backend Developer.
-                            </span> eligendi modi, voluptas ratione praesentium minus magnam saepe vero eveniet officiis quaerat dignissimos quia delectus nesciunt in deserunt architecto. Voluptate, ipsa. Quis dolore magnam rerum, expedita aut similique! lorem200
+                                Now, my main position is <span className="text-transparent bg-clip-text bg-gradient-to-b 
+                                from-[#5b6cec] via-[#6f7df2] to-[#959eff]
+                                drop-shadow-[0_2px_35px_rgba(91,108,236,0.45)]">
+                                    {info?.position} </span>
+                            </span>
+                            {info.bio}
                         </p>
                     </div>
                     <div className="hidden md:block relative z-10">
