@@ -16,7 +16,7 @@ import {
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
+} from "../ui/Dialog";
 
 interface NavbarContactDialogButtonProps {
   label: string;

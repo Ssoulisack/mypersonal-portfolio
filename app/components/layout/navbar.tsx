@@ -13,7 +13,7 @@ import { Button } from '../ui/button';
 import { usePathname } from 'next/navigation';
 import { Search } from 'lucide-react';
 import { MenuItems, TagTypes } from '@/app/data/mock/menu';
-import Finder from '../ui/finder';
+import Finder from '../ui/Finder';
 import { Logo } from '../ui/Logo';
 import { NavbarMoreButton } from './NavbarMoreButton';
 import { NavbarContactDialogButton } from './NavbarContactDialogButton';

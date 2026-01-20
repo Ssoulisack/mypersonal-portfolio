@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
-import Earth from '../ui/globe'
+import Earth from '../ui/Globe'
 import { Button } from '@/app/components/ui/button'
 import { Clipboard, Check, Mail } from 'lucide-react'
 import { INFORMATION } from '@/app/core/config/constants'

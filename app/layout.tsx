@@ -6,7 +6,7 @@ import Navbar from "./components/layout/Navbar";
 import { ShootingStars } from "@/app/components/shared/backgroundShootingStar";
 import { BackgroundStart } from "@/app/components/shared/backgroundStart";
 import Contact from "@/app/components/layout/Contact";
-import Scrollbar from "@/app/components/ui/scrollbar";
+import Scrollbar from "@/app/components/ui/Scrollbar";
 
 const doto = Doto({
   subsets: ["latin"],

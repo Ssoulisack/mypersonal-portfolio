@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { TimelineItem } from '@/app/core/types/timeline.type'
-import ShinyText from "@/app/components/ui/shinyText"
+import ShinyText from "@/app/components/ui/ShinyText"
 
 
 
@@ -55,7 +55,7 @@ export const Timeline = ({ data }: { data: TimelineItem[] }) => {
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start">
               <div className="h-10 w-10 absolute left-3 md:left-3  bg-black flex items-center justify-center">
-                <Image src={item.image} alt={item.title} width={50} height={50} className="rounded-[50%]"/>
+                <Image src={item.image} alt={item.title} width={50} height={50} className="rounded-[50%]" />
               </div>
               <ShinyText className="hidden md:block md:pl-24 md:text-4xl font-bold text text-4xl font-instrument-serif" text={item.date} />
 

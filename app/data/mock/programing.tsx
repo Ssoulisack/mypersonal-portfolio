@@ -1,5 +1,5 @@
 import { LogoItem } from "../../core/types/logo.type";
-import { ToolIcon } from "@/app/components/ui/logos";
+import { ToolIcon } from "@/app/components/ui/Logos";
 
 
 //adding ariaLabel i will define categories like library, tools, framework, language, database, etc.

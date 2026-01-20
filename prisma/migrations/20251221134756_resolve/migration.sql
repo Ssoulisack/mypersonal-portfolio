@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "timeline_items" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;

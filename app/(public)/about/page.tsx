@@ -1,6 +1,6 @@
 "use client"
 import Experience from "@/app/components/layout/Experience"
-import ShinyText from "@/app/components/ui/shinyText"
+import ShinyText from "@/app/components/ui/ShinyText"
 import { DraggableCardContainer, DraggableCardBody } from '@/app/components/ui/DraggleCard'
 import { cardData } from "@/app/data/mock/card"
 import { cn } from "@/lib/utils"

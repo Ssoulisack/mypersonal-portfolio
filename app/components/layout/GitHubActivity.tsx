@@ -6,7 +6,7 @@ import { useGitHubData } from "@/app/hooks/useGitHubData";
 
 export const GithubActivity = () => {
   const { data: contributions, username, loading, error } = useGitHubData();
-  
+
   // Data is already in ContributionDay[] format from the service
   const contributionData = contributions || [];
 
@@ -42,7 +42,7 @@ export const GithubActivity = () => {
                 GitHub Activity
               </h2>
               <p className="text-discord-red font-medium">Failed to load GitHub data</p>
-              <p className="text-xs text-muted-foreground">Make sure to configure GITHUB_TOKEN in your environment</p>
+              <p className="text-xs text-muted-foreground">Make sure to configure GITHUB_ACCESS_TOKEN in your environment</p>
             </div>
           </div>
         </div>

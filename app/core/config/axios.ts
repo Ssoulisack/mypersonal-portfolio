@@ -54,12 +54,13 @@ const monkeyTypeAxios = axios.create({
 githubAxios.interceptors.request.use(
   (config) => {
     console.log("🔑 GitHub API Request:", {
-      hasToken: !!process.env.GITHUB_TOKEN,
-      tokenLength: process.env.GITHUB_TOKEN?.length || 0,
+      token: process.env.GITHUB_ACCESS_TOKEN,
+      hasToken: !!process.env.GITHUB_ACCESS_TOKEN,
+      tokenLength: process.env.GITHUB_ACCESS_TOKEN?.length || 0,
     });
 
-    if (process.env.GITHUB_TOKEN) {
-      config.headers["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
+    if (process.env.GITHUB_ACCESS_TOKEN) {
+      config.headers["Authorization"] = `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`;
       console.log("✅ GitHub token added to request");
     } else {
       console.log("⚠️ No GitHub token found - request will be unauthenticated");
@@ -164,7 +165,7 @@ githubAxios.interceptors.response.use(
           message: 'GitHub API unauthorized. Token may be invalid or expired.',
           status: 401,
         };
-        console.error("❌ Unauthorized (401):", error.apiError.message);
+        console.error("❌ Unauthorized (401):", process.env.GITHUB_ACCESS_TOKEN, error.apiError.message);
         break;
       case 403:
         error.apiError = {

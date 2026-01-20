@@ -1,5 +1,5 @@
 import React from 'react';
-import { StickyScroll } from '@/app/components/ui/stickyScroll';
+import { StickyScroll } from '@/app/components/ui/StickyScroll';
 import { worksData } from '@/app/data/mock/works';
 
 export default function Works() {

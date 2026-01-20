@@ -3,7 +3,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight, PanelsTopLeft } from "lucide-react";
-import { InfiniteMovingCards } from "@/app/components/ui/infinite-moving-card";
+import { InfiniteMovingCards } from "@/app/components/ui/Infinite-moving-card";
 import { StickyScrollContentItem } from "@/app/core/types/sticky-scroll.type";
 
 interface ProjectInfoCardProps {

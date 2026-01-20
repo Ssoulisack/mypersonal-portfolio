@@ -1,10 +1,10 @@
 import React from 'react';
-import { StickyScroll } from '@/app/components/ui/stickyScroll';
+import { StickyScroll } from '@/app/components/ui/StickyScroll';
 import { worksData } from '@/app/data/mock/works';
 import Link from 'next/link';
 import { Button } from '@/app/components/ui/button';
 import { AnimatedArrow } from '@/app/components/ui/ArrowAnime';
-import ShinyText from '@/app/components/ui/shinyText';
+import ShinyText from '@/app/components/ui/ShinyText';
 
 export default function Works() {
   return (
@@ -14,8 +14,8 @@ export default function Works() {
       <StickyScroll content={worksData} limit={4} />
       <div className="flex items-center justify-center py-8 w-full">
         <Link href="/works">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="group flex w-fit items-center justify-center gap-2 font-mono text-neutral-400 hover:text-neutral-300 hover:scale-110 transition-all duration-300 ease-in-out"
           >
             See more projects
