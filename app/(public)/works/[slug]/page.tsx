@@ -51,7 +51,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
             <div className="w-full">
                 <Link
                     href="/works"
-                    className="inline-flex items-center text-sm text-white/70 hover:text-white transition-colors mb-8"
+                    className="inline-flex items-center text-sm text-white/70 hover:text-white transition-colors mb-8 animate-bounce"
                 >
                     ← Back to Works
                 </Link>
@@ -60,16 +60,17 @@ export default async function WorkPage({ params }: WorkPageProps) {
                     <div className="flex min-w-0 w-full flex-col gap-8 px-4 pt-8 md:px-6 md:mx-auto xl:pt-12 xl:px-12 mx-auto prose-lg prose-a:underline-offset-4 prose-a:decoration-blue-500">
                         <section id="overview" className="scroll-m-28">
                             <div className="w-full flex flex-col gap-4 justify-center items-center mb-4">
-                                <h1 className="text-4xl lg:text-5xl font-instrument-serif tracking-tight mb-4 text-white">
+                            <Link href={work.url || ""} className="w-[300px] aspect-square mx-auto bg-black border border-white/10 rounded-full p-4 overflow-hidden flex items-center justify-center">
+                                <Image src={work.content || ""} alt={work.title} className="w-full h-full object-cover rounded-full" width={400} height={400} />
+                            </Link>
+                                <h1 className="text-4xl lg:text-5xl font-instrument-serif text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)]">
                                     {work.title}
                                 </h1>
                                 <p className="text-lg text-white/80 leading-relaxed">
                                     {work.description}
                                 </p>
                             </div>
-                            <Link href={work.url || ""} className="w-1/2 mx-auto h-[60%] bg-black border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
-                                <Image src={work.content || ""} alt={work.title} className="w-full h-[95%] object-cover rounded-lg" width={1000} height={950} />
-                            </Link>
+                                <hr className="border-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                         </section>
                         <div className='w-full flex flex-col'>
                             {/* Key Features */}

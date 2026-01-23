@@ -46,7 +46,7 @@ export const worksData: WorkItems[] = [
     ],
     outcome:
       "Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.",
-    colorCode: "#ff0054",
+    colorCode: "#2f414d",
   },
   {
     id: 2,
@@ -92,7 +92,7 @@ export const worksData: WorkItems[] = [
     ],
     outcome:
       "Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.",
-    colorCode: "#0addf9",
+    colorCode: "#2f414d",
   },
   {
     id: 3,
@@ -138,7 +138,7 @@ export const worksData: WorkItems[] = [
     ],
     outcome:
       "Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.",
-    colorCode: "#e0c894",
+    colorCode: "#2f414d",
   },
   {
     id: 4,
@@ -184,7 +184,7 @@ export const worksData: WorkItems[] = [
     ],
     outcome:
       "Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.",
-    colorCode: "#0addf9",
+    colorCode: "#2f414d",
   },
   {
     id: 5,
@@ -230,7 +230,7 @@ export const worksData: WorkItems[] = [
     ],
     outcome:
       "Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.",
-    colorCode: "#6200b3"
+    colorCode: "#2f414d"
   },
   {
     id: 6,
@@ -276,7 +276,7 @@ export const worksData: WorkItems[] = [
     ],
     outcome:
       "Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.",
-    colorCode: "#364156"
+    colorCode: "#2f414d"
   },
   {
     id: 7,
@@ -364,7 +364,7 @@ export const worksData: WorkItems[] = [
     ],
     outcome:
       "Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.Snippix successfully delivers a fast, customizable tool for creating beautiful code snippets. The project demonstrates effective handling of DOM-to-image conversion, dynamic theming, and balancing usability with extensive customization options.",
-    colorCode: "#3a0ca3"
+    colorCode: "#2f414d"
   },
 ];
 

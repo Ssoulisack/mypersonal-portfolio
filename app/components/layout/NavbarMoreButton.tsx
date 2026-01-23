@@ -7,6 +7,12 @@ import { ChevronDown, Link2, BookHeart, CreditCard } from "lucide-react";
 
 import type { MenuType } from "@/app/core/types/menu.type";
 import { Button } from "../ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/Tooltip";
 
 // Local config for hover dropdown delay
 const DROPDOWN_CLOSE_DELAY_MS = 200;
@@ -114,66 +120,148 @@ export function NavbarMoreButton({ item, isActive }: NavbarMoreButtonProps) {
             : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
         }`}
       >
-        <div className="relative rounded-3xl border border-neutral-600 text-popover-foreground shadow-lg overflow-hidden backdrop-blur-lg bg-black">
-          <div className="grid gap-3 p-3 md:grid-cols-3">
+        <TooltipProvider>
+          <div className="relative rounded-3xl border border-neutral-600 text-popover-foreground shadow-lg overflow-hidden backdrop-blur-lg bg-black">
+            <div className="grid gap-3 p-3 md:grid-cols-3">
             {/* Image cards (hero-style links like Guestbook, Bucket List) */}
             {dropdownItems
               .filter((dropdownItem) => dropdownItem.type === "image")
-              .map((dropdownItem) => (
-                <Link
-                  key={dropdownItem.href}
-                  href={dropdownItem.href}
-                  className="group relative flex size-full flex-col justify-end overflow-hidden rounded-xl p-3"
-                >
-                  {dropdownItem.image && (
-                    <Image
-                      src={dropdownItem.image}
-                      alt={dropdownItem.label}
-                      fill
-                      className="absolute inset-0 z-0 rounded-xl object-cover brightness-[0.75] transition-all duration-300 group-hover:scale-110 group-hover:brightness-100 dark:brightness-[0.3] dark:group-hover:brightness-[0.6]"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  )}
-                  <div className="z-10 mt-4 font-medium text-lg text-white">
-                    {dropdownItem.label}
-                  </div>
-                  <p className="z-10 text-nowrap text-neutral-200 text-sm group-hover:text-neutral-50 dark:text-neutral-300 dark:group-hover:text-white">
-                    {dropdownItem.description}
-                  </p>
-                </Link>
-              ))}
+              .map((dropdownItem) => {
+                const isDisabled = dropdownItem.disabled;
+                const sharedClassName = `group relative flex size-full flex-col justify-end overflow-hidden rounded-xl p-3 ${
+                  isDisabled
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`;
+
+                const content = (
+                  <>
+                    {dropdownItem.image && (
+                      <Image
+                        src={dropdownItem.image}
+                        alt={dropdownItem.label}
+                        fill
+                        className={`absolute inset-0 z-0 rounded-xl object-cover brightness-[0.75] transition-all duration-300 dark:brightness-[0.3] ${
+                          !isDisabled
+                            ? "group-hover:scale-110 group-hover:brightness-100 dark:group-hover:brightness-[0.6]"
+                            : ""
+                        }`}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    )}
+                    <div className="z-10 mt-4 font-medium text-lg text-white">
+                      {dropdownItem.label}
+                    </div>
+                    <p
+                      className={`z-10 text-nowrap text-neutral-200 text-sm dark:text-neutral-300 ${
+                        !isDisabled
+                          ? "group-hover:text-neutral-50 dark:group-hover:text-white"
+                          : ""
+                      }`}
+                    >
+                      {dropdownItem.description}
+                    </p>
+                  </>
+                );
+
+                return isDisabled ? (
+                  <Tooltip key={dropdownItem.href}>
+                    <TooltipTrigger asChild>
+                      <div className={sharedClassName}>
+                        {content}
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Not Available</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ) : (
+                  <Link
+                    key={dropdownItem.href}
+                    href={dropdownItem.href}
+                    className={sharedClassName}
+                  >
+                    {content}
+                  </Link>
+                );
+              })}
 
             {/* Icon cards (compact links like Links, Uses, Attribution) */}
             <div className="flex flex-col gap-3">
               {dropdownItems
                 .filter((dropdownItem) => dropdownItem.type === "icon")
-                .map((dropdownItem) => (
-                  <Link
-                    key={dropdownItem.href}
-                    href={dropdownItem.href}
-                    className="group flex w-full items-start gap-3 rounded-xl bg-white/5 p-3 transition-all duration-300 hover:bg-neutral-200 dark:bg-neutral-800/60 dark:hover:bg-neutral-800"
-                  >
-                    <div className="mt-0.5 rounded-lg bg-neutral-200 p-3 group-hover:bg-black/10 dark:bg-neutral-700 dark:group-hover:bg-white/80">
-                      {dropdownItem.iconName &&
-                        DROPDOWN_ICON_MAP[dropdownItem.iconName] && (
-                          <div className="text-neutral-600 group-hover:text-black dark:text-neutral-300 dark:group-hover:text-black">
-                            {DROPDOWN_ICON_MAP[dropdownItem.iconName]}
-                          </div>
-                        )}
-                    </div>
-                    <div className="grow">
-                      <p className="line-clamp-1 text-base text-black dark:text-white">
-                        {dropdownItem.label}
-                      </p>
-                      <p className="mt-0.5 line-clamp-1 text-neutral-600 text-sm group-hover:text-black dark:text-neutral-400 dark:group-hover:text-white">
-                        {dropdownItem.description}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
+                .map((dropdownItem) => {
+                  const isDisabled = dropdownItem.disabled;
+                  const sharedClassName = `group flex w-full items-start gap-3 rounded-xl bg-white/5 p-3 transition-all duration-300 dark:bg-neutral-800/60 ${
+                    isDisabled
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:bg-neutral-200 dark:hover:bg-neutral-800"
+                  }`;
+
+                  const content = (
+                    <>
+                      <div
+                        className={`mt-0.5 rounded-lg bg-neutral-200 p-3 dark:bg-neutral-700 ${
+                          !isDisabled
+                            ? "group-hover:bg-black/10 dark:group-hover:bg-white/80"
+                            : ""
+                        }`}
+                      >
+                        {dropdownItem.iconName &&
+                          DROPDOWN_ICON_MAP[dropdownItem.iconName] && (
+                            <div
+                              className={`text-neutral-600 dark:text-neutral-300 ${
+                                !isDisabled
+                                  ? "group-hover:text-black dark:group-hover:text-black"
+                                  : ""
+                              }`}
+                            >
+                              {DROPDOWN_ICON_MAP[dropdownItem.iconName]}
+                            </div>
+                          )}
+                      </div>
+                      <div className="grow">
+                        <p className="line-clamp-1 text-base text-black dark:text-white">
+                          {dropdownItem.label}
+                        </p>
+                        <p
+                          className={`mt-0.5 line-clamp-1 text-neutral-600 text-sm dark:text-neutral-400 ${
+                            !isDisabled
+                              ? "group-hover:text-black dark:group-hover:text-white"
+                              : ""
+                          }`}
+                        >
+                          {dropdownItem.description}
+                        </p>
+                      </div>
+                    </>
+                  );
+
+                  return isDisabled ? (
+                    <Tooltip key={dropdownItem.href}>
+                      <TooltipTrigger asChild>
+                        <div className={sharedClassName}>
+                          {content}
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Not Available</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ) : (
+                    <Link
+                      key={dropdownItem.href}
+                      href={dropdownItem.href}
+                      className={sharedClassName}
+                    >
+                      {content}
+                    </Link>
+                  );
+                })}
             </div>
           </div>
-        </div>
+          </div>
+        </TooltipProvider>
       </div>
     </div>
   );

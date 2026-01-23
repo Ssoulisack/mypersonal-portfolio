@@ -4,8 +4,8 @@ const generalLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  // { label: "Blog", href: "/blog" },
+  // { label: "Contact", href: "/contact" },
 ]
 
 function Footer() {
@@ -54,7 +54,7 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-col gap-y-2">
+          {/* <div className="flex flex-col gap-y-2">
             <div className="flex flex-col gap-2 text-center sm:text-left sm:gap-4">
               <h4 className="text-base font-geist-mono text-neutral-700">
                 General
@@ -121,7 +121,7 @@ function Footer() {
                 ))}
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className='text-sm flex items-center justify-start gap-x-4'>

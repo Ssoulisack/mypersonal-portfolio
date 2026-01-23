@@ -103,6 +103,14 @@ const ScrollableCardList = ({
   </div>
 );
 
+// Helper function to convert hex to rgba
+const hexToRgba = (hex: string, alpha: number): string => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 // Sub-component: Individual card section
 const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
   ({ item }, ref) => {
@@ -111,8 +119,41 @@ const CardSection = React.forwardRef<HTMLElement, CardSectionProps>(
         ref={ref}
         className="flex flex-col gap-y-2 p-4 my-6 lg:my-12 lg:flex-row rounded-3xl transition-all duration-500 cursor-pointer"
       >
-        <div key={item.id} style={{ backgroundColor: item.colorCode }} className="w-full h-[450px] transition-opacity shadow-2xl duration-300 opacity-90 hover:opacity-70 border border-white/10 rounded-2xl px-4 py-2 overflow-hidden flex items-center justify-center">
-          <Image src={item.content || ""} alt={item.title} className="w-full h-[95%] object-cover rounded-lg" width={500} height={50} />
+        {/* Card content with theme gradient background - Circle */}
+          <div 
+            key={item.id} 
+            className="relative w-full max-w-[400px] aspect-square border border-white/10 rounded-full p-4 overflow-hidden flex items-center justify-center bg-gradient-to-br from-black-900 via-black-800 to-black-900 group will-change-transform transition-transform duration-150 ease-out hover:scale-101 hover:shadow-2xl mx-auto"
+            style={{
+              boxShadow: '0 0 0 0 transparent',
+              transition: 'box-shadow 0.3s ease, opacity 0.3s ease',
+            }}
+          onMouseEnter={(e) => {
+            const color = item.colorCode || "#2553f6";
+            const colorRgba1 = hexToRgba(color, 1);
+            const colorRgba2 = hexToRgba(color, 0.5);
+            const colorRgba3 = hexToRgba(color, 0.25);
+            e.currentTarget.style.boxShadow = 
+              `0 0 20px 2px ${colorRgba1}, 0 0 40px 4px ${colorRgba2}, 0 0 60px 6px ${colorRgba3}`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = '0 0 0 0 transparent';
+          }}
+        >
+          <div className="relative w-full h-full">
+            <Image 
+              src={item.content || ""} 
+              alt={item.title} 
+              className="w-full h-full object-cover rounded-full transition-all duration-300 group-hover:brightness-[0.3]" 
+              width={400} 
+              height={400}
+            />
+            {/* Dark overlay + title on hover */}
+            <div className="absolute inset-0 flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h3 className="text-white text-xl md:text-2xl font-semibold text-center px-4 drop-shadow-lg">
+                {item.title}
+              </h3>
+            </div>
+          </div>
         </div>
         <div className="block md:hidden">
           <h2 className="text-base lg:text-2xl font-semibold text-white break-words">
@@ -144,19 +185,20 @@ CardSection.displayName = "CardSection";
 const ActiveCardDisplay = ({ activeItem, activeCard }: ActiveCardDisplayProps) => {
   if (!activeItem) return null;
 
-  const cardNumber = String(activeCard + 1).padStart(2, "0");
+  const cardNumber = String(activeCard + 1);
 
   return (
     <div className="hidden lg:block lg:w-1/2 lg:self-start sticky top-32">
-      <div className="flex items-center gap-x-2 p-4">
-        <span style={{ color: activeItem.colorCode }} className="text-lg font-semibold font-instrument-serif uppercase bg-white/90 p-2 rounded-3xl tracking-wide text-white/70">
-          {cardNumber}
+      <div className="flex justify-center items-center gap-x-2 p-4">
+        <span className="text-3xl font-semibold font-instrument-serif text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)]">
+          {cardNumber}.{" "}
         </span>
-        <span style={{ backgroundColor: activeItem.colorCode }} className="text-xl font-semibold font-instrument-serif text-white break-words rounded-2xl p-2">
+        <span className="text-3xl font-semibold font-instrument-serif text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/70 to-white/20 drop-shadow-[0_2px_30px_rgba(255,255,255,0.15)]">
           {activeItem.title}
         </span>
       </div>
-      <p className="mt-2 text-sm text-white/80 break-words whitespace-normal">
+      <hr className="border-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+      <p className="text-xl mt-2 text-white/80 break-words whitespace-normal">
         {activeItem.description}
       </p>
       <div className="flex flex-wrap gap-2 mt-2">

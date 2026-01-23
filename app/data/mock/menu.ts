@@ -32,6 +32,7 @@ export const MoreDropdownItems: DropdownMenuItem[] = [
     description: "Let me know you were here",
     image: "/images/nagi.jpeg", // You'll need to add this image
     type: "image",
+    disabled: true, // Disabled - feature not available
   },
   {
     label: "Bucket List",
@@ -39,6 +40,7 @@ export const MoreDropdownItems: DropdownMenuItem[] = [
     description: "Things to do at least once in my life",
     image: "/images/nagi_chibi.jpeg", // You'll need to add this image
     type: "image",
+    disabled: true, // Disabled - feature not available
   },
   {
     label: "Links",
@@ -46,6 +48,7 @@ export const MoreDropdownItems: DropdownMenuItem[] = [
     description: "All my links are here",
     iconName: "Link2",
     type: "icon",
+    disabled: true, // Disabled - feature not available
   },
   {
     label: "Uses",
@@ -53,6 +56,7 @@ export const MoreDropdownItems: DropdownMenuItem[] = [
     description: "A peek into my digital workspace",
     iconName: "BookHeart",
     type: "icon",
+    disabled: true, // Disabled - feature not available
   },
   {
     label: "Attribution",
@@ -60,6 +64,7 @@ export const MoreDropdownItems: DropdownMenuItem[] = [
     description: "Journey to create this site",
     iconName: "CreditCard",
     type: "icon",
+    disabled: true, // Disabled - feature not available
   },
 ];
 
@@ -79,11 +84,11 @@ export const MenuItems: MenuType[] = [
     href: "/works",
     tag: TagTypes.a,
   },
-  {
-    label: "Blog",
-    href: "/blogs",
-    tag: TagTypes.a,
-  },
+  // {
+  //   label: "Blog",
+  //   href: "/blogs",
+  //   tag: TagTypes.a,
+  // },
   {
     label: "More",
     href: "/more",

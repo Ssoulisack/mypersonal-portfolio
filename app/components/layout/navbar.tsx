@@ -191,7 +191,7 @@ function Navbar() {
                                     const isActive = isLast || (item.href || '/') === pathname;
                                     const hasDropdown = item.dropdownItems && item.dropdownItems.length > 0;
 
-                                    // First button with dropdown ("More")
+                                    // First button with dropdown ("More") - DISABLED
                                     if (hasDropdown && isFirst) {
                                         return (
                                             <NavbarMoreButton
@@ -200,6 +200,7 @@ function Navbar() {
                                                 isActive={isActive}
                                             />
                                         );
+                                        // return null
                                     }
 
                                     // Last button ("Book a Call") opens a dialog styled as a bottom sheet

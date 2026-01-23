@@ -20,4 +20,5 @@ export interface DropdownMenuItem {
   image?: string;
   iconName?: string; // Icon identifier (e.g., 'Link2', 'BookHeart', 'CreditCard')
   type: 'image' | 'icon';
+  disabled?: boolean; // Optional - defaults to false if not specified
 }

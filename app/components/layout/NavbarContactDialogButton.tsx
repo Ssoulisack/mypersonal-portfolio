@@ -5,8 +5,10 @@ import Link from "next/link";
 import {
   Calendar,
   Github,
+  Instagram,
   Linkedin,
   Mail,
+  PhoneCall,
   Twitter,
 } from "lucide-react";
 
@@ -59,7 +61,7 @@ export function NavbarContactDialogButton({
         <div className="my-6 flex justify-center gap-4">
           <a
             className="text-neutral-900 transition-colors hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100"
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/sackdvl/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -68,7 +70,7 @@ export function NavbarContactDialogButton({
           </a>
           <a
             className="text-neutral-900 transition-colors hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100"
-            href="https://github.com"
+            href="https://github.com/Ssoulisack"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -77,21 +79,21 @@ export function NavbarContactDialogButton({
           </a>
           <a
             className="text-neutral-900 transition-colors hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-100"
-            href="https://x.com"
+            href="https://www.instagram.com/24.thurs/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="sr-only">Twitter / X</span>
-            <Twitter className="h-5 w-5" />
+            <span className="sr-only">instagram</span>
+            <Instagram className="h-5 w-5" />
           </a>
         </div>
 
         {/* Quick actions grid */}
-        <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-2 grid grid-cols-1 ga`p-4">
           {/* Email card */}
           <a
             className="group block overflow-hidden rounded-lg border bg-white/40 transition-all duration-300 dark:bg-neutral-800/30"
-            href="mailto:hello@example.com"
+            href="mailto:soulisack2498@gmail.com"
             aria-label="Email"
           >
             <div className="flex gap-x-3 border-b border-neutral-200 bg-gradient-to-r from-blue-900/20 to-transparent p-4 dark:border-neutral-700/30">
@@ -102,7 +104,7 @@ export function NavbarContactDialogButton({
             </div>
             <div className="p-4">
               <div className="flex items-center text-sm font-medium text-neutral-700 transition-all duration-300 group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white">
-                hello@example.com
+                soulisack2498@gmail.com
               </div>
               <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
                 Send me an email directly
@@ -110,8 +112,8 @@ export function NavbarContactDialogButton({
             </div>
           </a>
 
-          {/* Book a call card */}
-          <Link
+          {/* Book a call card - DISABLED (function not available) */}
+          {/* <Link
             href={href || "/book-a-call"}
             className="group block overflow-hidden rounded-lg border bg-white/40 transition-all duration-300 dark:bg-neutral-800/30"
             aria-label="Book a Call"
@@ -130,7 +132,7 @@ export function NavbarContactDialogButton({
                 Book a call on my calendar
               </p>
             </div>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Availability pill */}
